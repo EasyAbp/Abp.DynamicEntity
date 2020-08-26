@@ -3,6 +3,14 @@
   "texts": {
     "Menu:Home": "Главная",
     "Welcome": "Добро пожаловать",
-    "LongWelcomeMessage": "Добро пожаловать в приложение. Этот запущенный проект основан на фреймворке ABP. Для получения дополнительной информации посетите сайт abp.io."
+    "LongWelcomeMessage": "Добро пожаловать в приложение. Этот запущенный проект основан на фреймворке ABP. Для получения дополнительной информации посетите сайт abp.io.",
+    "Menu:Computer": "MenuComputer",
+    "Computer": "Computer",
+    "ComputerFieldDefinitionId": "ComputerFieldDefinitionId",
+    "ComputerFieldDefinition": "ComputerFieldDefinition",
+    "CreateComputer": "CreateComputer",
+    "EditComputer": "EditComputer",
+    "ComputerDeletionConfirmationMessage": "Are you sure to delete the computer {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }

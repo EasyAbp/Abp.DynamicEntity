@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DynamicSample.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AddInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -229,6 +229,50 @@ namespace DynamicSample.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AbpUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppComputers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ExtraProperties = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorId = table.Column<Guid>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    LastModifierId = table.Column<Guid>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(nullable: true),
+                    DeletionTime = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppComputers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DynamicFieldDefinitions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ExtraProperties = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorId = table.Column<Guid>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    LastModifierId = table.Column<Guid>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(nullable: true),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    TenantId = table.Column<Guid>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Order = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DynamicFieldDefinitions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -1107,6 +1151,12 @@ namespace DynamicSample.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AppComputers");
+
+            migrationBuilder.DropTable(
+                name: "DynamicFieldDefinitions");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiClaims");

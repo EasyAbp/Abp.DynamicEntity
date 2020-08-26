@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+using DynamicSample.Computers.Dtos;
+using DynamicSample.Web.Pages.Computers.Computer.ViewModels;
+using AutoMapper;
 
 namespace DynamicSample.Web
 {
@@ -7,6 +9,8 @@ namespace DynamicSample.Web
         public DynamicSampleWebAutoMapperProfile()
         {
             //Define your AutoMapper configuration here for the Web project.
+            CreateMap<ComputerDto, CreateEditComputerViewModel>();
+            CreateMap<CreateEditComputerViewModel, CreateUpdateComputerDto>();
         }
     }
 }

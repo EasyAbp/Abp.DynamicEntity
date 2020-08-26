@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyAbp.Abp.Dynamic.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -39,6 +40,9 @@ namespace DynamicSample.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
+            
+            /* Include dynamic module */
+            builder.ConfigureDynamic();
 
             /* Configure your own tables/entities inside the ConfigureDynamicSample method */
 

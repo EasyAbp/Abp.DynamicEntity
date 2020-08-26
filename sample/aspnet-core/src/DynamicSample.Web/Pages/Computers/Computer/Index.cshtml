@@ -1,0 +1,51 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using DynamicSample.Web.Pages.Computers.Computer
+@using DynamicSample.Localization
+@using DynamicSample.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DynamicSampleResource> L
+@{
+    PageLayout.Content.Title = L["Computer"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Computer"].Value);
+    PageLayout.Content.MenuItemName = DynamicSampleMenus.Computer;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Computers/Computer/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Computers/Computer/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Computer"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewComputerButton"
+                            text="@L["CreateComputer"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ComputerTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["ComputerFieldDefinitionId"]</th>
+                <th>@L["ComputerFieldDefinition"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

@@ -6,5 +6,6 @@ namespace DynamicSample.Web.Menus
 
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";
+        public const string Computer = Prefix + ".Computer";
     }
 }

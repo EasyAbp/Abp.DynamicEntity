@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using DynamicSample.Localization;
@@ -29,6 +29,9 @@ namespace DynamicSample.Web.Menus
             var l = context.GetLocalizer<DynamicSampleResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem("DynamicSample.Home", l["Menu:Home"], "~/"));
+            context.Menu.AddItem(
+                new ApplicationMenuItem(DynamicSampleMenus.Computer, l["Menu:Computer"], "/Computers/Computer")
+            );
         }
     }
 }

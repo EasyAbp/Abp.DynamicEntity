@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using DynamicSample.Computers;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace DynamicSample.EntityFrameworkCore
 {
@@ -17,6 +19,16 @@ namespace DynamicSample.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+
+
+            builder.Entity<Computer>(b =>
+            {
+                b.ToTable(DynamicSampleConsts.DbTablePrefix + "Computers", DynamicSampleConsts.DbSchema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }

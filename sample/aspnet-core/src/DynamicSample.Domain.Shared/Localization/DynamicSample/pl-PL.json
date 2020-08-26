@@ -3,6 +3,14 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Witaj",
-    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io."
+    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io.",
+    "Menu:Computer": "MenuComputer",
+    "Computer": "Computer",
+    "ComputerFieldDefinitionId": "ComputerFieldDefinitionId",
+    "ComputerFieldDefinition": "ComputerFieldDefinition",
+    "CreateComputer": "CreateComputer",
+    "EditComputer": "EditComputer",
+    "ComputerDeletionConfirmationMessage": "Are you sure to delete the computer {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }
