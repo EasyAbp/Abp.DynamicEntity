@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using EasyAbp.Abp.Dynamic.Fields;
 
 namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
 {
@@ -10,6 +11,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
         /* Add DbSet for each Aggregate Root here. Example:
          * public DbSet<Question> Questions { get; set; }
          */
+        public DbSet<FieldDefinition> FieldDefinitions { get; set; }
 
         public DynamicDbContext(DbContextOptions<DynamicDbContext> options) 
             : base(options)

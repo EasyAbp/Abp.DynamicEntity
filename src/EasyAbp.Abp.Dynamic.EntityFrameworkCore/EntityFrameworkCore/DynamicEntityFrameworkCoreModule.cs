@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using EasyAbp.Abp.Dynamic.Fields;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
@@ -17,6 +18,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 /* Add custom repositories here. Example:
                  * options.AddRepository<Question, EfCoreQuestionRepository>();
                  */
+                options.AddRepository<FieldDefinition, FieldDefinitionRepository>();
             });
         }
     }

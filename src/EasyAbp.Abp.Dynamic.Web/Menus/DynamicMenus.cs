@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.Abp.Dynamic.Web.Menus
+namespace EasyAbp.Abp.Dynamic.Web.Menus
 {
     public class DynamicMenus
     {
@@ -7,5 +7,6 @@
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";
 
+        public const string FieldDefinition = Prefix + ".FieldDefinition";
     }
 }

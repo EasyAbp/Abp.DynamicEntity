@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
+using EasyAbp.Abp.Dynamic.Localization;
+using EasyAbp.Abp.Dynamic.Permissions;
 using Volo.Abp.UI.Navigation;
 
 namespace EasyAbp.Abp.Dynamic.Web.Menus
@@ -13,11 +15,17 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
             }
         }
 
-        private Task ConfigureMainMenu(MenuConfigurationContext context)
+        private async Task ConfigureMainMenu(MenuConfigurationContext context)
         {
-            //Add main menu items.
+            var l = context.GetLocalizer<DynamicResource>();
+             //Add main menu items.
 
-            return Task.CompletedTask;
+            if (await context.IsGrantedAsync(DynamicPermissions.FieldDefinition.Default))
+            {
+                context.Menu.AddItem(
+                    new ApplicationMenuItem(DynamicMenus.FieldDefinition, l["Menu:FieldDefinition"], "/Dynamic/Fields/FieldDefinition")
+                );
+            }
         }
     }
 }

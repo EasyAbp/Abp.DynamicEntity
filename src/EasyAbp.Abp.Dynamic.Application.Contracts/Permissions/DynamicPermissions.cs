@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Reflection;
+using Volo.Abp.Reflection;
 
 namespace EasyAbp.Abp.Dynamic.Permissions
 {
@@ -9,6 +9,14 @@ namespace EasyAbp.Abp.Dynamic.Permissions
         public static string[] GetAll()
         {
             return ReflectionHelper.GetPublicConstantsRecursively(typeof(DynamicPermissions));
+        }
+
+        public class FieldDefinition
+        {
+            public const string Default = GroupName + ".FieldDefinition";
+            public const string Update = Default + ".Update";
+            public const string Create = Default + ".Create";
+            public const string Delete = Default + ".Delete";
         }
     }
 }

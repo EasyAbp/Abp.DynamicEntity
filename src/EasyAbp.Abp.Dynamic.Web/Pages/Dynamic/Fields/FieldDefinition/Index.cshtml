@@ -1,0 +1,57 @@
+@page
+@using EasyAbp.Abp.Dynamic.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using EasyAbp.Abp.Dynamic.Web.Pages.Dynamic.Fields.FieldDefinition
+@using EasyAbp.Abp.Dynamic.Localization
+@using EasyAbp.Abp.Dynamic.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DynamicResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["FieldDefinition"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:FieldDefinition"].Value);
+    PageLayout.Content.MenuItemName = DynamicMenus.FieldDefinition;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Dynamic/Fields/FieldDefinition/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Dynamic/Fields/FieldDefinition/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["FieldDefinition"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+			    @if (await Authorization.IsGrantedAsync(DynamicPermissions.FieldDefinition.Create))
+                {
+                <abp-button id="NewFieldDefinitionButton"
+                            text="@L["CreateFieldDefinition"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="FieldDefinitionTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["FieldDefinitionName"]</th>
+                <th>@L["FieldDefinitionType"]</th>
+                <th>@L["FieldDefinitionOrder"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

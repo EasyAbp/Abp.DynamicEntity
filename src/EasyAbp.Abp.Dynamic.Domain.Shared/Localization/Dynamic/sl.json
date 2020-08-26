@@ -1,6 +1,19 @@
 {
   "culture": "sl",
   "texts": {
-    "ManageYourProfile":  "Upravljajte svojim profilom" 
+    "ManageYourProfile": "Upravljajte svojim profilom",
+    "Permission:FieldDefinition": "FieldDefinition",
+    "Permission:Create": "Create",
+    "Permission:Update": "Update",
+    "Permission:Delete": "Delete",
+    "Menu:FieldDefinition": "MenuFieldDefinition",
+    "FieldDefinition": "FieldDefinition",
+    "FieldDefinitionName": "FieldDefinitionName",
+    "FieldDefinitionType": "FieldDefinitionType",
+    "FieldDefinitionOrder": "FieldDefinitionOrder",
+    "CreateFieldDefinition": "CreateFieldDefinition",
+    "EditFieldDefinition": "EditFieldDefinition",
+    "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the fieldDefinition {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }

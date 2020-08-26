@@ -1,7 +1,20 @@
 {
   "culture": "en",
   "texts": {
-    "ManageYourProfile":  "Manage your profile",
-    "SamplePageMessage": "A sample page for the Dynamic module"
+    "ManageYourProfile": "Manage your profile",
+    "SamplePageMessage": "A sample page for the Dynamic module",
+    "Permission:FieldDefinition": "FieldDefinition",
+    "Permission:Create": "Create",
+    "Permission:Update": "Update",
+    "Permission:Delete": "Delete",
+    "Menu:FieldDefinition": "MenuFieldDefinition",
+    "FieldDefinition": "FieldDefinition",
+    "FieldDefinitionName": "FieldDefinitionName",
+    "FieldDefinitionType": "FieldDefinitionType",
+    "FieldDefinitionOrder": "FieldDefinitionOrder",
+    "CreateFieldDefinition": "CreateFieldDefinition",
+    "EditFieldDefinition": "EditFieldDefinition",
+    "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the fieldDefinition {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }

@@ -1,6 +1,8 @@
-﻿using System;
+using EasyAbp.Abp.Dynamic.Fields;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
 {
@@ -38,6 +40,16 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.HasIndex(q => q.CreationTime);
             });
             */
+
+
+            builder.Entity<FieldDefinition>(b =>
+            {
+                b.ToTable(options.TablePrefix + "FieldDefinitions", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }
