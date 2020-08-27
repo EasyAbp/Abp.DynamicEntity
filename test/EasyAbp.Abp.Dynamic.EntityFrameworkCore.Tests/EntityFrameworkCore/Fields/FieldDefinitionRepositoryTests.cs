@@ -15,7 +15,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.Fields
             _fieldDefinitionRepository = GetRequiredService<IFieldDefinitionRepository>();
         }
 
-        [Fact]
+        /*[Fact]
         public async Task Test1()
         {
             await WithUnitOfWorkAsync(async () =>
@@ -26,6 +26,6 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.Fields
 
                 //Assert
             });
-        }
+        }*/
     }
 }

@@ -14,7 +14,7 @@ namespace EasyAbp.Abp.Dynamic.Fields
             _fieldDefinitionAppService = GetRequiredService<IFieldDefinitionAppService>();
         }
 
-        [Fact]
+        /*[Fact]
         public async Task Test1()
         {
             // Arrange
@@ -22,6 +22,6 @@ namespace EasyAbp.Abp.Dynamic.Fields
             // Act
 
             // Assert
-        }
+        }*/
     }
 }

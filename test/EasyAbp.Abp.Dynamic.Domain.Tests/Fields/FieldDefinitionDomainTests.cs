@@ -10,7 +10,7 @@ namespace EasyAbp.Abp.Dynamic.Fields
         {
         }
 
-        [Fact]
+        /*[Fact]
         public async Task Test1()
         {
             // Arrange
@@ -18,6 +18,6 @@ namespace EasyAbp.Abp.Dynamic.Fields
             // Assert
 
             // Assert
-        }
+        }*/
     }
 }
