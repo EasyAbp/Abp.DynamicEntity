@@ -4,7 +4,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 {
     public static class DynamicModelEntityTypeBuilderExtensions
     {
-        public static void ConfigureDynamicField<T>(this EntityTypeBuilder<T> b)
+        public static void ConfigureDynamicModel<T>(this EntityTypeBuilder<T> b)
             where T : class, IDynamicModel
         {
             b.HasOne(e => e.ModelDefinition)

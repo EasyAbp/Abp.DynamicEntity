@@ -1,5 +1,6 @@
 ﻿using System;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
+using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -21,35 +22,31 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
 
             optionsAction?.Invoke(options);
 
-            /* Configure all entities here. Example:
-
-            builder.Entity<Question>(b =>
-            {
-                //Configure table & schema name
-                b.ToTable(options.TablePrefix + "Questions", options.Schema);
-            
-                b.ConfigureByConvention();
-            
-                //Properties
-                b.Property(q => q.Title).IsRequired().HasMaxLength(QuestionConsts.MaxTitleLength);
-                
-                //Relations
-                b.HasMany(question => question.Tags).WithOne().HasForeignKey(qt => qt.QuestionId);
-
-                //Indexes
-                b.HasIndex(q => q.CreationTime);
-            });
-            */
-
-
             builder.Entity<FieldDefinition>(b =>
             {
                 b.ToTable(options.TablePrefix + "FieldDefinitions", options.Schema);
-                b.ConfigureByConvention(); 
-                
-
-                /* Configure more properties here */
+                b.ConfigureByConvention();
             });
+
+            builder.Entity<ModelDefinition>(b =>
+            {
+                b.ToTable(options.TablePrefix + "ModelDefinitions", options.Schema);
+                b.ConfigureByConvention();
+
+                b.HasMany(x => x.Fields)
+                    .WithOne()
+                    .HasForeignKey(x => x.ModelDefinitionId)
+                    ;
+            });
+            
+            builder.Entity<ModelField>(b =>
+            {
+                b.ToTable(options.TablePrefix + "ModelFields", options.Schema);
+                b.ConfigureByConvention();
+
+                b.HasKey(x => new {x.FieldDefinitionId, x.ModelDefinitionId});
+            });
+
         }
     }
 }

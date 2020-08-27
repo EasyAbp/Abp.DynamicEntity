@@ -1,4 +1,5 @@
-using DynamicSample.Computers;
+﻿using DynamicSample.Computers;
+using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -25,6 +26,7 @@ namespace DynamicSample.EntityFrameworkCore
             {
                 b.ToTable(DynamicSampleConsts.DbTablePrefix + "Computers", DynamicSampleConsts.DbSchema);
                 b.ConfigureByConvention(); 
+                b.ConfigureDynamicModel();
                 
 
                 /* Configure more properties here */

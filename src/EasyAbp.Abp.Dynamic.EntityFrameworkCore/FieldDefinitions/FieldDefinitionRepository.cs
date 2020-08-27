@@ -5,9 +5,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 {
-    public class FieldDefinitionRepository : EfCoreRepository<DynamicDbContext, FieldDefinition, Guid>, IFieldDefinitionRepository
+    public class FieldDefinitionRepository : EfCoreRepository<IDynamicDbContext, FieldDefinition, Guid>, IFieldDefinitionRepository
     {
-        public FieldDefinitionRepository(IDbContextProvider<DynamicDbContext> dbContextProvider) : base(dbContextProvider)
+        public FieldDefinitionRepository(IDbContextProvider<IDynamicDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }

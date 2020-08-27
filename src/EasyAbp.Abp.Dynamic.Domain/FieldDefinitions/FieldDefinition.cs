@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -8,8 +9,10 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
     {
         public virtual Guid? TenantId { get; protected set; }
 
+        [NotNull]
         public virtual string Name { get; protected set; }
 
+        [NotNull]
         public virtual string Type { get; protected set; }
 
         protected FieldDefinition()
