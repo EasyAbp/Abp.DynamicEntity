@@ -1,14 +1,12 @@
 using System;
 using System.ComponentModel;
 using EasyAbp.Abp.Dynamic.Fields.Dtos;
+using Volo.Abp.Application.Dtos;
 
 namespace DynamicSample.Computers.Dtos
 {
     [Serializable]
-    public class CreateUpdateComputerDto
+    public class CreateUpdateComputerDto : ExtensibleEntityDto<Guid>
     {
-        public Guid FieldDefinitionId { get; set; }
-
-        public FieldDefinitionDto FieldDefinition { get; set; }
     }
 }

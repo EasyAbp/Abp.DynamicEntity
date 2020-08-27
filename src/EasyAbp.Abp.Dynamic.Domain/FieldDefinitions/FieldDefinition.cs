@@ -2,17 +2,15 @@ using System;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
-namespace EasyAbp.Abp.Dynamic.Fields
+namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 {
     public class FieldDefinition : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
-        public Guid? TenantId { get; protected set; }
+        public virtual Guid? TenantId { get; protected set; }
 
-        public string Name { get; protected set; }
+        public virtual string Name { get; protected set; }
 
-        public string Type { get; protected set; }
-
-        public int Order { get; protected set; }
+        public virtual string Type { get; protected set; }
 
         protected FieldDefinition()
         {
@@ -22,14 +20,12 @@ namespace EasyAbp.Abp.Dynamic.Fields
             Guid id, 
             Guid? tenantId, 
             string name, 
-            string type, 
-            int order
+            string type 
         ) : base(id)
         {
             TenantId = tenantId;
             Name = name;
             Type = type;
-            Order = order;
         }
     }
 }

@@ -1,14 +1,15 @@
 
 using System;
-using EasyAbp.Abp.Dynamic.Fields;
+using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace DynamicSample.Computers
 {
-    public class Computer : FullAuditedAggregateRoot<Guid>, IDynamicField
+    public class Computer : FullAuditedAggregateRoot<Guid>, IDynamicModel
     {
-        public Guid FieldDefinitionId { get; }
-        public virtual FieldDefinition FieldDefinition { get; }
+        public virtual Guid ModelDefinitionId { get; protected set; }
+
+        public virtual ModelDefinition ModelDefinition { get; protected set; }
 
         protected Computer()
         {
@@ -16,10 +17,10 @@ namespace DynamicSample.Computers
 
         public Computer(
             Guid id, 
-            Guid fieldDefinitionId 
+            Guid modelDefinitionId 
         ) : base(id)
         {
-            FieldDefinitionId = fieldDefinitionId;
+            ModelDefinitionId = modelDefinitionId;
         }
     }
 }

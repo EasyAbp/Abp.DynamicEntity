@@ -9,7 +9,5 @@ namespace EasyAbp.Abp.Dynamic.Fields.Dtos
         public string Name { get; set; }
 
         public string Type { get; set; }
-
-        public int Order { get; set; }
     }
 }

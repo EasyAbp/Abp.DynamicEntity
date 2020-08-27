@@ -1,5 +1,6 @@
 using System;
 using EasyAbp.Abp.Dynamic.EntityFrameworkCore;
+using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
