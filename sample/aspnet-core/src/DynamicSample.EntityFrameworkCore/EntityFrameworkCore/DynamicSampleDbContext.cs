@@ -7,6 +7,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
 using DynamicSample.Computers;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
+using DynamicSample.Books;
 
 namespace DynamicSample.EntityFrameworkCore
 {
@@ -29,6 +30,7 @@ namespace DynamicSample.EntityFrameworkCore
          */
         public DbSet<Computer> Computers { get; set; }
         public DbSet<ModelDefinition> ModelDefinitions { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         public DynamicSampleDbContext(DbContextOptions<DynamicSampleDbContext> options)
             : base(options)

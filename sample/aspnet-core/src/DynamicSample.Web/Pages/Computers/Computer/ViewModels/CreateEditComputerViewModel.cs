@@ -1,16 +1,14 @@
-using System;
-
 using System.ComponentModel.DataAnnotations;
-using EasyAbp.Abp.Dynamic.Fields.Dtos;
+using DynamicSample.Computers;
 
 namespace DynamicSample.Web.Pages.Computers.Computer.ViewModels
 {
     public class CreateEditComputerViewModel
     {
-        [Display(Name = "ComputerFieldDefinitionId")]
-        public Guid FieldDefinitionId { get; set; }
+        [Display(Name = "ComputerComputerType")]
+        public ComputerType ComputerType { get; set; }
 
-        [Display(Name = "ComputerFieldDefinition")]
-        public FieldDefinitionDto FieldDefinition { get; set; }
+        [Display(Name = "ComputerPrice")]
+        public float Price { get; set; }
     }
 }

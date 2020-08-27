@@ -1,0 +1,53 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using DynamicSample.Web.Pages.Books.Book
+@using DynamicSample.Localization
+@using DynamicSample.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DynamicSampleResource> L
+@{
+    PageLayout.Content.Title = L["Book"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Book"].Value);
+    PageLayout.Content.MenuItemName = DynamicSampleMenus.Book;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Books/Book/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Books/Book/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Book"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewBookButton"
+                            text="@L["CreateBook"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="BookTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["BookName"]</th>
+                <th>@L["BookAuthor"]</th>
+                <th>@L["BookModelDefinitionId"]</th>
+                <th>@L["BookModelDefinition"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

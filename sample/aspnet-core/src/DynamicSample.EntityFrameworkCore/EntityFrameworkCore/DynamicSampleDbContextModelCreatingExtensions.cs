@@ -1,4 +1,5 @@
-﻿using DynamicSample.Computers;
+using DynamicSample.Books;
+using DynamicSample.Computers;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
@@ -28,6 +29,15 @@ namespace DynamicSample.EntityFrameworkCore
                 b.ConfigureByConvention(); 
                 b.ConfigureDynamicModel();
                 
+                /* Configure more properties here */
+            });
+
+
+            builder.Entity<Book>(b =>
+            {
+                b.ToTable(DynamicSampleConsts.DbTablePrefix + "Books", DynamicSampleConsts.DbSchema);
+                b.ConfigureByConvention(); 
+                b.ConfigureDynamicModel();
 
                 /* Configure more properties here */
             });

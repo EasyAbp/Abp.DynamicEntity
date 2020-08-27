@@ -4,15 +4,17 @@ using DynamicSample.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace DynamicSample.Migrations
 {
     [DbContext(typeof(DynamicSampleMigrationsDbContext))]
-    partial class DynamicSampleMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200827030909_AddBook")]
+    partial class AddBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,15 +72,10 @@ namespace DynamicSample.Migrations
                         .HasColumnName("LastModifierId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ModelDefinitionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ModelDefinitionId");
 
                     b.ToTable("AppBooks");
                 });
@@ -1963,15 +1960,6 @@ namespace DynamicSample.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings");
-                });
-
-            modelBuilder.Entity("DynamicSample.Books.Book", b =>
-                {
-                    b.HasOne("EasyAbp.Abp.Dynamic.ModelDefinitions.ModelDefinition", "ModelDefinition")
-                        .WithMany()
-                        .HasForeignKey("ModelDefinitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DynamicSample.Computers.Computer", b =>
