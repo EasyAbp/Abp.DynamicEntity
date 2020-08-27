@@ -5,9 +5,8 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
-using DynamicSample.Computers;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
-using DynamicSample.Books;
+using EasyAbp.Abp.Dynamic.DynamicEntities;
 
 namespace DynamicSample.EntityFrameworkCore
 {
@@ -28,9 +27,8 @@ namespace DynamicSample.EntityFrameworkCore
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside DynamicSampleDbContextModelCreatingExtensions.ConfigureDynamicSample
          */
-        public DbSet<Computer> Computers { get; set; }
         public DbSet<ModelDefinition> ModelDefinitions { get; set; }
-        public DbSet<Book> Books { get; set; }
+        public DbSet<DynamicEntity> DynamicEntities { get; set; }
 
         public DynamicSampleDbContext(DbContextOptions<DynamicSampleDbContext> options)
             : base(options)

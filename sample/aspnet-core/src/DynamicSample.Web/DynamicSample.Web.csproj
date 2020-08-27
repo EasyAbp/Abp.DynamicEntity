@@ -54,4 +54,13 @@
     <PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="3.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Books\Book\CreateModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Books\Book\EditModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Books\Book\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Computers\Computer\CreateModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Computers\Computer\EditModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Computers\Computer\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

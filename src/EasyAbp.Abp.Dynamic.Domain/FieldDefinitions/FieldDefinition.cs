@@ -21,9 +21,9 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 
         public FieldDefinition(
             Guid id, 
-            Guid? tenantId, 
             string name, 
-            string type 
+            string type, 
+            Guid? tenantId = null 
         ) : base(id)
         {
             TenantId = tenantId;

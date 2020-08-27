@@ -1,4 +1,5 @@
-﻿using EasyAbp.Abp.Dynamic.FieldDefinitions;
+﻿using EasyAbp.Abp.Dynamic.DynamicEntities;
+using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -14,5 +15,6 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
          */
         DbSet<FieldDefinition> FieldDefinitions { get; set; }
         DbSet<ModelDefinition> ModelDefinitions { get; set; }
+        DbSet<DynamicEntity> DynamicEntities { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 {
@@ -10,6 +11,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             b.HasOne(e => e.ModelDefinition)
                 .WithMany()
                 .HasForeignKey(x => x.ModelDefinitionId)
+                .OnDelete(DeleteBehavior.SetNull)
                 ;
         }
     }

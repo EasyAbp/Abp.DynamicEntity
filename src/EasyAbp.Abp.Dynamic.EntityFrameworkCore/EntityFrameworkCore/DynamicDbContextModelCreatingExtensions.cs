@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyAbp.Abp.Dynamic.DynamicEntities;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
@@ -45,8 +46,23 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.ConfigureByConvention();
 
                 b.HasKey(x => new {x.FieldDefinitionId, x.ModelDefinitionId});
-            });
 
+                b.HasOne(x => x.FieldDefinition)
+                    .WithMany()
+                    .HasForeignKey(x => x.FieldDefinitionId);
+
+                b.HasOne(x => x.ModelDefinition)
+                    .WithMany(x => x.Fields)
+                    .HasForeignKey(x => x.ModelDefinitionId)
+                    ;
+            });
+            
+            builder.Entity<DynamicEntity>(b =>
+            {
+                b.ToTable(options.TablePrefix + "DynamicEntities", options.Schema);
+                b.ConfigureByConvention();
+                b.ConfigureDynamicModel();
+            });
         }
     }
 }

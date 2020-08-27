@@ -1,5 +1,6 @@
 using Shouldly;
 using System.Threading.Tasks;
+using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using Xunit;
 
 namespace EasyAbp.Abp.Dynamic.Fields

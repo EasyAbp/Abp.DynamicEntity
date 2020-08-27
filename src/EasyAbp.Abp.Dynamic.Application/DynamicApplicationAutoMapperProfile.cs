@@ -1,7 +1,6 @@
-using EasyAbp.Abp.Dynamic.Fields;
-using EasyAbp.Abp.Dynamic.Fields.Dtos;
 using AutoMapper;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
+using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 
 namespace EasyAbp.Abp.Dynamic
 {
