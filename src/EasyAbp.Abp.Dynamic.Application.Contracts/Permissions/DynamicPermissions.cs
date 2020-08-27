@@ -18,5 +18,21 @@ namespace EasyAbp.Abp.Dynamic.Permissions
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";
         }
+
+        public class ModelDefinition
+        {
+            public const string Default = GroupName + ".ModelDefinition";
+            public const string Update = Default + ".Update";
+            public const string Create = Default + ".Create";
+            public const string Delete = Default + ".Delete";
+        }
+
+        public class DynamicEntity
+        {
+            public const string Default = GroupName + ".DynamicEntity";
+            public const string Update = Default + ".Update";
+            public const string Create = Default + ".Create";
+            public const string Delete = Default + ".Delete";
+        }
     }
 }

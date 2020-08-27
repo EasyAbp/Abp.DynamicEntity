@@ -256,3 +256,4 @@ host/EasyAbp.Abp.Dynamic.IdentityServer/Logs/logs.txt
 host/EasyAbp.Abp.Dynamic.HttpApi.Host/Logs/logs.txt
 host/EasyAbp.Abp.Dynamic.Web.Host/Logs/logs.txt
 host/EasyAbp.Abp.Dynamic.Web.Unified/Logs/logs.txt
+/host

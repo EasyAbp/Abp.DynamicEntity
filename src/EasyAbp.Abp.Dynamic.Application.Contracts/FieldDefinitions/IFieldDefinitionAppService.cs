@@ -1,6 +1,5 @@
 using System;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.Dynamic.FieldDefinitions
@@ -9,7 +8,7 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         ICrudAppService< 
             FieldDefinitionDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
+            GetListInput,
             CreateUpdateFieldDefinitionDto,
             CreateUpdateFieldDefinitionDto>
     {
