@@ -15,7 +15,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
         [NotNull] public virtual string Type { get; protected set; }
 
-        public virtual Collection<ModelField> Fields { get; protected set; }
+        public virtual Collection<ModelField> Fields { get; protected set; } = new Collection<ModelField>();
 
         protected ModelDefinition()
         {
@@ -31,7 +31,6 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             TenantId = tenantId;
             Name = name;
             Type = type;
-            Fields = new Collection<ModelField>();
         }
 
         public virtual void AddField(Guid fieldDefinitionId, int order = Int32.MaxValue)

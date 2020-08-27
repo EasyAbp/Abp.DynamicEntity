@@ -7,7 +7,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 {
-    public class ModelDefinitionAppService: CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetListInput, CreateUpdateModelDefinitionDto, CreateUpdateModelDefinitionDto>, IModelDefinitionAppService
+    public class ModelDefinitionAppService : CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetListInput, CreateUpdateModelDefinitionDto, CreateUpdateModelDefinitionDto>, IModelDefinitionAppService
     {
         protected override string GetPolicyName { get; set; } = DynamicPermissions.ModelDefinition.Default;
         protected override string GetListPolicyName { get; set; } = DynamicPermissions.ModelDefinition.Default;
@@ -28,10 +28,23 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             {
                 return _repository.WhereIf(!input.Filter.IsNullOrEmpty(),
                     fd => fd.Name.Contains(input.Filter) ||
-                          fd.Type.Contains(input.Filter));         
+                          fd.Type.Contains(input.Filter));
             }
 
             return base.CreateFilteredQuery(input);
+        }
+
+        protected override ModelDefinition MapToEntity(CreateUpdateModelDefinitionDto createInput)
+        {
+            var entity = base.MapToEntity(createInput);
+            entity.Fields.Clear();
+            int order = 1;
+            foreach (var fieldId in createInput.FieldIds)
+            {
+                entity.AddField(fieldId, order++);
+            }
+
+            return entity;
         }
     }
 }

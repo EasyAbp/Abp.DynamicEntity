@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 
 namespace EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos
 {
@@ -11,6 +10,6 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos
 
         public string Type { get; set; }
         
-        public List<FieldDefinitionDto> Fields { get; set; }
+        public List<Guid> FieldIds { get; set; } = new List<Guid>();
     }
 }

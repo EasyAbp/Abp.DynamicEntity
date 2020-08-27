@@ -16,7 +16,8 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
         public override IQueryable<ModelDefinition> WithDetails()
         {
             return GetQueryable()
-                .Include(md => md.Fields);
+                .Include(md => md.Fields)
+                .ThenInclude(mf => mf.FieldDefinition);
         }
     }
 }

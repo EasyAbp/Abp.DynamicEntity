@@ -1,6 +1,12 @@
+using System.Linq;
 using AutoMapper;
+using EasyAbp.Abp.Dynamic.DynamicEntities;
+using EasyAbp.Abp.Dynamic.DynamicEntities.Dtos;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
+using EasyAbp.Abp.Dynamic.ModelDefinitions;
+using EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos;
+using Volo.Abp.AutoMapper;
 
 namespace EasyAbp.Abp.Dynamic
 {
@@ -13,6 +19,24 @@ namespace EasyAbp.Abp.Dynamic
              * into multiple profile classes for a better organization. */
             CreateMap<FieldDefinition, FieldDefinitionDto>();
             CreateMap<CreateUpdateFieldDefinitionDto, FieldDefinition>(MemberList.Source);
+            
+            CreateMap<ModelDefinition, ModelDefinitionDto>()
+                .ForMember(dest => dest.Fields, opt =>
+                {
+                    opt.MapFrom(src => src.Fields.OrderBy(f => f.Order));
+                })
+                ;
+            CreateMap<ModelField, FieldDefinitionDto>(MemberList.None)
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FieldDefinition.Name))
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.FieldDefinition.Type))
+                ;
+            
+            CreateMap<CreateUpdateModelDefinitionDto, ModelDefinition>(MemberList.None)
+                .Ignore(x => x.Fields)
+                ;
+            
+            CreateMap<DynamicEntity, DynamicEntityDto>();
+            CreateMap<CreateUpdateDynamicEntityDto, DynamicEntity>(MemberList.Source);
         }
     }
 }
