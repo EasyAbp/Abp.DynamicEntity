@@ -1,5 +1,4 @@
-﻿using EasyAbp.Abp.Dynamic.Fields;
-using System;
+﻿using System;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;

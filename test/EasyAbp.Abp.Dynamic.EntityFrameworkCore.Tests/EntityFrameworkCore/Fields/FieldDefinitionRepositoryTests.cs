@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
-using EasyAbp.Abp.Dynamic.Fields;
 using Volo.Abp.Domain.Repositories;
 using Xunit;
 

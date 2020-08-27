@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
-using EasyAbp.Abp.Dynamic.Fields;
 
 namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
 {
