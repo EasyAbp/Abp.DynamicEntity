@@ -45,10 +45,14 @@ namespace EasyAbp.Abp.Dynamic
 
             var deBook1 = new DynamicEntity(_guidGenerator.Create());
             deBook1.SetModelDefinition(mdBook.Id);
+            deBook1.SetProperty("Name", "Book1");
+            deBook1.SetProperty("Price", 100.00f);
             await _dynamicEntityRepository.InsertAsync(deBook1);           
             
             var deBook2 = new DynamicEntity(_guidGenerator.Create());
-            deBook1.SetModelDefinition(mdBook.Id);
+            deBook2.SetModelDefinition(mdBook.Id);
+            deBook2.SetProperty("Name", "Book2");
+            deBook2.SetProperty("Price", 200.00f);
             await _dynamicEntityRepository.InsertAsync(deBook2);
         }
     }

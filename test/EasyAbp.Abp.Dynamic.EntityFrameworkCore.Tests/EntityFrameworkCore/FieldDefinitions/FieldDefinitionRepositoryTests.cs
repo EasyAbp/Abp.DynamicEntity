@@ -1,10 +1,6 @@
-using System;
-using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
-using Volo.Abp.Domain.Repositories;
-using Xunit;
 
-namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.Fields
+namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.FieldDefinitions
 {
     public class FieldDefinitionRepositoryTests : DynamicEntityFrameworkCoreTestBase
     {

@@ -27,13 +27,9 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
         {
             if (input.Filter != null && input.Filter.Count > 0)
             {
-                var query = _repository.AsQueryable();
-                foreach (var kv in input.Filter)
-                {
-                    // TODO: check if this is ok
-                    query = query.Where(de => de.GetProperty(kv.Key, String.Empty).Contains(kv.Value));
-                }
+                return _repository.GetQueryByFilter(input.Filter);
             }
+            
             return base.CreateFilteredQuery(input);
         }
     }
