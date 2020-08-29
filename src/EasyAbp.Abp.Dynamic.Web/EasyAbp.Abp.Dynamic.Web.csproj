@@ -37,4 +37,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Dynamic\Fields\FieldDefinition\CreateModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Dynamic\Fields\FieldDefinition\EditModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Dynamic\Fields\FieldDefinition\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

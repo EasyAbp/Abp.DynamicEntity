@@ -39,6 +39,13 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         }
 
         [HttpGet]
+        [Route("getByName/{name}")]
+        public Task<FieldDefinitionDto> GetByName(string name)
+        {
+            return _service.GetByName(name);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public virtual Task<FieldDefinitionDto> GetAsync(Guid id)
         {

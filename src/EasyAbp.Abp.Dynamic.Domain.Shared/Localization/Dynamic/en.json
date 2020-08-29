@@ -15,6 +15,7 @@
     "CreateFieldDefinition": "CreateFieldDefinition",
     "EditFieldDefinition": "EditFieldDefinition",
     "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the fieldDefinition {0}?",
-    "SuccessfullyDeleted": "Successfully deleted"
+    "SuccessfullyDeleted": "Successfully deleted",
+    "DynamicEntityDeletionConfirmationMessage": "Are you sure to delete this {0}?"
   }
 }

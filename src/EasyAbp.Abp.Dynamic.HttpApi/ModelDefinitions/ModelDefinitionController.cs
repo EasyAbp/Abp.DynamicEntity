@@ -39,6 +39,13 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
         }
 
         [HttpGet]
+        [Route("getByName/{name}")]
+        public Task<ModelDefinitionDto> GetByName(string name)
+        {
+            return _service.GetByName(name);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public virtual Task<ModelDefinitionDto> GetAsync(Guid id)
         {

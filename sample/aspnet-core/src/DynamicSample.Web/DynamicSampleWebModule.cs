@@ -11,6 +11,8 @@ using DynamicSample.EntityFrameworkCore;
 using DynamicSample.Localization;
 using DynamicSample.MultiTenancy;
 using DynamicSample.Web.Menus;
+using EasyAbp.Abp.Dynamic;
+using EasyAbp.Abp.Dynamic.Web;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
@@ -50,7 +52,8 @@ namespace DynamicSample.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule)
-        )]
+    )]
+    [DependsOn(typeof(DynamicWebModule))]
     public class DynamicSampleWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -85,10 +88,7 @@ namespace DynamicSample.Web
 
         private void ConfigureUrls(IConfiguration configuration)
         {
-            Configure<AppUrlOptions>(options =>
-            {
-                options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
-            });
+            Configure<AppUrlOptions>(options => { options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"]; });
         }
 
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
@@ -104,11 +104,7 @@ namespace DynamicSample.Web
 
         private void ConfigureAutoMapper()
         {
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<DynamicSampleWebModule>();
-
-            });
+            Configure<AbpAutoMapperOptions>(options => { options.AddMaps<DynamicSampleWebModule>(); });
         }
 
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
@@ -117,11 +113,19 @@ namespace DynamicSample.Web
             {
                 Configure<AbpVirtualFileSystemOptions>(options =>
                 {
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}DynamicSample.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}DynamicSample.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}DynamicSample.Application.Contracts"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}DynamicSample.Application"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleWebModule>(hostingEnvironment.ContentRootPath);
+                    var septChar = Path.DirectorySeparatorChar;
+                    var rootPath = hostingEnvironment.ContentRootPath;
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}DynamicSample.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleDomainModule>(Path.Combine(rootPath, $"..{septChar}DynamicSample.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}DynamicSample.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleApplicationModule>(Path.Combine(rootPath, $"..{septChar}DynamicSample.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleWebModule>(rootPath);
+
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicWebModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Web"));
                 });
             }
         }
@@ -149,18 +153,12 @@ namespace DynamicSample.Web
 
         private void ConfigureNavigationServices()
         {
-            Configure<AbpNavigationOptions>(options =>
-            {
-                options.MenuContributors.Add(new DynamicSampleMenuContributor());
-            });
+            Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new DynamicSampleMenuContributor()); });
         }
 
         private void ConfigureAutoApiControllers()
         {
-            Configure<AbpAspNetCoreMvcOptions>(options =>
-            {
-                options.ConventionalControllers.Create(typeof(DynamicSampleApplicationModule).Assembly);
-            });
+            Configure<AbpAspNetCoreMvcOptions>(options => { options.ConventionalControllers.Create(typeof(DynamicSampleApplicationModule).Assembly); });
         }
 
         private void ConfigureSwaggerServices(IServiceCollection services)
@@ -168,7 +166,7 @@ namespace DynamicSample.Web
             services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DynamicSample API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "DynamicSample API", Version = "v1"});
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 }
@@ -204,10 +202,7 @@ namespace DynamicSample.Web
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "DynamicSample API");
-            });
+            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "DynamicSample API"); });
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();

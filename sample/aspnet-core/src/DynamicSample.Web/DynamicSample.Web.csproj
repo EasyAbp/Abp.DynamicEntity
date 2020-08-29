@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\EasyAbp.Abp.Dynamic.Web\EasyAbp.Abp.Dynamic.Web.csproj" />
     <ProjectReference Include="..\DynamicSample.Application\DynamicSample.Application.csproj" />
     <ProjectReference Include="..\DynamicSample.HttpApi\DynamicSample.HttpApi.csproj" />
     <ProjectReference Include="..\DynamicSample.EntityFrameworkCore.DbMigrations\DynamicSample.EntityFrameworkCore.DbMigrations.csproj" />
