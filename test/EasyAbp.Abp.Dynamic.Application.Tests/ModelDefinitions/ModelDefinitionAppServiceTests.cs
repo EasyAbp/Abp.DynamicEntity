@@ -103,5 +103,19 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             fdPublishDate.Fields[0].Name.ShouldBe("Name");
             fdPublishDate.Fields[1].Name.ShouldBe("Price");
         }
+        
+        [Fact]
+        public async Task ShouldGetByName()
+        {
+            // Arrange
+            
+            // Act
+            var output = await _modelDefinitionAppService.GetByName("Book");
+            
+            // Assert
+            output.ShouldNotBeNull();
+            output.Type.ShouldBe("Dynamic.Book");
+            output.Fields.Count.ShouldBe(2);
+        }
     }
 }

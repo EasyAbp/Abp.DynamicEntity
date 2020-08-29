@@ -46,5 +46,11 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
             return entity;
         }
+
+        public async Task<ModelDefinitionDto> GetByName(string name)
+        {
+            var entity = await _repository.GetAsync(md => md.Name == name);
+            return MapToGetOutputDto(entity);
+        }
     }
 }

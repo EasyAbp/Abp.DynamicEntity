@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.Permissions;
 using Volo.Abp.Application.Services;
@@ -32,6 +33,12 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             }
 
             return base.CreateFilteredQuery(input);
+        }
+        
+        public async Task<FieldDefinitionDto> GetByName(string name)
+        {
+            var entity = await _repository.GetAsync(fd => fd.Name == name);
+            return MapToGetOutputDto(entity);
         }
     }
 }

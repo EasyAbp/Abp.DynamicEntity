@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -12,6 +13,6 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             CreateUpdateFieldDefinitionDto,
             CreateUpdateFieldDefinitionDto>
     {
-
+        Task<FieldDefinitionDto> GetByName(string name);
     }
 }

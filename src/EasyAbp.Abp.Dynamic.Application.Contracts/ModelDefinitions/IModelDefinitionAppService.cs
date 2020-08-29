@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -12,5 +13,6 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             CreateUpdateModelDefinitionDto,
             CreateUpdateModelDefinitionDto>
     {
+        Task<ModelDefinitionDto> GetByName(string name);
     }
 }

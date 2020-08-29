@@ -67,5 +67,18 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             fdPublishDate.Name.ShouldBe("PublishDate");
             fdPublishDate.Type.ShouldBe("date");
         }
+
+        [Fact]
+        public async Task ShouldGetByName()
+        {
+            // Arrange
+            
+            // Act
+            var output = await _fieldDefinitionAppService.GetByName("Name");
+            
+            // Assert
+            output.ShouldNotBeNull();
+            output.Type.ShouldBe("string");
+        }
     }
 }
