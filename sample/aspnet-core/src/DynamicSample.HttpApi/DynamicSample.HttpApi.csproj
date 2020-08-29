@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\EasyAbp.Abp.Dynamic.HttpApi\EasyAbp.Abp.Dynamic.HttpApi.csproj" />
     <ProjectReference Include="..\DynamicSample.Application.Contracts\DynamicSample.Application.Contracts.csproj" />
   </ItemGroup>
 

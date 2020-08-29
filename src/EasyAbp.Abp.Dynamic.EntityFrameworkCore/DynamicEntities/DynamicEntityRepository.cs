@@ -17,7 +17,15 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
         public DynamicEntityRepository(IDbContextProvider<IDynamicDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
-        
+
+        public override IQueryable<DynamicEntity> WithDetails()
+        {
+            return GetQueryable()
+                    .Include(de => de.ModelDefinition)
+                    .ThenInclude(md => md.Fields)
+                ;
+        }
+
         // TODO: Extract to IDynamicModel extension method
         public IQueryable<DynamicEntity> GetQueryByFilter(IDictionary<string, string> filter)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.Dynamic;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -16,6 +17,7 @@ namespace DynamicSample
         typeof(AbpTenantManagementHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule)
     )]
+    [DependsOn(typeof(DynamicHttpApiClientModule))]
     public class DynamicSampleHttpApiClientModule : AbpModule
     {
         public const string RemoteServiceName = "Default";

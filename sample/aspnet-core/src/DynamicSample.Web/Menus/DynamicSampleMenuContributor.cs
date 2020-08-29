@@ -32,9 +32,6 @@ namespace DynamicSample.Web.Menus
             context.Menu.AddItem(
                 new ApplicationMenuItem(DynamicSampleMenus.Computer, l["Menu:Computer"], "/Computers/Computer")
             );
-            context.Menu.AddItem(
-                new ApplicationMenuItem(DynamicSampleMenus.Book, l["Menu:Book"], "/Books/Book")
-            );
         }
     }
 }

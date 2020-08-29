@@ -63,4 +63,8 @@
     <_ContentIncludedByDefault Remove="Pages\Computers\Computer\Index.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Computers" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Account;
+﻿using EasyAbp.Abp.Dynamic;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -17,6 +18,7 @@ namespace DynamicSample
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule)
         )]
+    [DependsOn(typeof(DynamicApplicationModule))]
     public class DynamicSampleApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
