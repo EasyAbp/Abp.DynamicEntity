@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EasyAbp.Abp.Dynamic.DynamicEntities
 {
-    public class DynamicEntityRepository: EfCoreRepository<IDynamicDbContext, DynamicEntity, Guid>, IDynamicEntityRepository
+    public class DynamicEntityRepository : EfCoreRepository<IDynamicDbContext, DynamicEntity, Guid>, IDynamicEntityRepository
     {
         public DynamicEntityRepository(IDbContextProvider<IDynamicDbContext> dbContextProvider) : base(dbContextProvider)
         {
@@ -26,10 +26,15 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
                     .ThenInclude(md => md.Fields)
                 ;
         }
-        
+
         public IQueryable<DynamicEntity> GetQueryByFilter(IDictionary<string, string> filter)
         {
-            return GetQueryable().GetQueryByFilter(filter, DbContext);
+            return DbContext.GetQueryByFilter<DynamicEntity>(filter);
+        }
+
+        public IQueryable<DynamicEntity> GetQueryByFilter(string filter)
+        {
+            return DbContext.GetQueryByFilter<DynamicEntity>(filter);
         }
     }
 }

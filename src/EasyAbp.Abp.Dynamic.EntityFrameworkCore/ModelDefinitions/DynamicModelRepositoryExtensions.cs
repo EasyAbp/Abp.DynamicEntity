@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -8,11 +9,11 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 {
     public static class DynamicModelRepositoryExtensions
     {
-        public static IQueryable<T> GetQueryByFilter<T>(this IQueryable<T> queryable, IDictionary<string, string> filter, IEfCoreDbContext dbContext) where T : class, IDynamicModel
+        public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, IDictionary<string, string> filter) where T : class, IDynamicModel
         {
             if (filter == null || filter.Count == 0)
             {
-                return queryable;
+                return dbContext.Set<T>().AsQueryable();
             }
 
             string jsonFunction;
@@ -25,8 +26,9 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
                     jsonFunction = "JSON_VALUE";
                     break;
             }
-            
-            var sbSql = new StringBuilder("SELECT * FROM DynamicDynamicEntities WHERE ");
+
+            string tableName = dbContext.GetTableName<T>();
+            var sbSql = new StringBuilder($"SELECT * FROM {tableName} WHERE ");
             var parameters = new List<object>();
             int index = 0;
             foreach (var kv in filter)
@@ -44,5 +46,24 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             return dbContext.Set<T>().FromSqlRaw(sbSql.ToString(), parameters.ToArray());
         }
 
+        private static string GetTableName<T>(this IEfCoreDbContext dbContext) where T : class
+        {
+            var entityType = dbContext.Model.FindEntityType(typeof(T));
+            return entityType.GetTableName();
+        }
+        
+        public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, string filter) where  T : class, IDynamicModel
+        {
+            var queryable = dbContext.Set<T>().AsQueryable();
+            
+            if (filter.IsNullOrEmpty())
+            {
+                return queryable;
+            }
+
+            string tableName = dbContext.GetTableName<T>();
+            var sql = $"SELECT * FROM {tableName} WHERE ExtraProperties LIKE {{0}}";
+            return dbContext.Set<T>().FromSqlRaw(sql, $"%{filter}%");
+        }
     }
 }

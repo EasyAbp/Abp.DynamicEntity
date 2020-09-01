@@ -9,5 +9,6 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
     public interface IDynamicEntityRepository : IRepository<DynamicEntity, Guid>
     {
         IQueryable<DynamicEntity> GetQueryByFilter(IDictionary<string, string> filter);
+        IQueryable<DynamicEntity> GetQueryByFilter(string filter);
     }
 }

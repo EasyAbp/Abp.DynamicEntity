@@ -5,6 +5,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities.Dtos
 {
     public class GetListInput : PagedAndSortedResultRequestDto
     {
-        public Dictionary<string, string> Filter { get; set; } 
+        public string Filter { get; set; }
+        public Dictionary<string, string> FiledFilters { get; set; }
     }
 }

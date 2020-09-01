@@ -19,7 +19,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.DynamicEntities
         }
 
         [Fact]
-        public async Task ShouldGetQueryByFilter()
+        public async Task ShouldGetQueryByDictionaryFilter()
         {
             await WithUnitOfWorkAsync(async () =>
             {
@@ -50,6 +50,25 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.DynamicEntities
 
                 // Assert
                 output.Count.ShouldBe(0);
+            });
+        }
+        
+        
+        [Fact]
+        public async Task ShouldGetQueryByStringFilter()
+        {
+            await WithUnitOfWorkAsync(async () =>
+            {
+
+                // Arrange
+                var filter = "200";
+
+                // Act
+                var output = await _dynamicEntityRepository.GetQueryByFilter(filter).ToListAsync();
+
+                // Assert
+                output.Count.ShouldBe(1);
+                output[0].GetProperty("Name", "Book2");
             });
         }
     }
