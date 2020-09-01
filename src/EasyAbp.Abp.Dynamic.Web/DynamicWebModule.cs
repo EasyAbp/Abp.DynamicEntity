@@ -9,6 +9,9 @@ using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using EasyAbp.Abp.Dynamic.Permissions;
+using EasyAbp.Abp.Dynamic.Web.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 
 namespace EasyAbp.Abp.Dynamic.Web
 {
@@ -41,7 +44,7 @@ namespace EasyAbp.Abp.Dynamic.Web
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<DynamicWebModule>();
+                options.FileSets.AddEmbedded<DynamicWebModule>("EasyAbp.Abp.Dynamic.Web");
             });
 
             context.Services.AddAutoMapperObjectMapper<DynamicWebModule>();
@@ -53,6 +56,14 @@ namespace EasyAbp.Abp.Dynamic.Web
             Configure<RazorPagesOptions>(options =>
             {
                 //Configure authorization.
+            });
+            
+            
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options
+                    .ScriptBundles
+                    .Configure(StandardBundles.Scripts.Global, bundleOptions => bundleOptions.AddContributors(typeof(DynamicScriptContributor)));
             });
         }
     }
