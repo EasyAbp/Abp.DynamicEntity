@@ -1,4 +1,4 @@
-﻿const easyAbp = easyAbp || {};
+﻿var easyAbp = easyAbp || {};
 (function () {
     easyAbp.abp = easyAbp.abp || {};
     easyAbp.abp.dynamicUI = easyAbp.abp.dynamicUI || {};

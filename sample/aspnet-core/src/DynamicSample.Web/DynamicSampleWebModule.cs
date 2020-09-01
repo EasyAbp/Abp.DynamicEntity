@@ -121,11 +121,11 @@ namespace DynamicSample.Web
                     options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleApplicationModule>(Path.Combine(rootPath, $"..{septChar}DynamicSample.Application"));
                     options.FileSets.ReplaceEmbeddedByPhysical<DynamicSampleWebModule>(rootPath);
 
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Application.Contracts"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Application"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicWebModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}src{septChar}DynamicSample.Web"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.Dynamic.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicDomainModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.Dynamic.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.Dynamic.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicApplicationModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.Dynamic.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicWebModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.Dynamic.Web"));
                 });
             }
         }

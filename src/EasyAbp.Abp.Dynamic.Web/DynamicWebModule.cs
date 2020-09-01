@@ -44,7 +44,7 @@ namespace EasyAbp.Abp.Dynamic.Web
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<DynamicWebModule>("EasyAbp.Abp.Dynamic.Web");
+                options.FileSets.AddEmbedded<DynamicWebModule>();
             });
 
             context.Services.AddAutoMapperObjectMapper<DynamicWebModule>();
@@ -63,7 +63,7 @@ namespace EasyAbp.Abp.Dynamic.Web
             {
                 options
                     .ScriptBundles
-                    .Configure(StandardBundles.Scripts.Global, bundleOptions => bundleOptions.AddContributors(typeof(DynamicScriptContributor)));
+                    .Add(DynamicBundles.Scripts.Dynamic, bundleOptions => bundleOptions.AddContributors(typeof(DynamicScriptContributor)));
             });
         }
     }

@@ -6,6 +6,7 @@
 @using DynamicSample.Web.Pages.Computers.Computer
 @using DynamicSample.Localization
 @using DynamicSample.Web.Menus
+@using EasyAbp.Abp.Dynamic.Web.Bundling
 @model IndexModel
 @inject IPageLayout PageLayout
 @inject IHtmlLocalizer<DynamicSampleResource> L
@@ -19,6 +20,7 @@
 @section scripts
 {
     <abp-script src="/Pages/Computers/Computer/index.js" />
+    <abp-script-bundle name="@DynamicBundles.Scripts.Dynamic" />
 }
 @section styles
 {
