@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.DynamicEntities;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.ModelDefinitions;
@@ -56,36 +57,19 @@ namespace DynamicSample.DynamicEntities
             var deComputer = await _dynamicEntityRepository.FindAsync(de => de.ModelDefinitionId == mdComputer.Id);
             if (deComputer == null)
             {
-                var entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
-                entity.SetProperty("CPU", "Intel I7");
-                entity.SetProperty("RAM", "16GB");
-                entity.SetProperty("Price", "9888.00");
-                await _dynamicEntityRepository.InsertAsync(entity);
-
-                entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
-                entity.SetProperty("CPU", "Intel I9");
-                entity.SetProperty("RAM", "32GB");
-                entity.SetProperty("Price", "19888.00");
-                await _dynamicEntityRepository.InsertAsync(entity);
+                var cpus = new[] {"Intel I3", "Intel I5", "Intel I7", "Intel I9"};
+                var rams = new[] {"4GB", "8GB", "16GB", "32GB"};
+                var prices = new[] {"999", "1999", "2999", "3999"};
+                var rnd = new Random();
+                for (int i = 0; i < 30000; i++)
+                {
+                    var entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
+                    entity.SetProperty("CPU", cpus[rnd.Next() % cpus.Length]);
+                    entity.SetProperty("RAM", rams[rnd.Next() % rams.Length]);
+                    entity.SetProperty("Price", prices[rnd.Next() % prices.Length]);
+                    await _dynamicEntityRepository.InsertAsync(entity);
+                }
             }
-
-            /*var fdPublishDate = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "PublishDate");
-            if (fdPublishDate == null)
-            {
-                await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), null, "PublishDate", "date"));
-            }
-
-            var fdPageNumber = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "PageNumber");
-            if (fdPageNumber == null)
-            {
-                await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), null, "PageNumber", "number"));
-            }
-   
-            var mdBook = await _modelDefinitionRepository.FindAsync(md => md.Name == "Book");
-            if (mdBook == null)
-            {
-                await _modelDefinitionRepository.InsertAsync(new ModelDefinition(_guidGenerator.Create(), null, "Book", typeof(Book).FullName));
-            }      */
         }
     }
 }
