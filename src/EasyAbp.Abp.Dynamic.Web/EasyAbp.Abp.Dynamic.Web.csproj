@@ -33,4 +33,8 @@
     <Content Remove="wwwroot\**\*.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\libs\abp\core\abp.js" />
+  </ItemGroup>
+
 </Project>

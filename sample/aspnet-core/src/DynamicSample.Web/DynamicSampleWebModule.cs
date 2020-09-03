@@ -11,6 +11,7 @@ using DynamicSample.EntityFrameworkCore;
 using DynamicSample.Localization;
 using DynamicSample.MultiTenancy;
 using DynamicSample.Web.Menus;
+using EasyAbp.Abp.AspNetCore.Mvc.UI.Theme.LYear;
 using EasyAbp.Abp.Dynamic;
 using EasyAbp.Abp.Dynamic.Web;
 using Microsoft.OpenApi.Models;
@@ -48,12 +49,12 @@ namespace DynamicSample.Web
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
         typeof(AbpAccountWebIdentityServerModule),
-        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule)
     )]
     [DependsOn(typeof(DynamicWebModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcUiLYearThemeModule))]
     public class DynamicSampleWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
