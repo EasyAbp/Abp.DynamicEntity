@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using JetBrains.Annotations;
+using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -23,14 +25,20 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
         public ModelDefinition(
             Guid id,
-            string name,
-            string type,
+            [NotNull] string name,
+            [NotNull] string type,
             Guid? tenantId = null
         ) : base(id)
         {
+            Name = Check.NotNullOrWhiteSpace(name, nameof(Name), ModelDefinitionConsts.MaxNameLength);
+            Type = Check.NotNullOrWhiteSpace(type, nameof(Type), ModelDefinitionConsts.MaxTypeLength);;
             TenantId = tenantId;
-            Name = name;
-            Type = type;
+            NormalizeName();
+        }
+
+        private void NormalizeName()
+        {
+            Name = Name.ToLower();
         }
 
         public virtual void AddField(Guid fieldDefinitionId, int order = Int32.MaxValue)

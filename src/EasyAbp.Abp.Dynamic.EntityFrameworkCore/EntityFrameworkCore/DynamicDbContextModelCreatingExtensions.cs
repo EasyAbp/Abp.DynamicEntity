@@ -27,12 +27,18 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "FieldDefinitions", options.Schema);
                 b.ConfigureByConvention();
+                
+                b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
+                b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
             });
 
             builder.Entity<ModelDefinition>(b =>
             {
                 b.ToTable(options.TablePrefix + "ModelDefinitions", options.Schema);
                 b.ConfigureByConvention();
+
+                b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
+                b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
 
                 b.HasMany(x => x.Fields)
                     .WithOne()

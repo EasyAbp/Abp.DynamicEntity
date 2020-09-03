@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -21,14 +22,20 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 
         public FieldDefinition(
             Guid id, 
-            string name, 
-            string type, 
+            [NotNull] string name, 
+            [NotNull] string type, 
             Guid? tenantId = null 
         ) : base(id)
         {
+            Name = Check.NotNullOrWhiteSpace(name, nameof(Name), FieldDefinitionConsts.MaxNameLength);
+            Type = Check.NotNullOrWhiteSpace(type, nameof(Type), FieldDefinitionConsts.MaxTypeLength);;
             TenantId = tenantId;
-            Name = name;
-            Type = type;
+            NormalizeName();
+        }
+
+        private void NormalizeName()
+        {
+            Name = Name.ToLower();
         }
     }
 }
