@@ -10,12 +10,6 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
     public class DynamicEntityAppService  : CrudAppService<DynamicEntity, DynamicEntityDto, Guid, GetListInput, CreateUpdateDynamicEntityDto, CreateUpdateDynamicEntityDto>,
         IDynamicEntityAppService
     {
-        protected override string GetPolicyName { get; set; } = DynamicPermissions.DynamicEntity.Default;
-        protected override string GetListPolicyName { get; set; } = DynamicPermissions.DynamicEntity.Default;
-        protected override string CreatePolicyName { get; set; } = DynamicPermissions.DynamicEntity.Create;
-        protected override string UpdatePolicyName { get; set; } = DynamicPermissions.DynamicEntity.Update;
-        protected override string DeletePolicyName { get; set; } = DynamicPermissions.DynamicEntity.Delete;
-
         private readonly IDynamicEntityRepository _repository;
 
         public DynamicEntityAppService(IDynamicEntityRepository repository) : base(repository)
