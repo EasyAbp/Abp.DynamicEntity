@@ -14,6 +14,9 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         public virtual string Name { get; protected set; }
 
         [NotNull]
+        public virtual string DisplayName { get; protected set; }
+        
+        [NotNull]
         public virtual string Type { get; protected set; }
 
         protected FieldDefinition()
@@ -23,11 +26,13 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         public FieldDefinition(
             Guid id, 
             [NotNull] string name, 
+            [NotNull] string displayName, 
             [NotNull] string type, 
             Guid? tenantId = null 
         ) : base(id)
         {
             Name = Check.NotNullOrWhiteSpace(name, nameof(Name), FieldDefinitionConsts.MaxNameLength);
+            DisplayName = Check.NotNullOrWhiteSpace(displayName, nameof(displayName), FieldDefinitionConsts.MaxDisplayNameLength);
             Type = Check.NotNullOrWhiteSpace(type, nameof(Type), FieldDefinitionConsts.MaxTypeLength);;
             TenantId = tenantId;
             NormalizeName();

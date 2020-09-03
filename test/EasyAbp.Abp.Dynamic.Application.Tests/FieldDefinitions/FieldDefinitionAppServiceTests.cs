@@ -24,11 +24,12 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             // Act
             var output = await _fieldDefinitionAppService.GetListAsync(new GetListInput
             {
-                Filter = "Name"
+                Filter = "name"
             });
 
             // Assert
             output.TotalCount.ShouldBe(1);
+            output.Items[0].DisplayName.ShouldBe("Name");
             output.Items[0].Type.ShouldBe("string");
         }
         
@@ -45,7 +46,8 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 
             // Assert
             output.TotalCount.ShouldBe(1);
-            output.Items[0].Name.ShouldBe("Price");
+            output.Items[0].Name.ShouldBe("price");
+            output.Items[0].DisplayName.ShouldBe("Price");
         }
         
         [Fact]
@@ -56,7 +58,8 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             // Act
             var output = await _fieldDefinitionAppService.CreateAsync(new CreateUpdateFieldDefinitionDto
             {
-                Name = "PublishDate",
+                Name = "publish_date",
+                DisplayName = "PublishDate",
                 Type = "date",
             });
             
@@ -64,7 +67,8 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             var fdPublishDate = await _fieldDefinitionRepository.FindAsync(output.Id);
             fdPublishDate.ShouldNotBeNull();
             fdPublishDate.Id.ShouldBe(output.Id);
-            fdPublishDate.Name.ShouldBe("PublishDate");
+            fdPublishDate.Name.ShouldBe("publish_date");
+            fdPublishDate.DisplayName.ShouldBe("PublishDate");
             fdPublishDate.Type.ShouldBe("date");
         }
 
@@ -74,7 +78,7 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             // Arrange
             
             // Act
-            var output = await _fieldDefinitionAppService.GetByName("Name");
+            var output = await _fieldDefinitionAppService.GetByName("name");
             
             // Assert
             output.ShouldNotBeNull();

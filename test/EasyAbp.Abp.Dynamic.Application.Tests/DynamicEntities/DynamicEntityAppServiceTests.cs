@@ -27,15 +27,16 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
                 // Arrange
                 var deBook = _dynamicEntityRepository
                         .WithDetails()
-                        .First(de => de.ModelDefinition.Name == "Book")
+                        .First(de => de.ModelDefinition.Name == "book")
                     ;
                 // Act
                 var output = await _dynamicEntityAppService.GetAsync(deBook.Id);
 
                 // Assert
-                output.GetProperty("Name").ShouldBe(deBook.GetProperty("Name"));
+                output.GetProperty("name").ShouldBe(deBook.GetProperty("name"));
                 output.ModelDefinition.ShouldNotBeNull();
-                output.ModelDefinition.Name.ShouldBe("Book");
+                output.ModelDefinition.Name.ShouldBe("book");
+                output.ModelDefinition.DisplayName.ShouldBe("Book");
                 output.ModelDefinition.Fields.Count.ShouldBe(2);
             });
         }
@@ -48,14 +49,14 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
                 {
-                    FieldFilters = new Dictionary<string, string> {{"Name", "1"}}
+                    FieldFilters = new Dictionary<string, string> {{"name", "1"}}
                 }
             );
 
             // Assert
             output.TotalCount.ShouldBe(1);
-            output.Items[0].GetProperty<string>("Name").ShouldBe("Book1");
-            output.Items[0].GetProperty<float>("Price").ShouldBe(100f);
+            output.Items[0].GetProperty<string>("name").ShouldBe("Book1");
+            output.Items[0].GetProperty<float>("price").ShouldBe(100f);
         }
     }
 }

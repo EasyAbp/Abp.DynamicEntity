@@ -26,28 +26,28 @@ namespace DynamicSample.DynamicEntities
 
         public async Task SeedAsync(DataSeedContext context)
         {
-            var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "Price");
+            var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "price");
             if (fdPrice == null)
             {
-                fdPrice = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), "Price", "number"));
+                fdPrice = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), "price", "Price", "number"));
             }
 
             var fdCpu = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "CPU");
             if (fdCpu == null)
             {
-                fdCpu = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "CPU", "string"));
+                fdCpu = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "cpu", "CPU", "string"));
             }
 
-            var fdRam = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "RAM");
+            var fdRam = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "ram");
             if (fdRam == null)
             {
-                fdRam = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "RAM", "string"));
+                fdRam = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "ram", "RAM", "string"));
             }
 
-            var mdComputer = await _modelDefinitionRepository.FindAsync(md => md.Name == "Computer");
+            var mdComputer = await _modelDefinitionRepository.FindAsync(md => md.Name == "computer");
             if (mdComputer == null)
             {
-                mdComputer = new ModelDefinition(_guidGenerator.Create(),  "Computer", "DynamicSample.Computer");
+                mdComputer = new ModelDefinition(_guidGenerator.Create(),  "computer", "Computer", "DynamicSample.Computer");
                 mdComputer.AddField(fdCpu.Id, 1);
                 mdComputer.AddField(fdRam.Id, 2);
                 mdComputer.AddField(fdPrice.Id, 3);
@@ -64,9 +64,9 @@ namespace DynamicSample.DynamicEntities
                 for (int i = 0; i < 30000; i++)
                 {
                     var entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
-                    entity.SetProperty("CPU", cpus[rnd.Next() % cpus.Length]);
-                    entity.SetProperty("RAM", rams[rnd.Next() % rams.Length]);
-                    entity.SetProperty("Price", prices[rnd.Next() % prices.Length]);
+                    entity.SetProperty("cpu", cpus[rnd.Next() % cpus.Length]);
+                    entity.SetProperty("ram", rams[rnd.Next() % rams.Length]);
+                    entity.SetProperty("price", prices[rnd.Next() % prices.Length]);
                     await _dynamicEntityRepository.InsertAsync(entity);
                 }
             }

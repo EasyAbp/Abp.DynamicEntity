@@ -29,6 +29,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.ConfigureByConvention();
                 
                 b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
+                b.Property(x => x.DisplayName).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxDisplayNameLength);
                 b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
             });
 
@@ -37,8 +38,9 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.ToTable(options.TablePrefix + "ModelDefinitions", options.Schema);
                 b.ConfigureByConvention();
 
-                b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
-                b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
+                b.Property(x => x.Name).IsRequired().HasMaxLength(ModelDefinitionConsts.MaxNameLength);
+                b.Property(x => x.DisplayName).IsRequired().HasMaxLength(ModelDefinitionConsts.MaxDisplayNameLength);
+                b.Property(x => x.Type).IsRequired().HasMaxLength(ModelDefinitionConsts.MaxTypeLength);
 
                 b.HasMany(x => x.Fields)
                     .WithOne()

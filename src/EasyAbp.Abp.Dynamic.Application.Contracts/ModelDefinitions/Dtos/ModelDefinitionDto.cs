@@ -10,6 +10,8 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos
     {
         public string Name { get; set; }
 
+        public string DisplayName { get; set; }
+
         public string Type { get; set; }
         
         public List<FieldDefinitionDto> Fields { get; set; }

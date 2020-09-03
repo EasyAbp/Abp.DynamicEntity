@@ -34,11 +34,12 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             // Act
             var output = await _modelDefinitionAppService.GetListAsync(new GetListInput
             {
-                Filter = "Book"
+                Filter = "book"
             });
 
             // Assert
             output.TotalCount.ShouldBe(1);
+            output.Items[0].DisplayName.ShouldBe("Book");
             output.Items[0].Type.ShouldBe("Dynamic.Book");
         }
 
@@ -55,7 +56,8 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
             // Assert
             output.TotalCount.ShouldBe(1);
-            output.Items[0].Name.ShouldBe("Book");
+            output.Items[0].Name.ShouldBe("book");
+            output.Items[0].DisplayName.ShouldBe("Book");
         }
 
 
@@ -63,7 +65,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
         public async Task ShouldGetFields()
         {
             // Arrange
-            var mdBook = await _modelDefinitionRepository.FindAsync(md => md.Name == "Book");
+            var mdBook = await _modelDefinitionRepository.FindAsync(md => md.Name == "book");
 
             // Act
             var output = await _modelDefinitionAppService.GetAsync(mdBook.Id);
@@ -71,21 +73,22 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             // Assert
             output.ShouldNotBeNull();
             output.Fields.Count.ShouldBe(2);
-            output.Fields[0].Name.ShouldBe("Name");
-            output.Fields[1].Name.ShouldBe("Price");
+            output.Fields[0].Name.ShouldBe("name");
+            output.Fields[1].Name.ShouldBe("price");
         }
 
         [Fact]
         public async Task ShouldCreateANewModelDefinition()
         {
             // Arrange
-            var fdName = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "Name");
-            var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "Price");
+            var fdName = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "name");
+            var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "price");
 
             // Act
             var output = await _modelDefinitionAppService.CreateAsync(new CreateUpdateModelDefinitionDto
             {
-                Name = "Car",
+                Name = "car",
+                DisplayName = "Car",
                 Type = "Dynamic.Car",
                 FieldIds = new List<Guid>
                 {
@@ -97,7 +100,8 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             var fdPublishDate = await _modelDefinitionAppService.GetAsync(output.Id);
             fdPublishDate.ShouldNotBeNull();
             fdPublishDate.Id.ShouldBe(output.Id);
-            fdPublishDate.Name.ShouldBe("Car");
+            fdPublishDate.Name.ShouldBe("car");
+            fdPublishDate.DisplayName.ShouldBe("Car");
             fdPublishDate.Type.ShouldBe("Dynamic.Car");
             fdPublishDate.Fields.Count.ShouldBe(2);
             fdPublishDate.Fields[0].Name.ShouldBe("Name");
@@ -110,10 +114,11 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             // Arrange
             
             // Act
-            var output = await _modelDefinitionAppService.GetByName("Book");
+            var output = await _modelDefinitionAppService.GetByName("book");
             
             // Assert
             output.ShouldNotBeNull();
+            output.DisplayName.ShouldBe("Book");
             output.Type.ShouldBe("Dynamic.Book");
             output.Fields.Count.ShouldBe(2);
         }

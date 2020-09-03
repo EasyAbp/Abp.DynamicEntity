@@ -7,6 +7,8 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos
     public class FieldDefinitionDto : FullAuditedEntityDto<Guid>
     {
         public string Name { get; set; }
+        
+        public string DisplayName { get; set; }
 
         public string Type { get; set; }
     }
