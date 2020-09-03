@@ -31,6 +31,8 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
                 b.Property(x => x.DisplayName).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxDisplayNameLength);
                 b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
+                
+                b.HasIndex(x => x.Name);
             });
 
             builder.Entity<ModelDefinition>(b =>
@@ -46,6 +48,8 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                     .WithOne()
                     .HasForeignKey(x => x.ModelDefinitionId)
                     ;
+
+                b.HasIndex(x => x.Name);
             });
             
             builder.Entity<ModelField>(b =>
@@ -70,6 +74,8 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore
                 b.ToTable(options.TablePrefix + "DynamicEntities", options.Schema);
                 b.ConfigureByConvention();
                 b.ConfigureDynamicModel();
+
+                b.HasIndex(x => x.ExtraProperties);
             });
         }
     }

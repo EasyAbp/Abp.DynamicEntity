@@ -54,7 +54,8 @@ namespace DynamicSample.Web
         typeof(AbpAspNetCoreSerilogModule)
     )]
     [DependsOn(typeof(DynamicWebModule))]
-    [DependsOn(typeof(AbpAspNetCoreMvcUiLYearThemeModule))]
+    // [DependsOn(typeof(AbpAspNetCoreMvcUiLYearThemeModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
     public class DynamicSampleWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
