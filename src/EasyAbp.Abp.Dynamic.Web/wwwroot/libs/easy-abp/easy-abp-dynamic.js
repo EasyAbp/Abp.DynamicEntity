@@ -79,17 +79,19 @@
                 autoWidth: false,
                 scrollCollapse: true,
                 order: [[0, "asc"]],
-                ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData){
-                    const input = {};
+                ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
+                    const fieldFilters = {};
                     for (let i = 0; i < requestData.columns.length; i++) {
                         if (!requestData.columns[i].search.value) continue;
-                        input[`fieldFilters.${requestData.columns[i].name}`] = requestData.columns[i].search.value;
-                   }
-                    return input;
+                        fieldFilters[requestData.columns[i].name] = requestData.columns[i].search.value;
+                    }
+                    return {
+                        fieldFilters: fieldFilters
+                    }
                 }),
                 columnDefs: abp.ui.extensions.tableColumns.get(model.type).columns.toArray(),
             };
-            
+
             dataTable = $table.DataTable(abp.libs.datatables.normalizeConfiguration({
                 ...defaultTableOption,
                 ...dataTableOption
