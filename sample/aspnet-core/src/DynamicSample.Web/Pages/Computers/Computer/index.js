@@ -14,7 +14,7 @@ $(function () {
             ordering: false,
             initComplete: function () {
                 // Setup - add a text input to each header cell
-                $('table:eq(0) thead th').slice(1).each(function () {
+                $('table:eq(0) thead th').each(function () {
                     var title = $(this).text();
                     $(this).append(`<input type="text" class="form-control form-control-sm" placeholder="${l('Search')} ${title}" />`)
                     ;

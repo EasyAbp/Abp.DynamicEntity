@@ -28,6 +28,7 @@ namespace EasyAbp.Abp.Dynamic
                 ;
             CreateMap<ModelField, FieldDefinitionDto>(MemberList.None)
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FieldDefinition.Name))
+                .ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.FieldDefinition.DisplayName))
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.FieldDefinition.Type))
                 ;
             
