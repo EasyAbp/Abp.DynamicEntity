@@ -37,8 +37,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
                 {
                     sbSql.Append(" AND ");
                 }
-                sbSql.Append($"{jsonFunction}(ExtraProperties, {{{index * 2}}}) LIKE {{{index * 2 + 1}}}");
-                parameters.Add($"$.{kv.Key}");
+                sbSql.Append($"{jsonFunction}(ExtraProperties, '$.{kv.Key}') LIKE {{{index}}}");
                 parameters.Add($"%{kv.Value}%");
                 index++;
             }

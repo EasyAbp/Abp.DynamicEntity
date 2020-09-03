@@ -12,14 +12,8 @@
     "EditComputer": "EditComputer",
     "ComputerDeletionConfirmationMessage": "Are you sure to delete the computer {0}?",
     "SuccessfullyDeleted": "Successfully deleted",
-    "Menu:Book": "MenuBook",
-    "Book": "Book",
-    "BookName": "BookName",
-    "BookAuthor": "BookAuthor",
-    "BookModelDefinitionId": "BookModelDefinitionId",
-    "BookModelDefinition": "BookModelDefinition",
-    "CreateBook": "CreateBook",
-    "EditBook": "EditBook",
-    "BookDeletionConfirmationMessage": "Are you sure to delete the book {0}?"
+    "CPU": "CPU",
+    "RAM": "内存",
+    "Price": "价格"
   }
 }

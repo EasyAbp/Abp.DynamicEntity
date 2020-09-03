@@ -48,7 +48,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
                 {
-                    Filter = new Dictionary<string, string> {{"Name", "1"}}
+                    FieldFilters = new Dictionary<string, string> {{"Name", "1"}}
                 }
             );
 

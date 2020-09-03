@@ -25,9 +25,9 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
 
         protected override IQueryable<DynamicEntity> CreateFilteredQuery(GetListInput input)
         {
-            if (input.FiledFilters != null && input.FiledFilters.Count > 0)
+            if (input.FieldFilters != null && input.FieldFilters.Count > 0)
             {
-                return _repository.GetQueryByFilter(input.FiledFilters);
+                return _repository.GetQueryByFilter(input.FieldFilters);
             }
             
             if (!input.Filter.IsNullOrEmpty())

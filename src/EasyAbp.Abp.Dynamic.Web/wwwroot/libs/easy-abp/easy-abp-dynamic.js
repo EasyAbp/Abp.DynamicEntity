@@ -3,16 +3,16 @@
     easyAbp.abp = easyAbp.abp || {};
     easyAbp.abp.dynamicUI = easyAbp.abp.dynamicUI || {};
 
-    easyAbp.abp.dynamicUI.configureDataTable = function (option) {
-        const modelName = option.modelName;
-        const $table = option.$table
+    easyAbp.abp.dynamicUI.configureDataTable = function (dynamicOption, dataTableOption) {
+        const modelName = dynamicOption.modelName;
+        const $table = dynamicOption.$table
 
         const l = abp.localization.getResource('Dynamic');
 
         const svcDynamicEntity = easyAbp.abp.dynamic.dynamicEntities.dynamicEntity;
         const svcModelDefinition = easyAbp.abp.dynamic.modelDefinitions.modelDefinition;
 
-        let dataTable;
+        let dataTable = null;
 
         svcModelDefinition.getByName(modelName).done(function (model) {
             abp.ui.extensions.entityActions.get(model.type).addContributor(
@@ -61,7 +61,8 @@
                     },)
                     columnList.addManyTail(model.fields.map(function (field) {
                             return {
-                                title: field.name,
+                                title: l(field.name),
+                                name: field.name,
                                 data: `extraProperties.${field.name}`,
                             }
                         })
@@ -70,7 +71,7 @@
                 0 //adds as the first contributor
             );
 
-            dataTable = $table.DataTable(abp.libs.datatables.normalizeConfiguration({
+            let defaultTableOption = {
                 processing: true,
                 serverSide: true,
                 paging: true,
@@ -78,8 +79,20 @@
                 autoWidth: false,
                 scrollCollapse: true,
                 order: [[0, "asc"]],
-                ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList),
+                ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData){
+                    const input = {};
+                    for (let i = 0; i < requestData.columns.length; i++) {
+                        if (!requestData.columns[i].search.value) continue;
+                        input[`fieldFilters.${requestData.columns[i].name}`] = requestData.columns[i].search.value;
+                   }
+                    return input;
+                }),
                 columnDefs: abp.ui.extensions.tableColumns.get(model.type).columns.toArray(),
+            };
+            
+            dataTable = $table.DataTable(abp.libs.datatables.normalizeConfiguration({
+                ...defaultTableOption,
+                ...dataTableOption
             }));
         });
     }

@@ -1,4 +1,6 @@
 ﻿using DynamicSample.Localization;
+using EasyAbp.Abp.Dynamic;
+using EasyAbp.Abp.Dynamic.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -24,6 +26,7 @@ namespace DynamicSample
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule)
         )]
+    [DependsOn(typeof(DynamicDomainSharedModule))]
     public class DynamicSampleDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -46,6 +49,11 @@ namespace DynamicSample
                     .AddVirtualJson("/Localization/DynamicSample");
                 
                 options.DefaultResourceType = typeof(DynamicSampleResource);
+                
+                // Need this to allow dynamic module to use localization resources defined in this application
+                options.Resources
+                    .Get<DynamicResource>()
+                    .AddVirtualJson("/Localization/DynamicSample");
             });
         }
     }
