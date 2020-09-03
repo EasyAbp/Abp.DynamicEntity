@@ -7,6 +7,7 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";
 
+        public const string DynamicManagement = Prefix + ".DynamicManagement";
         public const string FieldDefinition = Prefix + ".FieldDefinition";
     }
 }

@@ -18,6 +18,13 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             _service = service;
         }
 
+        [HttpGet]
+        [Route("byName")]
+        public virtual Task<FieldDefinitionDto> GetByName(string name)
+        {
+            return _service.GetByName(name);
+        }
+
         [HttpPost]
         public virtual Task<FieldDefinitionDto> CreateAsync(CreateUpdateFieldDefinitionDto input)
         {
@@ -36,13 +43,6 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         public virtual Task DeleteAsync(Guid id)
         {
             return _service.DeleteAsync(id);
-        }
-
-        [HttpGet]
-        [Route("getByName/{name}")]
-        public Task<FieldDefinitionDto> GetByName(string name)
-        {
-            return _service.GetByName(name);
         }
 
         [HttpGet]

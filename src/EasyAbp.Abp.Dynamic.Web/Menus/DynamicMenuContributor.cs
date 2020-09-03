@@ -18,13 +18,28 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
         private async Task ConfigureMainMenu(MenuConfigurationContext context)
         {
             var l = context.GetLocalizer<DynamicResource>();
-             //Add main menu items.
+            //Add main menu items.
 
-            if (await context.IsGrantedAsync(DynamicPermissions.FieldDefinition.Default))
+            if (await context.IsGrantedAsync(DynamicPermissions.FieldDefinition.Default) ||
+                await context.IsGrantedAsync(DynamicPermissions.ModelDefinition.Default)
+            )
             {
-                context.Menu.AddItem(
-                    new ApplicationMenuItem(DynamicMenus.FieldDefinition, l["Menu:FieldDefinition"], "/Dynamic/Fields/FieldDefinition")
-                );
+                var menu = new ApplicationMenuItem(DynamicMenus.DynamicManagement, l["Menu:DynamicManagement"]);
+                if (await context.IsGrantedAsync(DynamicPermissions.FieldDefinition.Default))
+                {
+                    menu.AddItem(
+                        new ApplicationMenuItem(DynamicMenus.FieldDefinition, l["Menu:FieldDefinition"], "/Dynamic/FieldDefinition")
+                    );
+                }
+
+                context.Menu.AddItem(menu);
+
+                /*if (await context.IsGrantedAsync(DynamicPermissions.ModelDefinition.Default))
+                {
+                    menu.AddItem(
+                        new ApplicationMenuItem(DynamicMenus.FieldDefinition, l["Menu:FieldDefinition"], "/Dynamic/Fields/FieldDefinition")
+                    );
+                }*/
             }
         }
     }
