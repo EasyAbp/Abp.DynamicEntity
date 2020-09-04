@@ -28,7 +28,7 @@ namespace DynamicSample.Web.Menus
 
             var l = context.GetLocalizer<DynamicSampleResource>();
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem("DynamicSample.Home", l["Menu:Home"], "~/"));
+            context.Menu.Items.Insert(0, new ApplicationMenuItem(DynamicSampleMenus.Home, l["Menu:Home"], "~/"));
             context.Menu.AddItem(
                 new ApplicationMenuItem(DynamicSampleMenus.Computer, l["Menu:Computer"], "/Computers/Computer")
             );

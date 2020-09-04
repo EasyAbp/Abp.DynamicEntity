@@ -11,7 +11,6 @@ using DynamicSample.EntityFrameworkCore;
 using DynamicSample.Localization;
 using DynamicSample.MultiTenancy;
 using DynamicSample.Web.Menus;
-using EasyAbp.Abp.AspNetCore.Mvc.UI.Theme.LYear;
 using EasyAbp.Abp.Dynamic;
 using EasyAbp.Abp.Dynamic.Web;
 using Microsoft.OpenApi.Models;
@@ -49,13 +48,12 @@ namespace DynamicSample.Web
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
         typeof(AbpAccountWebIdentityServerModule),
+        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule)
     )]
     [DependsOn(typeof(DynamicWebModule))]
-    // [DependsOn(typeof(AbpAspNetCoreMvcUiLYearThemeModule))]
-    [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
     public class DynamicSampleWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -90,7 +88,10 @@ namespace DynamicSample.Web
 
         private void ConfigureUrls(IConfiguration configuration)
         {
-            Configure<AppUrlOptions>(options => { options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"]; });
+            Configure<AppUrlOptions>(options =>
+            {
+                options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
+            });
         }
 
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
@@ -106,7 +107,11 @@ namespace DynamicSample.Web
 
         private void ConfigureAutoMapper()
         {
-            Configure<AbpAutoMapperOptions>(options => { options.AddMaps<DynamicSampleWebModule>(); });
+            Configure<AbpAutoMapperOptions>(options =>
+            {
+                options.AddMaps<DynamicSampleWebModule>();
+
+            });
         }
 
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
@@ -136,12 +141,6 @@ namespace DynamicSample.Web
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Resources
-                    .Get<DynamicSampleResource>()
-                    .AddBaseTypes(
-                        typeof(AbpUiResource)
-                    );
-
                 options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
                 options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
@@ -155,12 +154,18 @@ namespace DynamicSample.Web
 
         private void ConfigureNavigationServices()
         {
-            Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new DynamicSampleMenuContributor()); });
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new DynamicSampleMenuContributor());
+            });
         }
 
         private void ConfigureAutoApiControllers()
         {
-            Configure<AbpAspNetCoreMvcOptions>(options => { options.ConventionalControllers.Create(typeof(DynamicSampleApplicationModule).Assembly); });
+            Configure<AbpAspNetCoreMvcOptions>(options =>
+            {
+                options.ConventionalControllers.Create(typeof(DynamicSampleApplicationModule).Assembly);
+            });
         }
 
         private void ConfigureSwaggerServices(IServiceCollection services)
@@ -184,7 +189,10 @@ namespace DynamicSample.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            app.UseAbpRequestLocalization();
+
+            if (!env.IsDevelopment())
             {
                 app.UseErrorPage();
             }
@@ -200,11 +208,13 @@ namespace DynamicSample.Web
                 app.UseMultiTenancy();
             }
 
-            app.UseAbpRequestLocalization();
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "DynamicSample API"); });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "DynamicSample API");
+            });
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();

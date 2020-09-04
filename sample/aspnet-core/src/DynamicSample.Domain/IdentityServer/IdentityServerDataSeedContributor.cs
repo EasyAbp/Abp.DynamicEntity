@@ -126,15 +126,20 @@ namespace DynamicSample.IdentityServer
                 );
             }
 
-            //Console Test Client
-            var consoleClientId = configurationSection["DynamicSample_App:ClientId"];
-            if (!consoleClientId.IsNullOrWhiteSpace())
+            //Console Test / Angular Client
+            var consoleAndAngularClientId = configurationSection["DynamicSample_App:ClientId"];
+            if (!consoleAndAngularClientId.IsNullOrWhiteSpace())
             {
+                var webClientRootUrl = configurationSection["DynamicSample_App:RootUrl"]?.TrimEnd('/');
+
                 await CreateClientAsync(
-                    name: consoleClientId,
+                    name: consoleAndAngularClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] {"password", "client_credentials"},
-                    secret: (configurationSection["DynamicSample_App:ClientSecret"] ?? "1q2w3e*").Sha256()
+                    grantTypes: new[] {"password", "client_credentials", "authorization_code"},
+                    secret: (configurationSection["DynamicSample_App:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    requireClientSecret: false,
+                    redirectUri: webClientRootUrl,
+                    postLogoutRedirectUri: webClientRootUrl
                 );
             }
         }
@@ -147,6 +152,8 @@ namespace DynamicSample.IdentityServer
             string redirectUri = null,
             string postLogoutRedirectUri = null,
             string frontChannelLogoutUri = null,
+            bool requireClientSecret = true,
+            bool requirePkce = false,
             IEnumerable<string> permissions = null)
         {
             var client = await _clientRepository.FindByCliendIdAsync(name);
@@ -168,7 +175,9 @@ namespace DynamicSample.IdentityServer
                         AuthorizationCodeLifetime = 300,
                         IdentityTokenLifetime = 300,
                         RequireConsent = false,
-                        FrontChannelLogoutUri = frontChannelLogoutUri
+                        FrontChannelLogoutUri = frontChannelLogoutUri,
+                        RequireClientSecret = requireClientSecret,
+                        RequirePkce = requirePkce
                     },
                     autoSave: true
                 );

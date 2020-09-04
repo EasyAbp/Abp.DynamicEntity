@@ -15,6 +15,5 @@
     "EditFieldDefinition": "EditFieldDefinition",
     "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the fieldDefinition {0}?",
     "SuccessfullyDeleted": "删除成功",
-    "DynamicEntityDeletionConfirmationMessage": "你确定删除该 {0} 吗?",
   }
 }

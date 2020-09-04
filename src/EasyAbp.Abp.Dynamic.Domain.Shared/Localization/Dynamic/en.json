@@ -9,13 +9,12 @@
     "Permission:Delete": "Delete",
     "Menu:FieldDefinition": "MenuFieldDefinition",
     "FieldDefinition": "FieldDefinition",
-    "FieldDefinitionName": "FieldDefinitionName",
-    "FieldDefinitionType": "FieldDefinitionType",
-    "FieldDefinitionOrder": "FieldDefinitionOrder",
-    "CreateFieldDefinition": "CreateFieldDefinition",
-    "EditFieldDefinition": "EditFieldDefinition",
-    "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the fieldDefinition {0}?",
+    "FieldDefinitionName": "Name",
+    "FieldDefinitionDisplayName": "Display Name",
+    "FieldDefinitionType": "Type",
+    "CreateFieldDefinition": "Create FieldDefinition",
+    "EditFieldDefinition": "Edit FieldDefinition",
+    "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the FieldDefinition {0}?",
     "SuccessfullyDeleted": "Successfully deleted",
-    "DynamicEntityDeletionConfirmationMessage": "Are you sure to delete this {0}?"
   }
 }

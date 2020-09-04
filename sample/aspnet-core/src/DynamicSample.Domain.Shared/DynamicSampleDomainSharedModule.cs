@@ -7,6 +7,7 @@ using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
@@ -31,7 +32,8 @@ namespace DynamicSample
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            DynamicSampleModulePropertyConfigurator.Configure();
+            DynamicSampleGlobalFeatureConfigurator.Configure();
+            DynamicSampleModuleExtensionConfigurator.Configure();
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -47,13 +49,13 @@ namespace DynamicSample
                     .Add<DynamicSampleResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/DynamicSample");
-                
+
                 options.DefaultResourceType = typeof(DynamicSampleResource);
-                
-                // Need this to allow dynamic module to use localization resources defined in this application
-                options.Resources
-                    .Get<DynamicResource>()
-                    .AddVirtualJson("/Localization/DynamicSample");
+            });
+
+            Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("DynamicSample", typeof(DynamicSampleResource));
             });
         }
     }

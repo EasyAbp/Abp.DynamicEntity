@@ -1,8 +1,11 @@
-﻿using DynamicSample.MultiTenancy;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using DynamicSample.MultiTenancy;
 using DynamicSample.ObjectExtending;
 using EasyAbp.Abp.Dynamic;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
+using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityServer;
@@ -25,22 +28,22 @@ namespace DynamicSample
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpSettingManagementDomainModule),
-        typeof(AbpTenantManagementDomainModule)
-        )]
+        typeof(AbpTenantManagementDomainModule),
+        typeof(AbpEmailingModule)
+    )]
     [DependsOn(typeof(DynamicDomainModule))]
-    public class DynamicSampleDomainModule : AbpModule
+	public class DynamicSampleDomainModule : AbpModule
     {
-        public override void PreConfigureServices(ServiceConfigurationContext context)
-        {
-            DynamicSampleDomainObjectExtensions.Configure();
-        }
-
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpMultiTenancyOptions>(options =>
             {
                 options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
+
+#if DEBUG
+            context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
+#endif
         }
     }
 }
