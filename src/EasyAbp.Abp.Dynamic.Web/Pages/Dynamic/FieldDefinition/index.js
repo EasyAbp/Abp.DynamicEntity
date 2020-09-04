@@ -31,7 +31,7 @@ $(function () {
                                 text: l('Delete'),
                                 visible: abp.auth.isGranted('Dynamic.FieldDefinition.Delete'),
                                 confirmMessage: function (data) {
-                                    return l('FieldDefinitionDeletionConfirmationMessage', data.record.id);
+                                    return l('FieldDefinitionDeletionConfirmationMessage', data.record.name);
                                 },
                                 action: function (data) {
                                         service.delete(data.record.id)
