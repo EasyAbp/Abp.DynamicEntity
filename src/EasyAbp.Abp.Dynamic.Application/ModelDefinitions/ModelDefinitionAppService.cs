@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.Permissions;
+using Volo.Abp;
 using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.Dynamic.ModelDefinitions
@@ -18,6 +19,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
         private readonly IModelDefinitionRepository _modelDefinitionRepository;
         private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
+
         public ModelDefinitionAppService(IModelDefinitionRepository modelDefinitionRepository, IFieldDefinitionRepository fieldDefinitionRepository) : base(modelDefinitionRepository)
         {
             _modelDefinitionRepository = modelDefinitionRepository;
@@ -40,7 +42,7 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
         {
             var fields = (await _fieldDefinitionRepository.GetByIds(createInput.FieldIds))
                 .ToDictionary(fd => fd.Id);
-            
+
             modelDefinition.Fields.Clear();
             int order = 1;
             foreach (var fieldId in createInput.FieldIds)
@@ -49,23 +51,50 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             }
         }
 
-        protected override ModelDefinition MapToEntity(CreateUpdateModelDefinitionDto createInput)
+        protected override async Task<ModelDefinition> MapToEntityAsync(CreateUpdateModelDefinitionDto createInput)
         {
-            var entity = base.MapToEntity(createInput);
-             SetFields(entity, createInput);
-             return entity;
+            var entity = await base.MapToEntityAsync(createInput);
+            await SetFields(entity, createInput);
+            return entity;
         }
 
-        protected override void MapToEntity(CreateUpdateModelDefinitionDto updateInput, ModelDefinition entity)
+        protected override async Task MapToEntityAsync(CreateUpdateModelDefinitionDto updateInput, ModelDefinition entity)
         {
-            base.MapToEntity(updateInput, entity);
-            SetFields(entity, updateInput);
+            await base.MapToEntityAsync(updateInput, entity);
+            await SetFields(entity, updateInput);   
         }
-
+        
         public async Task<ModelDefinitionDto> GetByName(string name)
         {
-            var entity = await _modelDefinitionRepository.GetAsync(md => md.Name == name);
+            var entity = await _modelDefinitionRepository.FindAsync(md => md.Name == name);
             return await MapToGetOutputDtoAsync(entity);
+        }
+
+        public override async Task<ModelDefinitionDto> CreateAsync(CreateUpdateModelDefinitionDto input)
+        {
+            await CheckDuplicateName(input);
+            return await base.CreateAsync(input);
+        }
+
+        public override async Task<ModelDefinitionDto> UpdateAsync(Guid id, CreateUpdateModelDefinitionDto input)
+        {
+            await CheckDuplicateName(input);
+            return await base.UpdateAsync(id, input);
+        }
+
+        private async Task CheckDuplicateName(CreateUpdateModelDefinitionDto input)
+        {
+            var existModelDefinition = await _modelDefinitionRepository.FindAsync(md => md.Name == input.Name);
+            if (existModelDefinition != null)
+            {
+                throw new BusinessException(DynamicErrorCodes.ModelDefinitionAlreadyExists)
+                {
+                    Data =
+                    {
+                        {"Name", input.Name}
+                    }
+                };
+            }
         }
     }
 }

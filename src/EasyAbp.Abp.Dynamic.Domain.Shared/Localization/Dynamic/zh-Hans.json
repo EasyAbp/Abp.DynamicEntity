@@ -17,6 +17,7 @@
     "FieldDefinitionDeletionConfirmationMessage": "确定删除字段定义 '{0}'?",
     "SuccessfullyDeleted": "删除成功",
     "Dynamic:001": "字段定义 '{Name}' 已经存在",
+    "Dynamic:002": "模型定义 '{Name}' 已经存在",
     "Menu:ModelDefinition": "模型定义",
     "ModelDefinition": "模型定义",
     "ModelDefinitionName": "名称",

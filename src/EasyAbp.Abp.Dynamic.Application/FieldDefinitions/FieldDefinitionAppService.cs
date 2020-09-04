@@ -44,6 +44,18 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 
         public override async Task<FieldDefinitionDto> CreateAsync(CreateUpdateFieldDefinitionDto input)
         {
+            await CheckDuplicateName(input);
+            return await base.CreateAsync(input);
+        }
+
+        public override async Task<FieldDefinitionDto> UpdateAsync(Guid id, CreateUpdateFieldDefinitionDto input)
+        {
+            await CheckDuplicateName(input);
+            return await base.UpdateAsync(id, input);
+        }
+
+        private async Task CheckDuplicateName(CreateUpdateFieldDefinitionDto input)
+        {
             var existFieldDefinition = await _repository.GetByName(input.Name);
             if (existFieldDefinition != null)
             {
@@ -55,8 +67,6 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
                     }
                 };
             }
-
-            return await base.CreateAsync(input);
         }
     }
 }

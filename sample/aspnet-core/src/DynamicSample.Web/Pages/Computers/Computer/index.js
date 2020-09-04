@@ -7,7 +7,7 @@ $(function () {
 
     easyAbp.abp.dynamicUI.configureDataTable(
         {
-            modelName: "Computer",
+            modelName: "computer",
             $table: $("#ComputerTable")
         },
         {
