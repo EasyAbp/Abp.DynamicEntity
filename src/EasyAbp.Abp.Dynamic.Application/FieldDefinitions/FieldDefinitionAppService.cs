@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.Permissions;
+using Volo.Abp;
 using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.Dynamic.FieldDefinitions
@@ -29,16 +30,33 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             {
                 return _repository.WhereIf(!input.Filter.IsNullOrEmpty(),
                     fd => fd.Name.Contains(input.Filter) ||
-                          fd.Type.Contains(input.Filter));         
+                          fd.Type.Contains(input.Filter));
             }
 
             return base.CreateFilteredQuery(input);
         }
-        
+
         public async Task<FieldDefinitionDto> GetByName(string name)
         {
             var entity = await _repository.GetAsync(fd => fd.Name == name);
             return MapToGetOutputDto(entity);
+        }
+
+        public override async Task<FieldDefinitionDto> CreateAsync(CreateUpdateFieldDefinitionDto input)
+        {
+            var existFieldDefinition = await _repository.GetByName(input.Name);
+            if (existFieldDefinition != null)
+            {
+                throw new BusinessException(DynamicErrorCodes.FieldDefinitionAlreadyExists)
+                {
+                    Data =
+                    {
+                        {"Name", input.Name}
+                    }
+                };
+            }
+
+            return await base.CreateAsync(input);
         }
     }
 }

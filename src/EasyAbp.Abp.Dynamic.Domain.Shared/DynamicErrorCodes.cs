@@ -2,6 +2,6 @@
 {
     public static class DynamicErrorCodes
     {
-        //Add your business exception error codes here...
+        public const string FieldDefinitionAlreadyExists = "Dynamic:001";
     }
 }

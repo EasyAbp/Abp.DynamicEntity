@@ -17,5 +17,6 @@
     "EditFieldDefinition": "Edit",
     "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the FieldDefinition '{0}'?",
     "SuccessfullyDeleted": "Successfully deleted",
+    "Dynamic:001": "FieldDefinition '{Name}' already exists"
   }
 }
