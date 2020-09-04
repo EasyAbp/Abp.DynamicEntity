@@ -17,6 +17,14 @@
     "EditFieldDefinition": "Edit",
     "FieldDefinitionDeletionConfirmationMessage": "Are you sure to delete the FieldDefinition '{0}'?",
     "SuccessfullyDeleted": "Successfully deleted",
-    "Dynamic:001": "FieldDefinition '{Name}' already exists"
+    "Dynamic:001": "FieldDefinition '{Name}' already exists",
+    "Menu:ModelDefinition": "ModelDefinition",
+    "ModelDefinition": "ModelDefinition",
+    "ModelDefinitionName": "Name",
+    "ModelDefinitionDisplayName": "Display Name",
+    "ModelDefinitionType": "Type",
+    "CreateModelDefinition": "Create",
+    "EditModelDefinition": "Edit",
+    "ModelDefinitionDeletionConfirmationMessage": "Are you sure to delete the ModelDefinition '{0}'?"
   }
 }

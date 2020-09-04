@@ -25,6 +25,7 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
             )
             {
                 var menu = new ApplicationMenuItem(DynamicMenus.DynamicManagement, l["Menu:DynamicManagement"]);
+                
                 if (await context.IsGrantedAsync(DynamicPermissions.FieldDefinition.Default))
                 {
                     menu.AddItem(
@@ -32,14 +33,14 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
                     );
                 }
 
-                context.Menu.AddItem(menu);
-
-                /*if (await context.IsGrantedAsync(DynamicPermissions.ModelDefinition.Default))
+                if (await context.IsGrantedAsync(DynamicPermissions.ModelDefinition.Default))
                 {
                     menu.AddItem(
-                        new ApplicationMenuItem(DynamicMenus.FieldDefinition, l["Menu:FieldDefinition"], "/Dynamic/Fields/FieldDefinition")
+                        new ApplicationMenuItem(DynamicMenus.ModelDefinition, l["Menu:ModelDefinition"], "/Dynamic/ModelDefinition")
                     );
-                }*/
+                }
+
+                context.Menu.AddItem(menu);
             }
         }
     }

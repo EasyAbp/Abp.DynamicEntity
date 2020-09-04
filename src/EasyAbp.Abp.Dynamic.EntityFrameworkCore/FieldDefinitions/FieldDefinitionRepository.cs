@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,13 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         public async Task<FieldDefinition> GetByName(string name)
         {
             return await DbSet.FirstOrDefaultAsync(fd => fd.Name == name);
+        }
+
+        public async Task<List<FieldDefinition>> GetByIds(List<Guid> ids)
+        {
+            return await DbSet.Where(fd => ids.Contains(fd.Id))
+                    .ToListAsync()
+                ;
         }
     }
 }

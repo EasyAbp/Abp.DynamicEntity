@@ -8,6 +8,7 @@ namespace EasyAbp.Abp.Dynamic.Web.Menus
         //public const string Home = Prefix + ".MyNewMenuItem";
 
         public const string DynamicManagement = Prefix + ".DynamicManagement";
-        public const string FieldDefinition = Prefix + ".FieldDefinition";
+        public const string FieldDefinition = DynamicManagement + ".FieldDefinition";
+        public const string ModelDefinition = DynamicManagement + ".ModelDefinition";
     }
 }

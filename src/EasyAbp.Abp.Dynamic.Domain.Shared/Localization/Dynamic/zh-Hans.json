@@ -16,6 +16,14 @@
     "EditFieldDefinition": "编辑",
     "FieldDefinitionDeletionConfirmationMessage": "确定删除字段定义 '{0}'?",
     "SuccessfullyDeleted": "删除成功",
-    "Dynamic:001": "字段定义 '{Name}' 已经存在"
+    "Dynamic:001": "字段定义 '{Name}' 已经存在",
+    "Menu:ModelDefinition": "模型定义",
+    "ModelDefinition": "模型定义",
+    "ModelDefinitionName": "名称",
+    "ModelDefinitionDisplayName": "显示名称",
+    "ModelDefinitionType": "类型",
+    "CreateModelDefinition": "创建",
+    "EditModelDefinition": "编辑",
+    "ModelDefinitionDeletionConfirmationMessage": "确定删除模型定义 '{0}'?"
   }
 }

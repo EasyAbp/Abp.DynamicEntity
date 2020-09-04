@@ -12,8 +12,5 @@
     "EditComputer": "EditComputer",
     "ComputerDeletionConfirmationMessage": "Are you sure to delete the computer {0}?",
     "SuccessfullyDeleted": "Successfully deleted",
-    "CPU": "CPU",
-    "RAM": "内存",
-    "Price": "价格"
   }
 }

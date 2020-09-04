@@ -61,9 +61,10 @@
                     },)
                     columnList.addManyTail(model.fields.map(function (field) {
                             return {
-                                title: l(field.displayName),
+                                title: field.displayName,
                                 name: field.name,
                                 data: `extraProperties.${field.name}`,
+                                defaultContent: "-"
                             }
                         })
                     );

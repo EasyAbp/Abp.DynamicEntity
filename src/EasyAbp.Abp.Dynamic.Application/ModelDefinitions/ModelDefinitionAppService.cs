@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyAbp.Abp.Dynamic.FieldDefinitions;
 using EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.Permissions;
 using Volo.Abp.Application.Services;
@@ -15,18 +16,19 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
         protected override string UpdatePolicyName { get; set; } = DynamicPermissions.ModelDefinition.Update;
         protected override string DeletePolicyName { get; set; } = DynamicPermissions.ModelDefinition.Delete;
 
-        private readonly IModelDefinitionRepository _repository;
-
-        public ModelDefinitionAppService(IModelDefinitionRepository repository) : base(repository)
+        private readonly IModelDefinitionRepository _modelDefinitionRepository;
+        private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
+        public ModelDefinitionAppService(IModelDefinitionRepository modelDefinitionRepository, IFieldDefinitionRepository fieldDefinitionRepository) : base(modelDefinitionRepository)
         {
-            _repository = repository;
+            _modelDefinitionRepository = modelDefinitionRepository;
+            _fieldDefinitionRepository = fieldDefinitionRepository;
         }
 
         protected override IQueryable<ModelDefinition> CreateFilteredQuery(GetListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())
             {
-                return _repository.WhereIf(!input.Filter.IsNullOrEmpty(),
+                return _modelDefinitionRepository.WhereIf(!input.Filter.IsNullOrEmpty(),
                     fd => fd.Name.Contains(input.Filter) ||
                           fd.Type.Contains(input.Filter));
             }
@@ -34,23 +36,36 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             return base.CreateFilteredQuery(input);
         }
 
-        protected override ModelDefinition MapToEntity(CreateUpdateModelDefinitionDto createInput)
+        protected virtual async Task SetFields(ModelDefinition modelDefinition, CreateUpdateModelDefinitionDto createInput)
         {
-            var entity = base.MapToEntity(createInput);
-            entity.Fields.Clear();
+            var fields = (await _fieldDefinitionRepository.GetByIds(createInput.FieldIds))
+                .ToDictionary(fd => fd.Id);
+            
+            modelDefinition.Fields.Clear();
             int order = 1;
             foreach (var fieldId in createInput.FieldIds)
             {
-                entity.AddField(fieldId, order++);
+                modelDefinition.AddField(fields[fieldId].Id, order++);
             }
+        }
 
-            return entity;
+        protected override ModelDefinition MapToEntity(CreateUpdateModelDefinitionDto createInput)
+        {
+            var entity = base.MapToEntity(createInput);
+             SetFields(entity, createInput);
+             return entity;
+        }
+
+        protected override void MapToEntity(CreateUpdateModelDefinitionDto updateInput, ModelDefinition entity)
+        {
+            base.MapToEntity(updateInput, entity);
+            SetFields(entity, updateInput);
         }
 
         public async Task<ModelDefinitionDto> GetByName(string name)
         {
-            var entity = await _repository.GetAsync(md => md.Name == name);
-            return MapToGetOutputDto(entity);
+            var entity = await _modelDefinitionRepository.GetAsync(md => md.Name == name);
+            return await MapToGetOutputDtoAsync(entity);
         }
     }
 }
