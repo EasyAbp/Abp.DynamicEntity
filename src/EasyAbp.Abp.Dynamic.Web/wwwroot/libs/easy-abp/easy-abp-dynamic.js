@@ -79,7 +79,7 @@
                 searching: true,
                 autoWidth: true,
                 scrollCollapse: true,
-                order: [[0, "asc"]],
+                //order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
                     const fieldFilters = {};
                     for (let i = 0; i < requestData.columns.length; i++) {
@@ -97,6 +97,8 @@
                 ...defaultTableOption,
                 ...dataTableOption
             }));
+            
+            dataTable.columns.adjust().draw();
         });
     }
 })();
