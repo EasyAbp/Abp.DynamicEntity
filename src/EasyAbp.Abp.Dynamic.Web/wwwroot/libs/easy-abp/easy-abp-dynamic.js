@@ -69,7 +69,7 @@
                         })
                     );
                 },
-                0 //adds as the first contributor
+                0
             );
 
             let defaultTableOption = {
@@ -77,7 +77,7 @@
                 serverSide: true,
                 paging: true,
                 searching: true,
-                autoWidth: false,
+                autoWidth: true,
                 scrollCollapse: true,
                 order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
