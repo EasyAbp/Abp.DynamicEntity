@@ -78,14 +78,14 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 
         public override async Task<ModelDefinitionDto> UpdateAsync(Guid id, CreateUpdateModelDefinitionDto input)
         {
-            await CheckDuplicateName(input);
+            await CheckDuplicateName(input, id);
             return await base.UpdateAsync(id, input);
         }
 
-        private async Task CheckDuplicateName(CreateUpdateModelDefinitionDto input)
+        private async Task CheckDuplicateName(CreateUpdateModelDefinitionDto input, Guid? id = null)
         {
             var existModelDefinition = await _modelDefinitionRepository.FindAsync(md => md.Name == input.Name);
-            if (existModelDefinition != null)
+            if (existModelDefinition != null && (id == null || id.Value != existModelDefinition.Id))
             {
                 throw new BusinessException(DynamicErrorCodes.ModelDefinitionAlreadyExists)
                 {

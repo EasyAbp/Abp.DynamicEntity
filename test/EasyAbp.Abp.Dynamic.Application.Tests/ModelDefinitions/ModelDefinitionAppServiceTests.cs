@@ -7,6 +7,7 @@ using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos;
 using EasyAbp.Abp.Dynamic.Permissions;
 using Shouldly;
+using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Xunit;
 using GetListInput = EasyAbp.Abp.Dynamic.ModelDefinitions.Dtos.GetListInput;
@@ -104,8 +105,8 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             fdPublishDate.DisplayName.ShouldBe("Car");
             fdPublishDate.Type.ShouldBe("Dynamic.Car");
             fdPublishDate.Fields.Count.ShouldBe(2);
-            fdPublishDate.Fields[0].Name.ShouldBe("Name");
-            fdPublishDate.Fields[1].Name.ShouldBe("Price");
+            fdPublishDate.Fields[0].Name.ShouldBe("name");
+            fdPublishDate.Fields[1].Name.ShouldBe("price");
         }
         
         [Fact]
@@ -121,6 +122,41 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             output.DisplayName.ShouldBe("Book");
             output.Type.ShouldBe("Dynamic.Book");
             output.Fields.Count.ShouldBe(2);
+        }
+                
+        [Fact]
+        public async Task ShouldCheckDuplicateName_Create()
+        {
+            // Arrange
+            
+            // Act
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.CreateAsync(new CreateUpdateModelDefinitionDto
+            {
+                Name = "book",
+                DisplayName = "Book",
+                Type = "Dynamic.Book"
+            }));
+            
+            // Assert
+            ex.Code.ShouldBe(DynamicErrorCodes.ModelDefinitionAlreadyExists);
+        }        
+        
+        [Fact]
+        public async Task ShouldCheckDuplicateName_Update()
+        {
+            // Arrange
+            var id = (await _modelDefinitionRepository.InsertAsync(new ModelDefinition(Guid.NewGuid(), "book2", "Book2", "Dynamic.Book2"))).Id;
+            
+            // Act
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new CreateUpdateModelDefinitionDto
+            {
+                Name = "book",
+                DisplayName = "Book",
+                Type = "Dynamic.Book"
+            }));
+            
+            // Assert
+            ex.Code.ShouldBe(DynamicErrorCodes.ModelDefinitionAlreadyExists);
         }
     }
 }

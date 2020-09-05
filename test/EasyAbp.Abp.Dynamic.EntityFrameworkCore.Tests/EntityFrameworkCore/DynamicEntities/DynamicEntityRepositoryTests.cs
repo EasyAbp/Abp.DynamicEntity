@@ -25,7 +25,7 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.DynamicEntities
             {
 
                 // Arrange
-                var filter = new Dictionary<string, string> {{"Price", "100"}};
+                var filter = new Dictionary<string, string> {{"price", "100"}};
 
                 // Act
                 var output = await _dynamicEntityRepository.GetQueryByFilter(filter).ToListAsync();

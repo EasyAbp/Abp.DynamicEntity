@@ -15,7 +15,7 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
         {
         }
 
-        public async Task<FieldDefinition> GetByName(string name)
+        public async Task<FieldDefinition> GetByNameAsync(string name)
         {
             return await DbSet.FirstOrDefaultAsync(fd => fd.Name == name);
         }

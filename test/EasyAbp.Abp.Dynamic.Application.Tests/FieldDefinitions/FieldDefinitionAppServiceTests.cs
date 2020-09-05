@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using EasyAbp.Abp.Dynamic.FieldDefinitions.Dtos;
 using Shouldly;
+using Volo.Abp;
 using Xunit;
 
 namespace EasyAbp.Abp.Dynamic.FieldDefinitions
@@ -83,6 +84,41 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
             // Assert
             output.ShouldNotBeNull();
             output.Type.ShouldBe("string");
+        }
+        
+        [Fact]
+        public async Task ShouldCheckDuplicateName_Create()
+        {
+            // Arrange
+            
+            // Act
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.CreateAsync(new CreateUpdateFieldDefinitionDto
+            {
+                Name = "price",
+                DisplayName = "Price",
+                Type = "float"
+            }));
+            
+            // Assert
+            ex.Code.ShouldBe(DynamicErrorCodes.FieldDefinitionAlreadyExists);
+        }        
+        
+        [Fact]
+        public async Task ShouldCheckDuplicateName_Update()
+        {
+            // Arrange
+            var id = (await _fieldDefinitionRepository.GetByNameAsync("name")).Id;
+            
+            // Act
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.UpdateAsync(id, new CreateUpdateFieldDefinitionDto
+            {
+                Name = "price",
+                DisplayName = "Price",
+                Type = "float"
+            }));
+            
+            // Assert
+            ex.Code.ShouldBe(DynamicErrorCodes.FieldDefinitionAlreadyExists);
         }
     }
 }

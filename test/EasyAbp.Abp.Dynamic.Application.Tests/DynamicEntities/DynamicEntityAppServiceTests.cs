@@ -29,6 +29,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
                         .WithDetails()
                         .First(de => de.ModelDefinition.Name == "book")
                     ;
+                
                 // Act
                 var output = await _dynamicEntityAppService.GetAsync(deBook.Id);
 

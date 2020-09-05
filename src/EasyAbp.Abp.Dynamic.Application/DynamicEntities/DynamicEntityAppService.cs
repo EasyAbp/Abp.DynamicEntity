@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
 using EasyAbp.Abp.Dynamic.DynamicEntities.Dtos;
-using EasyAbp.Abp.Dynamic.Permissions;
 using Volo.Abp.Application.Services;
-using Volo.Abp.Data;
 
 namespace EasyAbp.Abp.Dynamic.DynamicEntities
 {

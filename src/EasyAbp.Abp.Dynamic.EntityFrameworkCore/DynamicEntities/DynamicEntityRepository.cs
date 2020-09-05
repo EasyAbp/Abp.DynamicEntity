@@ -24,6 +24,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
             return GetQueryable()
                     .Include(de => de.ModelDefinition)
                     .ThenInclude(md => md.Fields)
+                    .ThenInclude(mf => mf.FieldDefinition)
                 ;
         }
 

@@ -7,7 +7,7 @@ namespace EasyAbp.Abp.Dynamic.FieldDefinitions
 {
     public interface IFieldDefinitionRepository : IRepository<FieldDefinition, Guid>
     {
-        Task<FieldDefinition> GetByName(string name);
+        Task<FieldDefinition> GetByNameAsync(string name);
         Task<List<FieldDefinition>> GetByIds(List<Guid> ids);
     }
 }
