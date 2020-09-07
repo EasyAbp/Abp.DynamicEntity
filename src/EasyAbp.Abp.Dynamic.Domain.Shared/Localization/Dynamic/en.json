@@ -26,6 +26,7 @@
     "ModelDefinitionType": "Type",
     "CreateModelDefinition": "Create",
     "EditModelDefinition": "Edit",
-    "ModelDefinitionDeletionConfirmationMessage": "Are you sure to delete the ModelDefinition '{0}'?"
+    "ModelDefinitionDeletionConfirmationMessage": "Are you sure to delete the ModelDefinition '{0}'?",
+    "NoAvailableFields": "No available fields"
   }
 }

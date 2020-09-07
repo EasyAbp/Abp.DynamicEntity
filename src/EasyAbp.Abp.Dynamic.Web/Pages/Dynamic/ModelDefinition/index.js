@@ -3,8 +3,20 @@ $(function () {
     var l = abp.localization.getResource('Dynamic');
 
     var service = easyAbp.abp.dynamic.modelDefinitions.modelDefinition;
-    var createModal = new abp.ModalManager(abp.appPath + 'Dynamic/ModelDefinition/CreateModal');
-    var editModal = new abp.ModalManager(abp.appPath + 'Dynamic/ModelDefinition/EditModal');
+    var createModal = new abp.ModalManager(
+        {
+            viewUrl: abp.appPath + 'Dynamic/ModelDefinition/CreateModal',
+            scriptUrl: "/Pages/Dynamic/ModelDefinition/createEditModal.js",
+            modalClass: "CreateEditModal",
+        }
+    );
+    var editModal = new abp.ModalManager(
+        {
+            viewUrl: abp.appPath + 'Dynamic/ModelDefinition/EditModal',
+            scriptUrl: "/Pages/Dynamic/ModelDefinition/createEditModal.js",
+            modalClass: "CreateEditModal",
+        }
+    );
 
     var dataTable = $('#ModelDefinitionTable').DataTable(abp.libs.datatables.normalizeConfiguration({
         processing: true,
@@ -24,7 +36,7 @@ $(function () {
                                 text: l('Edit'),
                                 visible: abp.auth.isGranted('Dynamic.ModelDefinition.Update'),
                                 action: function (data) {
-                                    editModal.open({ id: data.record.id });
+                                    editModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -34,7 +46,7 @@ $(function () {
                                     return l('ModelDefinitionDeletionConfirmationMessage', data.record.name);
                                 },
                                 action: function (data) {
-                                        service.delete(data.record.id)
+                                    service.delete(data.record.id)
                                         .then(function () {
                                             abp.notify.info(l('SuccessfullyDeleted'));
                                             dataTable.ajax.reload();
@@ -44,9 +56,9 @@ $(function () {
                         ]
                 }
             },
-            { data: "name" },
-            { data: "displayName" },
-            { data: "type" },
+            {data: "name"},
+            {data: "displayName"},
+            {data: "type"},
         ]
     }));
 

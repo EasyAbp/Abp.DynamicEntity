@@ -8,12 +8,15 @@ namespace EasyAbp.Abp.Dynamic.Web.Pages.Dynamic.ModelDefinition.ViewModels
 {
     public class CreateEditModelDefinitionViewModel
     {
+        [Required]
         [Display(Name = "ModelDefinitionName")]
         public string Name { get; set; }
 
+        [Required]
         [Display(Name = "ModelDefinitionDisplayName")]
         public string DisplayName { get; set; }
 
+        [Required]
         [Display(Name = "ModelDefinitionType")]
         public string Type { get; set; }
 

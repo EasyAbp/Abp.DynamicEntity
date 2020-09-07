@@ -25,6 +25,7 @@
     "ModelDefinitionType": "类型",
     "CreateModelDefinition": "创建",
     "EditModelDefinition": "编辑",
-    "ModelDefinitionDeletionConfirmationMessage": "确定删除模型定义 '{0}'?"
+    "ModelDefinitionDeletionConfirmationMessage": "确定删除模型定义 '{0}'?",
+    "NoAvailableFields": "无可用字段"
   }
 }
