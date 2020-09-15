@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using EasyAbp.Abp.Dynamic.DynamicEntities.Dtos;
 using Volo.Abp.Application.Services;
@@ -19,7 +20,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
         {
             if (input.FieldFilters != null && input.FieldFilters.Count > 0)
             {
-                return _repository.GetQueryByFilter(input.FieldFilters);
+                return _repository.GetQueryByFilter(ObjectMapper.Map<IList<Dtos.Filter>, IList<Filter>>(input.FieldFilters));
             }
             
             if (!input.Filter.IsNullOrEmpty())

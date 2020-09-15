@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EasyAbp.Abp.Dynamic.DynamicEntities;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -9,9 +10,9 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
 {
     public static class DynamicModelRepositoryExtensions
     {
-        public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, IDictionary<string, string> filter) where T : class, IDynamicModel
+        public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, IList<Filter> filters) where T : class, IDynamicModel
         {
-            if (filter == null || filter.Count == 0)
+            if (filters.IsNullOrEmpty())
             {
                 return dbContext.Set<T>().AsQueryable();
             }
@@ -31,14 +32,14 @@ namespace EasyAbp.Abp.Dynamic.ModelDefinitions
             var sbSql = new StringBuilder($"SELECT * FROM {tableName} WHERE ");
             var parameters = new List<object>();
             int index = 0;
-            foreach (var kv in filter)
+            foreach (var filter in filters)
             {
                 if (index > 0)
                 {
                     sbSql.Append(" AND ");
                 }
-                sbSql.Append($"{jsonFunction}(ExtraProperties, '$.{kv.Key}') LIKE {{{index}}}");
-                parameters.Add($"%{kv.Value}%");
+                sbSql.Append($"{jsonFunction}(ExtraProperties, '$.{filter.FieldName}') LIKE {{{index}}}");
+                parameters.Add($"%{filter.Value}%");
                 index++;
             }
             

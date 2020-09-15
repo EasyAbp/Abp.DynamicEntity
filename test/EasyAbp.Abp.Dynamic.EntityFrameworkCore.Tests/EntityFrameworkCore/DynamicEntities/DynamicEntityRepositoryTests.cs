@@ -25,10 +25,13 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.DynamicEntities
             {
 
                 // Arrange
-                var filter = new Dictionary<string, string> {{"price", "100"}};
+                var filters = new List<Filter>
+                {
+                    new Filter {FieldName = "price", Operator = Operator.Contain, Value = 100}
+                };
 
                 // Act
-                var output = await _dynamicEntityRepository.GetQueryByFilter(filter).ToListAsync();
+                var output = await _dynamicEntityRepository.GetQueryByFilter(filters).ToListAsync();
 
                 // Assert
                 output.Count.ShouldBe(1);
@@ -43,10 +46,13 @@ namespace EasyAbp.Abp.Dynamic.EntityFrameworkCore.DynamicEntities
             {
 
                 // Arrange
-                var filter = new Dictionary<string, string> {{"a", "1 OR 1 = 1; --"}};
+                var filters = new List<Filter>
+                {
+                    new Filter {FieldName = "a", Operator = Operator.Contain, Value = "1 OR 1 = 1; --"}
+                };
 
                 // Act
-                var output = await _dynamicEntityRepository.GetQueryByFilter(filter).ToListAsync();
+                var output = await _dynamicEntityRepository.GetQueryByFilter(filters).ToListAsync();
 
                 // Assert
                 output.Count.ShouldBe(0);

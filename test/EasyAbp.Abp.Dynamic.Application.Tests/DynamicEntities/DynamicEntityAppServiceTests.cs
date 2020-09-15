@@ -18,7 +18,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
             _dynamicEntityAppService = GetRequiredService<IDynamicEntityAppService>();
             _dynamicEntityRepository = GetRequiredService<IDynamicEntityRepository>();
         }
-        
+
         [Fact]
         public async Task ShouldIncludeModelDefinition()
         {
@@ -29,7 +29,7 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
                         .WithDetails()
                         .First(de => de.ModelDefinition.Name == "book")
                     ;
-                
+
                 // Act
                 var output = await _dynamicEntityAppService.GetAsync(deBook.Id);
 
@@ -50,7 +50,10 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
                 {
-                    FieldFilters = new Dictionary<string, string> {{"name", "1"}}
+                    FieldFilters = new List<Dtos.Filter>
+                    {
+                        new Dtos.Filter {FieldName = "name", Operator = Operator.Contain, Value = "1"}
+                    }
                 }
             );
 

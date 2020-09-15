@@ -9,17 +9,17 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities.Dtos
     {
         private readonly Regex _regFieldName = new Regex(@"^\w+$", RegexOptions.Compiled);
         public string Filter { get; set; }
-        public Dictionary<string, string> FieldFilters { get; set; }
+        public List<Filter> FieldFilters { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!FieldFilters.IsNullOrEmpty())
             {
-                foreach (var name in FieldFilters.Keys)
+                foreach (var filter in FieldFilters)
                 {
-                    if (!_regFieldName.IsMatch(name))
+                    if (!_regFieldName.IsMatch(filter.FieldName))
                     {
-                        yield return new ValidationResult($"InvalidFieldName: {name}", new[] {nameof(FieldFilters)});
+                        yield return new ValidationResult($"InvalidFieldName: {filter.FieldName}", new[] {nameof(FieldFilters)});
                     }
                 }
             }
