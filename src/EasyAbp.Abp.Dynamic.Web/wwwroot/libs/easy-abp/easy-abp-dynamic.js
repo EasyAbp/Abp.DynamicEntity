@@ -81,10 +81,14 @@
                 scrollCollapse: true,
                 //order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
-                    const fieldFilters = {};
+                    const fieldFilters = [];
                     for (let i = 0; i < requestData.columns.length; i++) {
                         if (!requestData.columns[i].search.value) continue;
-                        fieldFilters[requestData.columns[i].name] = requestData.columns[i].search.value;
+                        fieldFilters.push({
+                            fieldName: requestData.columns[i].name,
+                            operator: 10,   // contain
+                            value: requestData.columns[i].search.value
+                        })
                     }
                     return {
                         fieldFilters: fieldFilters

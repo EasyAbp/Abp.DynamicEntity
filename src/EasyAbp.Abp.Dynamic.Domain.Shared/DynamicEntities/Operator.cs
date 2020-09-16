@@ -2,6 +2,17 @@
 {
     public enum Operator
     {
-        Equal, NotEqual, Greater, GreaterOrEqual, Less, LessOrEqual, StartWith, NotStartWith, EndWith, NotEndWith, Contain, NotContain
+        Equal,            // 0
+        NotEqual,
+        Greater,
+        GreaterOrEqual,
+        Less,
+        LessOrEqual,        // 5
+        StartWith,
+        NotStartWith,
+        EndWith,
+        NotEndWith,
+        Contain,
+        NotContain        // 11
     }
 }

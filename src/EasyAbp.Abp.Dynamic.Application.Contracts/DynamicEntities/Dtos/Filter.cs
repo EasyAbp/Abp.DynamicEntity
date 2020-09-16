@@ -11,6 +11,6 @@ namespace EasyAbp.Abp.Dynamic.DynamicEntities.Dtos
         public Operator Operator { get; set; }
         
         [Required]
-        public object Value { get; set; }
+        public string Value { get; set; }
     }
 }
