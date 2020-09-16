@@ -1,0 +1,58 @@
+﻿@page
+@using EasyAbp.Abp.DynamicEntity.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using EasyAbp.Abp.DynamicEntity.Localization
+@using EasyAbp.Abp.DynamicEntity.Web.Menus
+@model EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition.IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DynamicEntityResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["ModelDefinition"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:ModelDefinition"].Value);
+    PageLayout.Content.MenuItemName = DynamicEntityMenus.ModelDefinition;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/DynamicEntity/ModelDefinition/index.js" />
+    <abp-script src="/libs/jquery-ui/jquery-ui.min.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/DynamicEntity/ModelDefinition/index.css"/>
+    <abp-style src="/libs/jquery-ui/jquery-ui.min.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["ModelDefinition"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+			    @if (await Authorization.IsGrantedAsync(DynamicEntityPermissions.ModelDefinition.Create))
+                {
+                <abp-button id="NewModelDefinitionButton"
+                            text="@L["CreateModelDefinition"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ModelDefinitionTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["ModelDefinitionName"]</th>
+                <th>@L["ModelDefinitionDisplayName"]</th>
+                <th>@L["ModelDefinitionType"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

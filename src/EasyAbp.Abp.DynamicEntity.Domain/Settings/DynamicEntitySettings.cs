@@ -1,0 +1,11 @@
+﻿namespace EasyAbp.Abp.DynamicEntity.Settings
+{
+    public static class DynamicEntitySettings
+    {
+        public const string GroupName = "DynamicEntity";
+
+        /* Add constants for setting names. Example:
+         * public const string MySettingName = GroupName + ".MySettingName";
+         */
+    }
+}

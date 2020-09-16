@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>DynamicEntitySample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\EasyAbp.Abp.DynamicEntity.HttpApi.Client\EasyAbp.Abp.DynamicEntity.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\DynamicEntitySample.Application.Contracts\DynamicEntitySample.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.HttpApi.Client" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi.Client" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi.Client" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

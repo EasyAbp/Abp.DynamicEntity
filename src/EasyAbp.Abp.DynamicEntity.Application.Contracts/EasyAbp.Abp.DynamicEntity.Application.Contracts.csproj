@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>EasyAbp.Abp.DynamicEntity</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="3.1.0" />
+    <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain.Shared\EasyAbp.Abp.DynamicEntity.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

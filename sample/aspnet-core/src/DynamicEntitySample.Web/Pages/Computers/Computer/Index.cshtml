@@ -1,0 +1,47 @@
+﻿@page
+@using DynamicEntitySample.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using DynamicEntitySample.Web.Pages.Computers.Computer
+@using DynamicEntitySample.Localization
+@using DynamicEntitySample.Web.Menus
+@using EasyAbp.Abp.DynamicEntity.Web.Bundling
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DynamicEntitySampleResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["Computer"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Computer"].Value);
+    PageLayout.Content.MenuItemName = DynamicEntitySampleMenus.Computer;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Computers/Computer/index.js" />
+    <abp-script-bundle name="@DynamicEntityBundles.Scripts.DynamicEntity" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Computers/Computer/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Computer"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewComputerButton"
+                            text="@L["CreateComputer"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ComputerTable" class="nowrap" />
+    </abp-card-body>
+</abp-card>
