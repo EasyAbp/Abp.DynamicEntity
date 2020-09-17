@@ -80,7 +80,7 @@ namespace DynamicEntitySample.Migrations
 
                     b.HasIndex("ModelDefinitionId");
 
-                    b.ToTable("DynamicEntityDynamicEntityEntities");
+                    b.ToTable("DynamicEntityDynamicEntities");
                 });
 
             modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.FieldDefinitions.FieldDefinition", b =>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using EasyAbp.Abp.DynamicQuery;
 using Shouldly;
@@ -9,7 +8,7 @@ using Volo.Abp.Data;
 using Xunit;
 using DynamicQueryFilter = EasyAbp.Abp.DynamicQuery.Dtos.DynamicQueryFilter;
 
-namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
+namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
     public class DynamicEntityEntityAppServiceTests : DynamicEntityApplicationTestBase
     {

@@ -7,7 +7,7 @@ using Shouldly;
 using Volo.Abp.Data;
 using Xunit;
 
-namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntityEntities
+namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
 {
     public class DynamicEntityEntityRepositoryTests : DynamicEntityEntityFrameworkCoreTestBase
     {

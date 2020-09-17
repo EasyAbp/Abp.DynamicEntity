@@ -14,7 +14,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
          */
         public DbSet<FieldDefinition> FieldDefinitions { get; set; }
         public DbSet<ModelDefinition> ModelDefinitions { get; set; }
-        public DbSet<DynamicEntities.DynamicEntity> DynamicEntityEntities { get; set; }
+        public DbSet<DynamicEntities.DynamicEntity> DynamicEntities { get; set; }
 
         public DynamicEntityDbContext(DbContextOptions<DynamicEntityDbContext> options) 
             : base(options)

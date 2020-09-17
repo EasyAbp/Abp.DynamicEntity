@@ -689,7 +689,7 @@ namespace DynamicEntitySample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DynamicEntityDynamicEntityEntities",
+                name: "DynamicEntityDynamicEntities",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -707,9 +707,9 @@ namespace DynamicEntitySample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DynamicEntityDynamicEntityEntities", x => x.Id);
+                    table.PrimaryKey("PK_DynamicEntityDynamicEntities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DynamicEntityDynamicEntityEntities_DynamicEntityModelDefinitions_ModelDefinitionId",
+                        name: "FK_DynamicEntityDynamicEntities_DynamicEntityModelDefinitions_ModelDefinitionId",
                         column: x => x.ModelDefinitionId,
                         principalTable: "DynamicEntityModelDefinitions",
                         principalColumn: "Id",
@@ -1178,13 +1178,13 @@ namespace DynamicEntitySample.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityDynamicEntityEntities_ExtraProperties",
-                table: "DynamicEntityDynamicEntityEntities",
+                name: "IX_DynamicEntityDynamicEntities_ExtraProperties",
+                table: "DynamicEntityDynamicEntities",
                 column: "ExtraProperties");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityDynamicEntityEntities_ModelDefinitionId",
-                table: "DynamicEntityDynamicEntityEntities",
+                name: "IX_DynamicEntityDynamicEntities_ModelDefinitionId",
+                table: "DynamicEntityDynamicEntities",
                 column: "ModelDefinitionId");
 
             migrationBuilder.CreateIndex(
@@ -1286,7 +1286,7 @@ namespace DynamicEntitySample.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DynamicEntityDynamicEntityEntities");
+                name: "DynamicEntityDynamicEntities");
 
             migrationBuilder.DropTable(
                 name: "DynamicEntityModelFields");

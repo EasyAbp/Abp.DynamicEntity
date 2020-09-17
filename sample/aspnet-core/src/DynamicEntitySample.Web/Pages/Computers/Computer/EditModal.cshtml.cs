@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DynamicEntitySample.Web.Pages.Computers.Computer.ViewModels;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
 
 namespace DynamicEntitySample.Web.Pages.Computers.Computer
 {

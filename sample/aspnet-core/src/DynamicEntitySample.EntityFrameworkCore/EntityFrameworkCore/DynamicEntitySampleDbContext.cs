@@ -28,7 +28,7 @@ namespace DynamicEntitySample.EntityFrameworkCore
          * Also map them inside DynamicEntitySampleDbContextModelCreatingExtensions.ConfigureDynamicEntitySample
          */
         public DbSet<ModelDefinition> ModelDefinitions { get; set; }
-        public DbSet<DynamicEntity> DynamicEntityEntities { get; set; }
+        public DbSet<DynamicEntity> DynamicEntities { get; set; }
 
         public DynamicEntitySampleDbContext(DbContextOptions<DynamicEntitySampleDbContext> options)
             : base(options)

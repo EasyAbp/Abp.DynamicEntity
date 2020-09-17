@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
+namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
     [RemoteService(Name = "EasyAbpDynamicEntity")]
     [Route("/api/dynamic/dynamicEntity")]
