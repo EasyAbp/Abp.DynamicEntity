@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
@@ -15,6 +16,9 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
         )]
     public class DynamicEntityEntityFrameworkCoreTestModule : AbpModule
     {
+        public static readonly ILoggerFactory ConsoleLoggerFactory
+            = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var sqliteConnection = CreateDatabaseAndGetConnection();
@@ -23,7 +27,9 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
             {
                 options.Configure(abpDbContextConfigurationContext =>
                 {
-                    abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnection);
+                    abpDbContextConfigurationContext.DbContextOptions
+                        .UseLoggerFactory(ConsoleLoggerFactory)
+                        .UseSqlite(sqliteConnection);
                 });
             });
         }

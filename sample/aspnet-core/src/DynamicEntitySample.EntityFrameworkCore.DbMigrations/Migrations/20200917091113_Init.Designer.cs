@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DynamicEntitySample.Migrations
 {
     [DbContext(typeof(DynamicEntitySampleMigrationsDbContext))]
-    [Migration("20200917025657_Init")]
+    [Migration("20200917091113_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

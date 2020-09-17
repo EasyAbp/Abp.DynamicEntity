@@ -70,12 +70,16 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
             
             builder.Entity<DynamicEntities.DynamicEntity>(b =>
             {
-                b.ToTable(options.TablePrefix + "DynamicEntityEntities", options.Schema);
+                b.ToTable(options.TablePrefix + "DynamicEntities", options.Schema);
                 b.ConfigureByConvention();
                 b.ConfigureDynamicEntityModel();
 
                 b.HasIndex(x => x.ExtraProperties);
             });
+            
+            // register JSON_VALUE function to EF
+            builder.HasDbFunction(() => DbFunctions.JsonValue(default, default));
+            
         }
     }
 }

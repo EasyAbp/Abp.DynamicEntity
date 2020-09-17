@@ -27,7 +27,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 
         public IQueryable<DynamicEntity> GetQueryByFilter(IList<DynamicQueryFilter> filters)
         {
-            return DbContext.GetQueryByFilter<DynamicEntity>(filters);
+            return DynamicEntityModelRepositoryExtensions.GetQueryByFilter<DynamicEntity>(DbContext, filters);
         }
 
         public IQueryable<DynamicEntity> GetQueryByFilter(string filter)

@@ -1,6 +1,6 @@
-﻿using System.Linq.Dynamic.Core;
-using EasyAbp.Abp.DynamicEntity.DynamicLINQ;
+﻿using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
+using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using EasyAbp.Abp.DynamicQuery;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
@@ -24,10 +24,9 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
                  * options.AddRepository<Question, EfCoreQuestionRepository>();
                  */
                 options.AddRepository<FieldDefinition, FieldDefinitionRepository>();
+                options.AddRepository<ModelDefinition, ModelDefinitionRepository>();
+                options.AddRepository<DynamicEntities.DynamicEntity, DynamicEntityRepository>();
             });
-            
-            var config = ParsingConfig.Default;
-            config.CustomTypeProvider = new MyCustomTypeProvider();
         }
     }
 }
