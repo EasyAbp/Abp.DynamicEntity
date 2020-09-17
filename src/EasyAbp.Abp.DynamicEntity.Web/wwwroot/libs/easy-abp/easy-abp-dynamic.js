@@ -9,8 +9,8 @@
 
         const l = abp.localization.getResource('DynamicEntity');
 
-        const svcDynamicEntity = easyAbp.abp.dynamic.dynamicEntities.dynamicEntity;
-        const svcModelDefinition = easyAbp.abp.dynamic.modelDefinitions.modelDefinition;
+        const svcDynamicEntity = easyAbp.abp.dynamicEntity.dynamicEntities.dynamicEntity;
+        const svcModelDefinition = easyAbp.abp.dynamicEntity.modelDefinitions.modelDefinition;
 
         let dataTable = null;
 

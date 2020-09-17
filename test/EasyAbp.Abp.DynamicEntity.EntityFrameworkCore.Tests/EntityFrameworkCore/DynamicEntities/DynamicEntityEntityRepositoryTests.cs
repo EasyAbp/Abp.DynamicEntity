@@ -19,7 +19,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
         }
 
         [Fact]
-        public async Task ShouldGetQueryByDictionaryFilter()
+        public async Task ShouldGetQueryByListFilter()
         {
             await WithUnitOfWorkAsync(async () =>
             {
@@ -27,15 +27,15 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
                 // Arrange
                 var filters = new List<DynamicQueryFilter>
                 {
-                    new DynamicQueryFilter {FieldName = "price", Operator = DynamicQueryOperator.Contain, Value = 100}
+                    new DynamicQueryFilter {FieldName = "price", Operator = DynamicQueryOperator.GreaterOrEqual, Value = 200}
                 };
-
+                
                 // Act
                 var output = await _dynamicEntityRepository.GetQueryByFilter(filters).ToListAsync();
 
                 // Assert
                 output.Count.ShouldBe(1);
-                output[0].GetProperty("Name", "Book1");
+                output[0].GetProperty("Name", "Book2");
             });
         }
         

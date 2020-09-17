@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -76,9 +78,24 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
 
                 b.HasIndex(x => x.ExtraProperties);
             });
-            
-            // register JSON_VALUE function to EF
-            builder.HasDbFunction(() => DbFunctions.JsonValue(default, default));
+
+            // register JSON function to EF
+            string jsonFunction;
+            if (builder.IsUsingSqlite())
+            {
+                jsonFunction = "JSON_EXTRACT";
+            }
+            else
+            {
+                jsonFunction = "JSON_VALUE";
+            }
+            builder.HasDbFunction(typeof(DbFunctions).GetMethod(nameof(DbFunctions.JsonValue))!)
+                .HasTranslation(e => SqlFunctionExpression.Create(
+                    jsonFunction, new SqlExpression[]
+                    {
+                        new SqlFragmentExpression("ExtraProperties"),
+                        e.ToArray()[0]
+                    }, typeof(string), null));
             
         }
     }

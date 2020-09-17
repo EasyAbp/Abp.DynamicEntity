@@ -33,7 +33,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 sbWhere.Append(ConvertToCondition(filter, index));
                 index++;
             }
-
+            
             return dbContext.Set<T>()
                     .Where(sbWhere.ToString(), filters.Select(f => f.Value).ToArray())
                 ;
@@ -42,7 +42,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         private static string ConvertToCondition(DynamicQueryFilter filter, int index)
         {
             string columnName = GetColumnName(filter);
-            string jsonValue = $"DbFunctions.JsonValue(ExtraProperties, \"$.{columnName}\")";
+            string jsonValue = $"DbFunctions.JsonValue(\"$.{columnName}\")";
             switch (filter.Operator)
             {
                 case DynamicQueryOperator.Equal:
@@ -52,7 +52,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 case DynamicQueryOperator.Greater:
                     return $"{jsonValue} > @{index}";
                 case DynamicQueryOperator.GreaterOrEqual:
-                    return $"{jsonValue} >= @{index}";
+                    return $"Decimal({jsonValue}) >= @{index}";
                 case DynamicQueryOperator.Less:
                     return $"{jsonValue} < @{index}";
                 case DynamicQueryOperator.LessOrEqual:
