@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Volo.Abp.Data;
@@ -13,13 +13,13 @@ namespace EasyAbp.Abp.DynamicEntity
         private readonly IGuidGenerator _guidGenerator;
         private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
         private readonly IModelDefinitionRepository _modelDefinitionRepository;
-        private readonly IDynamicEntityEntityRepository _dynamicEntityRepository;
+        private readonly IDynamicEntityRepository _dynamicEntityRepository;
 
         public DynamicEntityDataSeedContributor(
             IGuidGenerator guidGenerator,
             IFieldDefinitionRepository fieldDefinitionRepository,
             IModelDefinitionRepository modelDefinitionRepository,
-            IDynamicEntityEntityRepository dynamicEntityRepository)
+            IDynamicEntityRepository dynamicEntityRepository)
         {
             _guidGenerator = guidGenerator;
             _fieldDefinitionRepository = fieldDefinitionRepository;
@@ -43,13 +43,13 @@ namespace EasyAbp.Abp.DynamicEntity
             mdBook.AddField(fdName.Id, 1);
             await _modelDefinitionRepository.InsertAsync(mdBook);
 
-            var deBook1 = new DynamicEntityEntity(_guidGenerator.Create());
+            var deBook1 = new DynamicEntities.DynamicEntity(_guidGenerator.Create());
             deBook1.SetModelDefinition(mdBook.Id);
             deBook1.SetProperty("name", "Book1");
             deBook1.SetProperty("price", 100.00f);
             await _dynamicEntityRepository.InsertAsync(deBook1);           
             
-            var deBook2 = new DynamicEntityEntity(_guidGenerator.Create());
+            var deBook2 = new DynamicEntities.DynamicEntity(_guidGenerator.Create());
             deBook2.SetModelDefinition(mdBook.Id);
             deBook2.SetProperty("name", "Book2");
             deBook2.SetProperty("price", 200.00f);

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicQuery;
 using Microsoft.EntityFrameworkCore;
 using Shouldly;
@@ -11,11 +11,11 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntityEntities
 {
     public class DynamicEntityEntityRepositoryTests : DynamicEntityEntityFrameworkCoreTestBase
     {
-        private readonly IDynamicEntityEntityRepository _dynamicEntityRepository;
+        private readonly IDynamicEntityRepository _dynamicEntityRepository;
 
         public DynamicEntityEntityRepositoryTests()
         {
-            _dynamicEntityRepository = GetRequiredService<IDynamicEntityEntityRepository>();
+            _dynamicEntityRepository = GetRequiredService<IDynamicEntityRepository>();
         }
 
         [Fact]

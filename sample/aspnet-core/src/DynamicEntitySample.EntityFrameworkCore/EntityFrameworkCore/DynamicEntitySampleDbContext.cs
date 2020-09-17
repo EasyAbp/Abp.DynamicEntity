@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DynamicEntitySample.Users;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
 
 namespace DynamicEntitySample.EntityFrameworkCore
 {
@@ -28,7 +28,7 @@ namespace DynamicEntitySample.EntityFrameworkCore
          * Also map them inside DynamicEntitySampleDbContextModelCreatingExtensions.ConfigureDynamicEntitySample
          */
         public DbSet<ModelDefinition> ModelDefinitions { get; set; }
-        public DbSet<DynamicEntityEntity> DynamicEntityEntities { get; set; }
+        public DbSet<DynamicEntity> DynamicEntityEntities { get; set; }
 
         public DynamicEntitySampleDbContext(DbContextOptions<DynamicEntitySampleDbContext> options)
             : base(options)

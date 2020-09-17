@@ -2,9 +2,9 @@
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.Dtos
+namespace EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos
 {
-    public class DynamicEntityEntityDto : ExtensibleFullAuditedEntityDto<Guid>
+    public class DynamicEntityDto : ExtensibleFullAuditedEntityDto<Guid>
     {
         public ModelDefinitionDto ModelDefinition { get; set; }
     }

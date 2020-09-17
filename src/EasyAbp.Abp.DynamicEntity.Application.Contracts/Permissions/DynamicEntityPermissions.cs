@@ -27,9 +27,9 @@ namespace EasyAbp.Abp.DynamicEntity.Permissions
             public const string Delete = Default + ".Delete";
         }
 
-        public class DynamicEntityEntity
+        public class DynamicEntity
         {
-            public const string Default = GroupName + ".DynamicEntityEntity";
+            public const string Default = GroupName + ".DynamicEntity";
             public const string Update = Default + ".Update";
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";

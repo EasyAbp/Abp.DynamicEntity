@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DynamicEntitySample.Migrations
 {
     [DbContext(typeof(DynamicEntitySampleMigrationsDbContext))]
-    [Migration("20200904030404_Init")]
+    [Migration("20200917025657_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace DynamicEntitySample.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.DynamicEntityEntity", b =>
+            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntities.DynamicEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -2008,7 +2008,7 @@ namespace DynamicEntitySample.Migrations
                     b.ToTable("AbpTenantConnectionStrings");
                 });
 
-            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.DynamicEntityEntity", b =>
+            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntities.DynamicEntity", b =>
                 {
                     b.HasOne("EasyAbp.Abp.DynamicEntity.ModelDefinitions.ModelDefinition", "ModelDefinition")
                         .WithMany()

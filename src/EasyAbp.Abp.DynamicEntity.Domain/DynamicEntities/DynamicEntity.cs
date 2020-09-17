@@ -3,20 +3,19 @@ using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
-namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
+namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
-    // TODO: Rename to DynamcEntity
-    public class DynamicEntityEntity : FullAuditedAggregateRoot<Guid>, IMultiTenant, IDynamicEntityModel
+    public class DynamicEntity : FullAuditedAggregateRoot<Guid>, IMultiTenant, IDynamicEntityModel
     {
         public virtual Guid? TenantId { get; protected set; }
         public virtual Guid? ModelDefinitionId { get; protected set; }
         public virtual ModelDefinition ModelDefinition { get; protected set; }
 
-        protected DynamicEntityEntity()
+        protected DynamicEntity()
         {
         }
 
-        public DynamicEntityEntity(
+        public DynamicEntity(
             Guid id, 
             Guid? tenantId = null 
         ) : base(id)
@@ -24,7 +23,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
             TenantId = tenantId;
         }
 
-        public DynamicEntityEntity SetModelDefinition(Guid? modelDefinitionId)
+        public DynamicEntity SetModelDefinition(Guid? modelDefinitionId)
         {
             ModelDefinitionId = modelDefinitionId;
             return this;

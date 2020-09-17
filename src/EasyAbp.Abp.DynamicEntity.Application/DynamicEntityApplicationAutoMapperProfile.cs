@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.Dtos;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
@@ -34,8 +33,8 @@ namespace EasyAbp.Abp.DynamicEntity
                 .Ignore(x => x.Fields)
                 ;
             
-            CreateMap<DynamicEntityEntity, DynamicEntityEntityDto>();
-            CreateMap<CreateUpdateDynamicEntityEntityDto, DynamicEntityEntity>(MemberList.Source);
+            CreateMap<DynamicEntities.DynamicEntity, DynamicEntityDto>();
+            CreateMap<CreateUpdateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source);
         }
     }
 }

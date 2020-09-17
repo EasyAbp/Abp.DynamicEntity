@@ -9,7 +9,7 @@
 
         const l = abp.localization.getResource('DynamicEntity');
 
-        const svcDynamicEntityEntity = easyAbp.abp.dynamic.dynamicEntities.dynamicEntity;
+        const svcDynamicEntity = easyAbp.abp.dynamic.dynamicEntities.dynamicEntity;
         const svcModelDefinition = easyAbp.abp.dynamic.modelDefinitions.modelDefinition;
 
         let dataTable = null;
@@ -21,7 +21,7 @@
                         [
                             {
                                 text: l('Edit'),
-                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntityEntity.Update'),
+                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntity.Update'),
                                 action: function (data) {
                                     editModal.open({
                                         id: data.record.id,
@@ -30,15 +30,15 @@
                             },
                             {
                                 text: l('Delete'),
-                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntityEntity.Delete'),
+                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntity.Delete'),
                                 confirmMessage: function (data) {
                                     return l(
-                                        'DynamicEntityEntityDeletionConfirmationMessage',
+                                        'DynamicEntityDeletionConfirmationMessage',
                                         model.name
                                     );
                                 },
                                 action: function (data) {
-                                    svcDynamicEntityEntity
+                                    svcDynamicEntity
                                         .delete(data.record.id)
                                         .then(function () {
                                             abp.notify.info(l('SuccessfullyDeleted'));
@@ -80,7 +80,7 @@
                 autoWidth: true,
                 scrollCollapse: true,
                 //order: [[0, "asc"]],
-                ajax: abp.libs.datatables.createAjax(svcDynamicEntityEntity.getList, function (requestData) {
+                ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
                     const fieldFilters = [];
                     for (let i = 0; i < requestData.columns.length; i++) {
                         if (!requestData.columns[i].search.value) continue;

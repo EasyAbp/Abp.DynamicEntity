@@ -1,6 +1,7 @@
 ﻿using System;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.Dtos;
 using System.Threading.Tasks;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -9,24 +10,24 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
 {
     [RemoteService(Name = "EasyAbpDynamicEntity")]
     [Route("/api/dynamic/dynamicEntity")]
-    public class DynamicEntityEntityController : DynamicEntityController, IDynamicEntityEntityAppService
+    public class DynamicEntityController : DynamicEntity.DynamicEntityController, IDynamicEntityAppService
     {
-        private readonly IDynamicEntityEntityAppService _service;
+        private readonly IDynamicEntityAppService _service;
 
-        public DynamicEntityEntityController(IDynamicEntityEntityAppService service)
+        public DynamicEntityController(IDynamicEntityAppService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public virtual Task<DynamicEntityEntityDto> CreateAsync(CreateUpdateDynamicEntityEntityDto input)
+        public virtual Task<DynamicEntityDto> CreateAsync(CreateUpdateDynamicEntityDto input)
         {
             return _service.CreateAsync(input);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public virtual Task<DynamicEntityEntityDto> UpdateAsync(Guid id, CreateUpdateDynamicEntityEntityDto input)
+        public virtual Task<DynamicEntityDto> UpdateAsync(Guid id, CreateUpdateDynamicEntityDto input)
         {
             return _service.UpdateAsync(id, input);
         }
@@ -40,13 +41,13 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
 
         [HttpGet]
         [Route("{id}")]
-        public virtual Task<DynamicEntityEntityDto> GetAsync(Guid id)
+        public virtual Task<DynamicEntityDto> GetAsync(Guid id)
         {
             return _service.GetAsync(id);
         }
 
         [HttpGet]
-        public virtual Task<PagedResultDto<DynamicEntityEntityDto>> GetListAsync(GetListInput input)
+        public virtual Task<PagedResultDto<DynamicEntityDto>> GetListAsync(GetListInput input)
         {
             return _service.GetListAsync(input);
         }

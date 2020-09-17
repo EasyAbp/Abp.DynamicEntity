@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 
-namespace DynamicEntitySample.DynamicEntityEntities
+namespace DynamicEntitySample.DynamicEntities
 {
-    public class DynamicEntityEntityDataSeedContributor : IDataSeedContributor, ITransientDependency
+    public class DynamicEntityDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
         private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
         private readonly IModelDefinitionRepository _modelDefinitionRepository;
-        private readonly IDynamicEntityEntityRepository _dynamicEntityRepository;
+        private readonly IDynamicEntityRepository _dynamicEntityRepository;
         private readonly IGuidGenerator _guidGenerator;
 
-        public DynamicEntityEntityDataSeedContributor(IFieldDefinitionRepository fieldDefinitionRepository, IModelDefinitionRepository modelDefinitionRepository, IGuidGenerator guidGenerator, IDynamicEntityEntityRepository dynamicEntityRepository)
+        public DynamicEntityDataSeedContributor(IFieldDefinitionRepository fieldDefinitionRepository, IModelDefinitionRepository modelDefinitionRepository, IGuidGenerator guidGenerator, IDynamicEntityRepository dynamicEntityRepository)
         {
             _fieldDefinitionRepository = fieldDefinitionRepository;
             _modelDefinitionRepository = modelDefinitionRepository;
@@ -63,7 +63,7 @@ namespace DynamicEntitySample.DynamicEntityEntities
                 var rnd = new Random();
                 for (int i = 0; i < 30000; i++)
                 {
-                    var entity = new DynamicEntityEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
+                    var entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
                     entity.SetProperty("cpu", cpus[rnd.Next() % cpus.Length]);
                     entity.SetProperty("ram", rams[rnd.Next() % rams.Length]);
                     entity.SetProperty("price", prices[rnd.Next() % prices.Length]);

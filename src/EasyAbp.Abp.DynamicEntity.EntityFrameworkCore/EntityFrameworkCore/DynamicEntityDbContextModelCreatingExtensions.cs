@@ -1,5 +1,4 @@
 ﻿using System;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Microsoft.EntityFrameworkCore;
@@ -69,7 +68,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
                     ;
             });
             
-            builder.Entity<DynamicEntityEntity>(b =>
+            builder.Entity<DynamicEntities.DynamicEntity>(b =>
             {
                 b.ToTable(options.TablePrefix + "DynamicEntityEntities", options.Schema);
                 b.ConfigureByConvention();

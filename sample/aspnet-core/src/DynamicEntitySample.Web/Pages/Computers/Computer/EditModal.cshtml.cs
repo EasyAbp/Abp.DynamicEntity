@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DynamicEntitySample.Web.Pages.Computers.Computer.ViewModels;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
 using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
 
 namespace DynamicEntitySample.Web.Pages.Computers.Computer
@@ -15,9 +16,9 @@ namespace DynamicEntitySample.Web.Pages.Computers.Computer
         [BindProperty]
         public CreateEditComputerViewModel ViewModel { get; set; }
 
-        private readonly IDynamicEntityEntityAppService _service;
+        private readonly IDynamicEntityAppService _service;
 
-        public EditModalModel(IDynamicEntityEntityAppService service)
+        public EditModalModel(IDynamicEntityAppService service)
         {
             _service = service;
         }

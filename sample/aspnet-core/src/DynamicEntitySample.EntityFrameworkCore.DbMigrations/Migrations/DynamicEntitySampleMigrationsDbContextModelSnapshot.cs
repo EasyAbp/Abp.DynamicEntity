@@ -21,7 +21,7 @@ namespace DynamicEntitySample.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.DynamicEntityEntity", b =>
+            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntities.DynamicEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -2006,7 +2006,7 @@ namespace DynamicEntitySample.Migrations
                     b.ToTable("AbpTenantConnectionStrings");
                 });
 
-            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.DynamicEntityEntity", b =>
+            modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.DynamicEntities.DynamicEntity", b =>
                 {
                     b.HasOne("EasyAbp.Abp.DynamicEntity.ModelDefinitions.ModelDefinition", "ModelDefinition")
                         .WithMany()

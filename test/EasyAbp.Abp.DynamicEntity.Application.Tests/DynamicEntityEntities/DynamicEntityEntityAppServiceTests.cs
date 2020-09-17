@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.Dtos;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities;
+using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using EasyAbp.Abp.DynamicQuery;
 using Shouldly;
 using Volo.Abp.Data;
@@ -12,13 +13,13 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
 {
     public class DynamicEntityEntityAppServiceTests : DynamicEntityApplicationTestBase
     {
-        private readonly IDynamicEntityEntityAppService _dynamicEntityAppService;
-        private readonly IDynamicEntityEntityRepository _dynamicEntityRepository;
+        private readonly IDynamicEntityAppService _dynamicEntityAppService;
+        private readonly IDynamicEntityRepository _dynamicEntityRepository;
 
         public DynamicEntityEntityAppServiceTests()
         {
-            _dynamicEntityAppService = GetRequiredService<IDynamicEntityEntityAppService>();
-            _dynamicEntityRepository = GetRequiredService<IDynamicEntityEntityRepository>();
+            _dynamicEntityAppService = GetRequiredService<IDynamicEntityAppService>();
+            _dynamicEntityRepository = GetRequiredService<IDynamicEntityRepository>();
         }
 
         [Fact]
