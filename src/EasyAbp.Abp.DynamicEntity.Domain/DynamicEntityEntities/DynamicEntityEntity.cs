@@ -5,6 +5,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
 {
+    // TODO: Rename to DynamcEntity
     public class DynamicEntityEntity : FullAuditedAggregateRoot<Guid>, IMultiTenant, IDynamicEntityModel
     {
         public virtual Guid? TenantId { get; protected set; }

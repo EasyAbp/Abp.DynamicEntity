@@ -36,8 +36,6 @@ namespace EasyAbp.Abp.DynamicEntity
             
             CreateMap<DynamicEntityEntity, DynamicEntityEntityDto>();
             CreateMap<CreateUpdateDynamicEntityEntityDto, DynamicEntityEntity>(MemberList.Source);
-
-            CreateMap<DynamicEntityEntities.Dtos.Filter, DynamicEntityEntities.Filter>();
         }
     }
 }

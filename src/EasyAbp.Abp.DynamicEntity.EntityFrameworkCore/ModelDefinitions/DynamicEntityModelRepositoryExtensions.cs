@@ -10,7 +10,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
     public static class DynamicEntityModelRepositoryExtensions
     {
-        public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, IList<Filter> filters) where T : class, IDynamicEntityModel
+        /*public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, IList<Filter> filters) where T : class, IDynamicEntityModel
         {
             if (filters.IsNullOrEmpty())
             {
@@ -45,12 +45,13 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             
             return dbContext.Set<T>().FromSqlRaw(sbSql.ToString(), parameters.ToArray());
         }
-
+*/
         private static string GetTableName<T>(this IEfCoreDbContext dbContext) where T : class
         {
             var entityType = dbContext.Model.FindEntityType(typeof(T));
             return entityType.GetTableName();
         }
+        
         
         public static IQueryable<T> GetQueryByFilter<T>(this IEfCoreDbContext dbContext, string filter) where  T : class, IDynamicEntityModel
         {

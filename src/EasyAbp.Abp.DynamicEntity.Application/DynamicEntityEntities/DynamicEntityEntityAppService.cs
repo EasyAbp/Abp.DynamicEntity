@@ -20,14 +20,9 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
         {
             if (input.FieldFilters != null && input.FieldFilters.Count > 0)
             {
-                return _repository.GetQueryByFilter(ObjectMapper.Map<IList<Dtos.Filter>, IList<Filter>>(input.FieldFilters));
+                return _repository.GetQueryByFilter(ObjectMapper.Map<IList<EasyAbp.Abp.DynamicQuery.Dtos.DynamicQueryFilter>, IList<EasyAbp.Abp.DynamicQuery.DynamicQueryFilter>>(input.FieldFilters));
             }
-            
-            if (!input.Filter.IsNullOrEmpty())
-            {
-                return _repository.GetQueryByFilter(input.Filter);
-            }
-            
+
             return base.CreateFilteredQuery(input);
         }
     }

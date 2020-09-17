@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities.Dtos;
+using EasyAbp.Abp.DynamicQuery;
 using Shouldly;
 using Volo.Abp.Data;
 using Xunit;
+using DynamicQueryFilter = EasyAbp.Abp.DynamicQuery.Dtos.DynamicQueryFilter;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
 {
@@ -50,9 +52,9 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
                 {
-                    FieldFilters = new List<Dtos.Filter>
+                    FieldFilters = new List<DynamicQueryFilter>()
                     {
-                        new Dtos.Filter {FieldName = "name", Operator = Operator.Contain, Value = "1"}
+                        new DynamicQueryFilter {FieldName = "name", Operator = DynamicQueryOperator.Contain, Value = "1"}
                     }
                 }
             );

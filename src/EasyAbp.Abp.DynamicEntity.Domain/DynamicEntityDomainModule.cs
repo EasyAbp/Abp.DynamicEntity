@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Domain;
+﻿using EasyAbp.Abp.DynamicQuery;
+using Volo.Abp.Domain;
 using Volo.Abp.Modularity;
 
 namespace EasyAbp.Abp.DynamicEntity
@@ -7,6 +8,7 @@ namespace EasyAbp.Abp.DynamicEntity
         typeof(AbpDddDomainModule),
         typeof(DynamicEntityDomainSharedModule)
     )]
+    [DependsOn(typeof(DynamicQueryDomainModule))]
     public class DynamicEntityDomainModule : AbpModule
     {
 

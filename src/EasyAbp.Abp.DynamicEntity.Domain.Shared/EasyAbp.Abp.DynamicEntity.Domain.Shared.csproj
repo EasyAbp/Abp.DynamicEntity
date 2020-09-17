@@ -21,4 +21,8 @@
     <Content Remove="Localization\DynamicEntity\*.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EasyAbp.Abp.Dynamic.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.Domain.Shared\EasyAbp.Abp.DynamicQuery.Domain.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.DynamicQuery;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
@@ -11,6 +12,7 @@ namespace EasyAbp.Abp.DynamicEntity
         typeof(AbpDddApplicationModule),
         typeof(AbpAutoMapperModule)
         )]
+    [DependsOn(typeof(DynamicQueryApplicationModule))]
     public class DynamicEntityApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

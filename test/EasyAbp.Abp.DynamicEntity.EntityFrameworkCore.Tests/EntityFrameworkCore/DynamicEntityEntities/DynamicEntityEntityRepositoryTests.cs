@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.DynamicEntityEntities;
+using EasyAbp.Abp.DynamicQuery;
 using Microsoft.EntityFrameworkCore;
 using Shouldly;
 using Volo.Abp.Data;
@@ -25,9 +25,9 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntityEntities
             {
 
                 // Arrange
-                var filters = new List<Filter>
+                var filters = new List<DynamicQueryFilter>
                 {
-                    new Filter {FieldName = "price", Operator = Operator.Contain, Value = 100}
+                    new DynamicQueryFilter {FieldName = "price", Operator = DynamicQueryOperator.Contain, Value = 100}
                 };
 
                 // Act
@@ -46,11 +46,10 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntityEntities
             {
 
                 // Arrange
-                var filters = new List<Filter>
+                var filters = new List<DynamicQueryFilter>
                 {
-                    new Filter {FieldName = "a", Operator = Operator.Contain, Value = "1 OR 1 = 1; --"}
+                    new DynamicQueryFilter {FieldName = "a", Operator = DynamicQueryOperator.Contain, Value = "1 OR 1 = 1; --"}
                 };
-
                 // Act
                 var output = await _dynamicEntityRepository.GetQueryByFilter(filters).ToListAsync();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
+using EasyAbp.Abp.DynamicQuery;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntityEntities
                 ;
         }
 
-        public IQueryable<DynamicEntityEntity> GetQueryByFilter(IList<Filter> filters)
+        public IQueryable<DynamicEntityEntity> GetQueryByFilter(IList<DynamicQueryFilter> filters)
         {
             return DbContext.GetQueryByFilter<DynamicEntityEntity>(filters);
         }
