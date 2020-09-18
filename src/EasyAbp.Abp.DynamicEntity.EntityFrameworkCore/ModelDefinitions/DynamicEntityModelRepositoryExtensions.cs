@@ -52,7 +52,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 case DynamicQueryOperator.Greater:
                     return $"{jsonValue} > @{index}";
                 case DynamicQueryOperator.GreaterOrEqual:
-                    return $"Decimal({jsonValue}) >= @{index}";
+                    return $"{jsonValue} >= @{index}";
                 case DynamicQueryOperator.Less:
                     return $"{jsonValue} < @{index}";
                 case DynamicQueryOperator.LessOrEqual:
