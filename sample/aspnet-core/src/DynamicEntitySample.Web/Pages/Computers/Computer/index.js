@@ -33,6 +33,23 @@
                     });
                 });
             },
+        },
+        function (requestData) {
+            const filterGroup = {
+                type: 0,
+                conditions: []
+            }
+            for (let i = 0; i < requestData.columns.length; i++) {
+                if (!requestData.columns[i].search.value) continue;
+                filterGroup.conditions.push({
+                    fieldName: requestData.columns[i].name,
+                    operator: 10,   // contain
+                    value: requestData.columns[i].search.value
+                })
+            }
+            return {
+                filterGroup: filterGroup
+            }
         }
     );
 

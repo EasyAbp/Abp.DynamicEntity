@@ -3,7 +3,13 @@
     easyAbp.abp = easyAbp.abp || {};
     easyAbp.abp.dynamicUI = easyAbp.abp.dynamicUI || {};
 
-    easyAbp.abp.dynamicUI.configureDataTable = function (dynamicOption, dataTableOption) {
+    /**
+     * Configure dataTables for dynamic entity
+     * @param dynamicOption 
+     * @param dataTableOption
+     * @param filterCallback
+     */
+    easyAbp.abp.dynamicUI.configureDataTable = function (dynamicOption, dataTableOption, filterCallback) {
         const modelName = dynamicOption.modelName;
         const $table = dynamicOption.$table
 
@@ -81,17 +87,10 @@
                 scrollCollapse: true,
                 //order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
-                    const fieldFilters = [];
-                    for (let i = 0; i < requestData.columns.length; i++) {
-                        if (!requestData.columns[i].search.value) continue;
-                        fieldFilters.push({
-                            fieldName: requestData.columns[i].name,
-                            operator: 10,   // contain
-                            value: requestData.columns[i].search.value
-                        })
-                    }
-                    return {
-                        fieldFilters: fieldFilters
+                    if (filterCallback) {
+                        return filterCallback(requestData);
+                    } else {
+                        return {};
                     }
                 }),
                 columnDefs: abp.ui.extensions.tableColumns.get(model.type).columns.toArray(),

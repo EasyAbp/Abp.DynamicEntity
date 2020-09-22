@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using EasyAbp.Abp.DynamicQuery;
+using EasyAbp.Abp.DynamicQuery.Filters;
 using Shouldly;
 using Volo.Abp.Data;
 using Xunit;
-using DynamicQueryFilter = EasyAbp.Abp.DynamicQuery.Dtos.DynamicQueryFilter;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
@@ -52,9 +52,13 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
                 {
-                    FieldFilters = new List<DynamicQueryFilter>()
+                    FilterGroup = new DynamicQueryGroup
                     {
-                        new DynamicQueryFilter {FieldName = "name", Operator = DynamicQueryOperator.Contain, Value = "1"}
+                        Type = GroupType.Add,
+                        Conditions = new List<DynamicQueryCondition>
+                        {
+                            new DynamicQueryCondition{FieldName = "name", Operator = DynamicQueryOperator.Contain, Value = "1"}
+                        },
                     }
                 }
             );

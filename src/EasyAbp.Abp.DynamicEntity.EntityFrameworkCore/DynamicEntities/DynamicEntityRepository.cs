@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
-using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using EasyAbp.Abp.DynamicQuery;
+using EasyAbp.Abp.DynamicQuery.Filters;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,8 +11,11 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
     public class DynamicEntityRepository : EfCoreRepository<IDynamicEntityDbContext, DynamicEntity, Guid>, IDynamicEntityRepository
     {
-        public DynamicEntityRepository(IDbContextProvider<IDynamicEntityDbContext> dbContextProvider) : base(dbContextProvider)
+        private readonly IDynamicQueryHelper _dynamicQueryHelper;
+
+        public DynamicEntityRepository(IDbContextProvider<IDynamicEntityDbContext> dbContextProvider, IDynamicQueryHelper dynamicQueryHelper) : base(dbContextProvider)
         {
+            _dynamicQueryHelper = dynamicQueryHelper;
         }
 
         public override IQueryable<DynamicEntity> WithDetails()
@@ -24,15 +26,10 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
                     .ThenInclude(mf => mf.FieldDefinition)
                 ;
         }
-
-        public IQueryable<DynamicEntity> GetQueryByFilter(IList<DynamicQueryFilter> filters)
+        
+        public IQueryable<DynamicEntity> ExecuteDynamicQuery(DynamicQueryGroup group)
         {
-            return DynamicEntityModelRepositoryExtensions.GetQueryByFilter<DynamicEntity>(DbContext, filters);
-        }
-
-        public IQueryable<DynamicEntity> GetQueryByFilter(string filter)
-        {
-            return DbContext.GetQueryByFilter<DynamicEntity>(filter);
+            return _dynamicQueryHelper.ExecuteDynamicQuery(DbSet.AsQueryable(), group);
         }
     }
 }

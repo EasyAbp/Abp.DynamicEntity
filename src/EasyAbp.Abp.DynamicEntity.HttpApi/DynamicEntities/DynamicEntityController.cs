@@ -45,7 +45,8 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             return _service.GetAsync(id);
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("getList")]
         public virtual Task<PagedResultDto<DynamicEntityDto>> GetListAsync(GetListInput input)
         {
             return _service.GetListAsync(input);
