@@ -2,7 +2,7 @@
 
     var l = abp.localization.getResource('DynamicEntity');
 
-    var service = easyAbp.abp.dynamic.modelDefinitions.modelDefinition;
+    var service = easyAbp.abp.dynamicEntity.modelDefinitions.modelDefinition;
     var createModal = new abp.ModalManager(
         {
             viewUrl: abp.appPath + 'DynamicEntity/ModelDefinition/CreateModal',

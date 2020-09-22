@@ -2,7 +2,7 @@
 
     var l = abp.localization.getResource('DynamicEntity');
 
-    var service = easyAbp.abp.dynamic.fieldDefinitions.fieldDefinition;
+    var service = easyAbp.abp.dynamicEntity.fieldDefinitions.fieldDefinition;
     var createModal = new abp.ModalManager(abp.appPath + 'DynamicEntity/FieldDefinition/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'DynamicEntity/FieldDefinition/EditModal');
 
