@@ -19,6 +19,10 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
             _dynamicEntityRepository = GetRequiredService<IDynamicEntityRepository>();
         }
 
+        /// <summary>
+        /// It seems `System.Linq.Dynamic.Core` cannot work well with JSON_VALUE
+        /// </summary>
+        /// <returns></returns>
         [Fact(Skip = "Wait for https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/422")]
         public async Task ShouldGetQueryByListFilter()
         {
