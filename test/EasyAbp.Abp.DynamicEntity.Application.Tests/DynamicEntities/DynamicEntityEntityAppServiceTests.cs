@@ -54,7 +54,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
                 {
                     FilterGroup = new DynamicQueryGroup
                     {
-                        Type = GroupType.Add,
+                        Type = GroupType.And,
                         Conditions = new List<DynamicQueryCondition>
                         {
                             new DynamicQueryCondition{FieldName = "name", Operator = DynamicQueryOperator.Contain, Value = "1"}

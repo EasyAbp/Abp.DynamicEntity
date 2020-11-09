@@ -27,7 +27,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
                 // Arrange
                 var filters = new DynamicQueryGroup
                 {
-                    Type = GroupType.Add,
+                    Type = GroupType.And,
                     Conditions = new List<DynamicQueryCondition>
                     {
                         new DynamicQueryCondition {FieldName = "price", Operator = DynamicQueryOperator.GreaterOrEqual, Value = 200}
@@ -51,7 +51,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
                 // Arrange
                 var filters = new DynamicQueryGroup
                 {
-                    Type = GroupType.Add,
+                    Type = GroupType.And,
                     Conditions = new List<DynamicQueryCondition>
                     {
                         new DynamicQueryCondition {FieldName = "a", Operator = DynamicQueryOperator.Contain, Value = "1 OR 1 = 1; --"}
