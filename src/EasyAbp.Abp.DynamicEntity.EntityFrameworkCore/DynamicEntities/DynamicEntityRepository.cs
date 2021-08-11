@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
 using EasyAbp.Abp.DynamicQuery;
 using EasyAbp.Abp.DynamicQuery.Filters;
@@ -18,18 +19,18 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             _dynamicQueryHelper = dynamicQueryHelper;
         }
 
-        public override IQueryable<DynamicEntity> WithDetails()
+        public override async Task<IQueryable<DynamicEntity>> WithDetailsAsync()
         {
-            return GetQueryable()
+            return (await GetQueryableAsync())
                     .Include(de => de.ModelDefinition)
                     .ThenInclude(md => md.Fields)
                     .ThenInclude(mf => mf.FieldDefinition)
                 ;
         }
         
-        public IQueryable<DynamicEntity> ExecuteDynamicQuery(DynamicQueryGroup group)
+        public virtual async Task<IQueryable<DynamicEntity>> ExecuteDynamicQueryAsync(DynamicQueryGroup group)
         {
-            return _dynamicQueryHelper.ExecuteDynamicQuery(DbSet.AsQueryable(), group);
+            return _dynamicQueryHelper.ExecuteDynamicQuery((await GetDbSetAsync()).AsQueryable(), group);
         }
     }
 }

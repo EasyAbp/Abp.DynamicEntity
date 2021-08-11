@@ -6,6 +6,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.SettingManagement;
 
 namespace DynamicEntitySample
 {
@@ -15,9 +16,10 @@ namespace DynamicEntitySample
         typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpPermissionManagementHttpApiClientModule),
         typeof(AbpTenantManagementHttpApiClientModule),
-        typeof(AbpFeatureManagementHttpApiClientModule)
+        typeof(AbpFeatureManagementHttpApiClientModule),
+        typeof(AbpSettingManagementHttpApiClientModule),
+        typeof(DynamicEntityHttpApiClientModule)
     )]
-    [DependsOn(typeof(DynamicEntityHttpApiClientModule))]
     public class DynamicEntitySampleHttpApiClientModule : AbpModule
     {
         public const string RemoteServiceName = "Default";

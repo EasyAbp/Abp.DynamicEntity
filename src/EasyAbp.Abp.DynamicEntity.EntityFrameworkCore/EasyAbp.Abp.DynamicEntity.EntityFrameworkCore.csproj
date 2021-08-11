@@ -1,15 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>EasyAbp.Abp.DynamicEntity</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="3.1.0" />
-    <ProjectReference Include="..\..\..\EasyAbp.Abp.Dynamic.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="4.4.0" />
+    <ProjectReference Include="..\..\..\Abp.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain\EasyAbp.Abp.DynamicEntity.Domain.csproj" />
   </ItemGroup>
 

@@ -251,10 +251,12 @@ paket-files/
 .idea/
 *.sln.iml
 
-# DynamicSample
-src/DynamicSample.Web/Logs/*
-src/DynamicSample.Web.Host/Logs/*
-src/DynamicSample.IdentityServer/Logs/*
-src/DynamicSample.HttpApi.Host/Logs/*
-src/DynamicSample.HttpApi.HostWithIds/Logs/*
-src/DynamicSample.DbMigrator/Logs/*
+# DynamicEntitySample
+src/DynamicEntitySample.Web/Logs/*
+src/DynamicEntitySample.Web.Host/Logs/*
+src/DynamicEntitySample.IdentityServer/Logs/*
+src/DynamicEntitySample.HttpApi.Host/Logs/*
+src/DynamicEntitySample.HttpApi.HostWithIds/Logs/*
+src/DynamicEntitySample.DbMigrator/Logs/*
+src/DynamicEntitySample.Blazor.Server/Logs/*
+src/DynamicEntitySample.Blazor.Server.Tiered/Logs/*

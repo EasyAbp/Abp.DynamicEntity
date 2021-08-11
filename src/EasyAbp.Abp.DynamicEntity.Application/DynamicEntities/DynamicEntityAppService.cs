@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -15,9 +16,9 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             _repository = repository;
         }
 
-        protected override IQueryable<DynamicEntity> CreateFilteredQuery(GetListInput input)
+        protected override async Task<IQueryable<DynamicEntity>> CreateFilteredQueryAsync(GetListInput input)
         {
-            return _repository.ExecuteDynamicQuery(input.FilterGroup);
+            return await _repository.ExecuteDynamicQueryAsync(input.FilterGroup);
         }
     }
 }

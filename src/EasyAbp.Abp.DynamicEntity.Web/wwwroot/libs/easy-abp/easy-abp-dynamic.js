@@ -23,6 +23,7 @@
         svcModelDefinition.getByName(modelName).done(function (model) {
             abp.ui.extensions.entityActions.get(model.type).addContributor(
                 function (actionList) {
+                    console.log(actionList)
                     return actionList.addManyTail(
                         [
                             {
@@ -87,6 +88,7 @@
                 scrollCollapse: true,
                 //order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
+                    console.log(requestData);
                     if (filterCallback) {
                         return filterCallback(requestData);
                     } else {

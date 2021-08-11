@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Http.Client" Version="3.1.0" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="4.4.0" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Application.Contracts\EasyAbp.Abp.DynamicEntity.Application.Contracts.csproj" />
   </ItemGroup>
 

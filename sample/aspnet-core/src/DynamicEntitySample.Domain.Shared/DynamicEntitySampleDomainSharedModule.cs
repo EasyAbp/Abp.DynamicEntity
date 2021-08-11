@@ -1,6 +1,5 @@
 ﻿using DynamicEntitySample.Localization;
 using EasyAbp.Abp.DynamicEntity;
-using EasyAbp.Abp.DynamicEntity.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -25,9 +24,9 @@ namespace DynamicEntitySample
         typeof(AbpIdentityServerDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(AbpTenantManagementDomainSharedModule)
-        )]
-    [DependsOn(typeof(DynamicEntityDomainSharedModule))]
+        typeof(AbpTenantManagementDomainSharedModule),
+        typeof(DynamicEntityDomainSharedModule)
+    )]
     public class DynamicEntitySampleDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

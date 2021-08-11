@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="3.1.0" />
-    <ProjectReference Include="..\..\..\EasyAbp.Abp.Dynamic.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.Domain\EasyAbp.Abp.DynamicQuery.Domain.csproj" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.4.0" />
+    <ProjectReference Include="..\..\..\Abp.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.Domain\EasyAbp.Abp.DynamicQuery.Domain.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain.Shared\EasyAbp.Abp.DynamicEntity.Domain.Shared.csproj" />
   </ItemGroup>
 

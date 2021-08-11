@@ -24,9 +24,9 @@ namespace DynamicEntitySample.EntityFrameworkCore
         typeof(AbpBackgroundJobsEntityFrameworkCoreModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpFeatureManagementEntityFrameworkCoreModule)
-        )]
-    [DependsOn(typeof(DynamicEntityEntityFrameworkCoreModule))]
+        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
+        typeof(DynamicEntityEntityFrameworkCoreModule)
+    )]
     public class DynamicEntitySampleEntityFrameworkCoreModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

@@ -5,6 +5,7 @@ using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 
 namespace DynamicEntitySample
@@ -16,9 +17,10 @@ namespace DynamicEntitySample
         typeof(AbpIdentityApplicationModule),
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
-        typeof(AbpFeatureManagementApplicationModule)
-        )]
-    [DependsOn(typeof(DynamicEntityApplicationModule))]
+        typeof(AbpFeatureManagementApplicationModule),
+        typeof(AbpSettingManagementApplicationModule),
+        typeof(DynamicEntityApplicationModule)
+    )]
     public class DynamicEntitySampleApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

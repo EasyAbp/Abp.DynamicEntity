@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using DynamicEntitySample.MultiTenancy;
-using DynamicEntitySample.ObjectExtending;
 using EasyAbp.Abp.DynamicEntity;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -29,10 +28,10 @@ namespace DynamicEntitySample
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
-        typeof(AbpEmailingModule)
+        typeof(AbpEmailingModule),
+        typeof(DynamicEntityDomainModule)
     )]
-    [DependsOn(typeof(DynamicEntityDomainModule))]
-	public class DynamicEntitySampleDomainModule : AbpModule
+    public class DynamicEntitySampleDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

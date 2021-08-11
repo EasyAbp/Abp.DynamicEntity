@@ -1,4 +1,4 @@
-﻿(function (global, factory) {
+(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('just-compare')) :
     typeof define === 'function' && define.amd ? define('@abp/utils', ['exports', 'just-compare'], factory) :
     (global = global || self, factory((global.abp = global.abp || {}, global.abp.utils = global.abp.utils || {}, global.abp.utils.common = {}), global.compare));

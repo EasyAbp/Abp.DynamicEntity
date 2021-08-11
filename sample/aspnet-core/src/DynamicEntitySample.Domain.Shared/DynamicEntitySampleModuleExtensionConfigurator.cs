@@ -1,4 +1,4 @@
-﻿﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
@@ -65,7 +65,7 @@ namespace DynamicEntitySample
                   });
 
              * See the documentation for more:
-             * https://docs.abp.io/en/latest/Module-Entity-Extensions
+             * https://docs.abp.io/en/abp/latest/Module-Entity-Extensions
              */
         }
     }

@@ -1,35 +1,58 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DynamicEntitySample.Users;
-using EasyAbp.Abp.DynamicEntity.DynamicEntities;
+﻿using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp.AuditLogging.EntityFrameworkCore;
+using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.Modeling;
+using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
-using Volo.Abp.Users.EntityFrameworkCore;
-using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
+using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace DynamicEntitySample.EntityFrameworkCore
 {
-    /* This is your actual DbContext used on runtime.
-     * It includes only your entities.
-     * It does not include entities of the used modules, because each module has already
-     * its own DbContext class. If you want to share some database tables with the used modules,
-     * just create a structure like done for AppUser.
-     *
-     * Don't use this DbContext for database migrations since it does not contain tables of the
-     * used modules (as explained above). See DynamicEntitySampleMigrationsDbContext for migrations.
-     */
+    [ReplaceDbContext(typeof(IIdentityDbContext))]
+    [ReplaceDbContext(typeof(ITenantManagementDbContext))]
     [ConnectionStringName("Default")]
-    public class DynamicEntitySampleDbContext : AbpDbContext<DynamicEntitySampleDbContext>
+    public class DynamicEntitySampleDbContext : 
+        AbpDbContext<DynamicEntitySampleDbContext>,
+        IIdentityDbContext,
+        ITenantManagementDbContext
     {
-        public DbSet<AppUser> Users { get; set; }
-
-        /* Add DbSet properties for your Aggregate Roots / Entities here.
-         * Also map them inside DynamicEntitySampleDbContextModelCreatingExtensions.ConfigureDynamicEntitySample
+        /* Add DbSet properties for your Aggregate Roots / Entities here. */
+        
+        #region Entities from the modules
+        
+        /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
+         * and replaced them for this DbContext. This allows you to perform JOIN
+         * queries for the entities of these modules over the repositories easily. You
+         * typically don't need that for other modules. But, if you need, you can
+         * implement the DbContext interface of the needed module and use ReplaceDbContext
+         * attribute just like IIdentityDbContext and ITenantManagementDbContext.
+         *
+         * More info: Replacing a DbContext of a module ensures that the related module
+         * uses this DbContext on runtime. Otherwise, it will use its own DbContext class.
          */
-        public DbSet<ModelDefinition> ModelDefinitions { get; set; }
-        public DbSet<DynamicEntity> DynamicEntities { get; set; }
+        
+        //Identity
+        public DbSet<IdentityUser> Users { get; set; }
+        public DbSet<IdentityRole> Roles { get; set; }
+        public DbSet<IdentityClaimType> ClaimTypes { get; set; }
+        public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
+        public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
+        public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+        
+        // Tenant Management
+        public DbSet<Tenant> Tenants { get; set; }
+        public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+        #endregion
+        
         public DynamicEntitySampleDbContext(DbContextOptions<DynamicEntitySampleDbContext> options)
             : base(options)
         {
@@ -40,23 +63,26 @@ namespace DynamicEntitySample.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
 
-            /* Configure the shared tables (with included modules) here */
+            /* Include modules to your migration db context */
 
-            builder.Entity<AppUser>(b =>
-            {
-                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
-                
-                b.ConfigureByConvention();
-                b.ConfigureAbpUser();
+            builder.ConfigurePermissionManagement();
+            builder.ConfigureSettingManagement();
+            builder.ConfigureBackgroundJobs();
+            builder.ConfigureAuditLogging();
+            builder.ConfigureIdentity();
+            builder.ConfigureIdentityServer();
+            builder.ConfigureFeatureManagement();
+            builder.ConfigureTenantManagement();
+            builder.ConfigureDynamicEntity();
 
-                /* Configure mappings for your additional properties
-                 * Also see the DynamicEntitySampleEfCoreEntityExtensionMappings class
-                 */
-            });
+            /* Configure your own tables/entities inside here */
 
-            /* Configure your own tables/entities inside the ConfigureDynamicEntitySample method */
-
-            builder.ConfigureDynamicEntitySample();
+            //builder.Entity<YourEntity>(b =>
+            //{
+            //    b.ToTable(DynamicEntitySampleConsts.DbTablePrefix + "YourEntities", DynamicEntitySampleConsts.DbSchema);
+            //    b.ConfigureByConvention(); //auto configure for the base class props
+            //    //...
+            //});
         }
     }
 }

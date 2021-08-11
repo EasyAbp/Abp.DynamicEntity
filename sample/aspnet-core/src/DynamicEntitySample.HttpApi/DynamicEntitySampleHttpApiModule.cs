@@ -1,12 +1,13 @@
-﻿using EasyAbp.Abp.DynamicEntity;
-using Localization.Resources.AbpUi;
+﻿using Localization.Resources.AbpUi;
 using DynamicEntitySample.Localization;
+using EasyAbp.Abp.DynamicEntity;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 
 namespace DynamicEntitySample
@@ -17,9 +18,10 @@ namespace DynamicEntitySample
         typeof(AbpIdentityHttpApiModule),
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpTenantManagementHttpApiModule),
-        typeof(AbpFeatureManagementHttpApiModule)
-        )]
-    [DependsOn(typeof(DynamicEntityHttpApiModule))]
+        typeof(AbpFeatureManagementHttpApiModule),
+        typeof(AbpSettingManagementHttpApiModule),
+        typeof(DynamicEntityHttpApiModule)
+    )]
     public class DynamicEntitySampleHttpApiModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

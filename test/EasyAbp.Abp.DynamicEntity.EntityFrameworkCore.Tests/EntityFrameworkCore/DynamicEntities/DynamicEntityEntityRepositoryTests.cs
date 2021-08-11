@@ -39,7 +39,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
                 };
 
                 // Act
-                var output = await _dynamicEntityRepository.ExecuteDynamicQuery(filters).ToListAsync();
+                var output = await (await _dynamicEntityRepository.ExecuteDynamicQueryAsync(filters)).ToListAsync();
 
                 // Assert
                 output.Count.ShouldBe(1);
@@ -63,7 +63,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore.DynamicEntities
                 };
 
                 // Act
-                var output = await _dynamicEntityRepository.ExecuteDynamicQuery(filters).ToListAsync();
+                var output = await (await _dynamicEntityRepository.ExecuteDynamicQueryAsync(filters)).ToListAsync();
 
                 // Assert
                 output.Count.ShouldBe(0);
