@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 
 namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.FieldDefinition.ViewModels
 {
@@ -11,6 +12,6 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.FieldDefinition.View
         public string DisplayName { get; set; }
 
         [Display(Name = "FieldDefinitionType")]
-        public string Type { get; set; }
+        public FieldDataType Type { get; set; }
     }
 }

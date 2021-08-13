@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
-using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
-    public class ModelDefinition : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public class ModelDefinition : FullAuditedAggregateRoot<Guid>
     {
-        public virtual Guid? TenantId { get; protected set; }
-
         [NotNull] 
         public virtual string Name { get; protected set; }
         
@@ -22,7 +18,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         [NotNull]
         public virtual string Type { get; protected set; }
 
-        public virtual Collection<ModelField> Fields { get; protected set; } = new Collection<ModelField>();
+        public virtual List<ModelField> Fields { get; protected set; } = new();
 
         protected ModelDefinition()
         {
@@ -31,15 +27,13 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         public ModelDefinition(
             Guid id,
             [NotNull] string name,
-            [NotNull] string displayName, 
-            [NotNull] string type,
-            Guid? tenantId = null
+            [NotNull] string displayName,
+            [NotNull] string type
         ) : base(id)
         {
             Name = Check.NotNullOrWhiteSpace(name, nameof(Name), ModelDefinitionConsts.MaxNameLength);
             DisplayName = Check.NotNullOrWhiteSpace(displayName, nameof(displayName), ModelDefinitionConsts.MaxDisplayNameLength);
             Type = Check.NotNullOrWhiteSpace(type, nameof(Type), ModelDefinitionConsts.MaxTypeLength);;
-            TenantId = tenantId;
             NormalizeName();
         }
 

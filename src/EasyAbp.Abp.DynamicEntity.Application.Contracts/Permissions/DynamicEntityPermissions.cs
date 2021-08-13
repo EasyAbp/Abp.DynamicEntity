@@ -4,7 +4,7 @@ namespace EasyAbp.Abp.DynamicEntity.Permissions
 {
     public class DynamicEntityPermissions
     {
-        public const string GroupName = "DynamicEntity";
+        public const string GroupName = "EasyAbp.Abp.DynamicEntity";
 
         public static string[] GetAll()
         {

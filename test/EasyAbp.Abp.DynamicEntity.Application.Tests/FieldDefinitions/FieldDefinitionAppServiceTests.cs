@@ -31,7 +31,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             // Assert
             output.TotalCount.ShouldBe(1);
             output.Items[0].DisplayName.ShouldBe("Name");
-            output.Items[0].Type.ShouldBe("string");
+            output.Items[0].Type.ShouldBe(FieldDataType.Text);
         }
         
         [Fact]
@@ -61,7 +61,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             {
                 Name = "publish_date",
                 DisplayName = "PublishDate",
-                Type = "date",
+                Type = FieldDataType.DateTime,
             });
             
             // Assert
@@ -70,7 +70,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             fdPublishDate.Id.ShouldBe(output.Id);
             fdPublishDate.Name.ShouldBe("publish_date");
             fdPublishDate.DisplayName.ShouldBe("PublishDate");
-            fdPublishDate.Type.ShouldBe("date");
+            fdPublishDate.Type.ShouldBe(FieldDataType.DateTime);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             
             // Assert
             output.ShouldNotBeNull();
-            output.Type.ShouldBe("string");
+            output.Type.ShouldBe(FieldDataType.Text);
         }
         
         [Fact]
@@ -96,7 +96,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             {
                 Name = "price",
                 DisplayName = "Price",
-                Type = "float"
+                Type = FieldDataType.Float
             }));
             
             // Assert
@@ -114,7 +114,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             {
                 Name = "price",
                 DisplayName = "Price",
-                Type = "float"
+                Type = FieldDataType.Float
             }));
             
             // Assert

@@ -10,6 +10,6 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos
         
         public string DisplayName { get; set; }
 
-        public string Type { get; set; }
+        public FieldDataType Type { get; set; }
     }
 }

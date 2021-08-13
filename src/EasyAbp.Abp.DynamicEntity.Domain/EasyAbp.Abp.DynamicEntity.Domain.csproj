@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.0" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.4.0" />
     <ProjectReference Include="..\..\..\Abp.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.Domain\EasyAbp.Abp.DynamicQuery.Domain.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain.Shared\EasyAbp.Abp.DynamicEntity.Domain.Shared.csproj" />

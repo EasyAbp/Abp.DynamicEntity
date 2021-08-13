@@ -29,19 +29,19 @@ namespace DynamicEntitySample.DynamicEntities
             var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "price");
             if (fdPrice == null)
             {
-                fdPrice = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), "price", "Price", "number"));
+                fdPrice = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(), "price", "Price", FieldDataType.Number));
             }
 
             var fdCpu = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "CPU");
             if (fdCpu == null)
             {
-                fdCpu = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "cpu", "CPU", "string"));
+                fdCpu = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "cpu", "CPU", FieldDataType.Text));
             }
 
             var fdRam = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "ram");
             if (fdRam == null)
             {
-                fdRam = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "ram", "RAM", "string"));
+                fdRam = await _fieldDefinitionRepository.InsertAsync(new FieldDefinition(_guidGenerator.Create(),  "ram", "RAM", FieldDataType.Text));
             }
 
             var mdComputer = await _modelDefinitionRepository.FindAsync(md => md.Name == "computer");

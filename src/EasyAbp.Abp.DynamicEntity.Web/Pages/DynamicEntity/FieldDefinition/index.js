@@ -46,7 +46,20 @@
             },
             { data: "name" },
             { data: "displayName" },
-            { data: "type" },
+            { data: "type", render: function ( data, type, row, meta ) {
+                switch (data) {
+                    case 1:
+                        return l("FieldDataType.Text");
+                    case 2:
+                        return l("FieldDataType.Number");
+                    case 4:
+                        return l("FieldDataType.Float");
+                    case 8:
+                        return l("FieldDataType.Boolean");
+                    case 16:
+                        return l("FieldDataType.DateTime");
+                }
+            }},
         ]
     }));
 

@@ -26,7 +26,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             _fieldDefinitionRepository = fieldDefinitionRepository;
         }
 
-        protected override IQueryable<ModelDefinition> CreateFilteredQuery(GetListInput input)
+        protected override async Task<IQueryable<ModelDefinition>> CreateFilteredQueryAsync(GetListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())
             {
@@ -35,7 +35,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                           fd.Type.Contains(input.Filter));
             }
 
-            return base.CreateFilteredQuery(input);
+            return await base.CreateFilteredQueryAsync(input);
         }
 
         protected virtual async Task SetFields(ModelDefinition modelDefinition, CreateUpdateModelDefinitionDto createInput)

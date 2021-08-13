@@ -24,16 +24,15 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             _repository = repository;
         }
 
-        protected override IQueryable<FieldDefinition> CreateFilteredQuery(GetListInput input)
+        protected override async Task<IQueryable<FieldDefinition>> CreateFilteredQueryAsync(GetListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())
             {
                 return _repository.WhereIf(!input.Filter.IsNullOrEmpty(),
-                    fd => fd.Name.Contains(input.Filter) ||
-                          fd.Type.Contains(input.Filter));
+                    fd => fd.Name.Contains(input.Filter));
             }
 
-            return base.CreateFilteredQuery(input);
+            return await base.CreateFilteredQueryAsync(input);
         }
 
         public async Task<FieldDefinitionDto> GetByName(string name)

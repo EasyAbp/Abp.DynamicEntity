@@ -32,10 +32,10 @@ namespace EasyAbp.Abp.DynamicEntity
             /* Instead of returning the Task.CompletedTask, you can insert your test data
              * at this point!
              */
-            var fdName = new FieldDefinition(_guidGenerator.Create(), "name", "Name", "string");
+            var fdName = new FieldDefinition(_guidGenerator.Create(), "name", "Name", FieldDataType.Text);
             await _fieldDefinitionRepository.InsertAsync(fdName);
 
-            var fdPrice = new FieldDefinition(_guidGenerator.Create(), "price", "Price", "number");
+            var fdPrice = new FieldDefinition(_guidGenerator.Create(), "price", "Price", FieldDataType.Number);
             await _fieldDefinitionRepository.InsertAsync(fdPrice);
 
             var mdBook = new ModelDefinition(_guidGenerator.Create(), "book", "Book", "DynamicEntity.Book");
