@@ -13,6 +13,5 @@ namespace EasyAbp.Abp.DynamicEntity
     [DependsOn(typeof(DynamicQueryApplicationContractsModule))]
     public class DynamicEntityApplicationContractsModule : AbpModule
     {
-
     }
 }

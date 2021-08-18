@@ -6,7 +6,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
-    public class DynamicEntityAppService  : CrudAppService<DynamicEntity, DynamicEntityDto, Guid, GetListInput, CreateUpdateDynamicEntityDto, CreateUpdateDynamicEntityDto>,
+    public class DynamicEntityAppService  : CrudAppService<DynamicEntity, DynamicEntityDto, Guid, GetListInput, CreateDynamicEntityDto, UpdateDynamicEntityDto>,
         IDynamicEntityAppService
     {
         private readonly IDynamicEntityRepository _repository;
@@ -18,7 +18,8 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 
         protected override async Task<IQueryable<DynamicEntity>> CreateFilteredQueryAsync(GetListInput input)
         {
-            return await _repository.ExecuteDynamicQueryAsync(input.FilterGroup);
+            return (await _repository.ExecuteDynamicQueryAsync(input.FilterGroup))
+                .Where(x => x.ModelDefinitionId == input.ModelDefinitionId);
         }
     }
 }

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
     [RemoteService(Name = "EasyAbpDynamicEntity")]
-    [Route("/api/dynamic/modelDefinition")]
+    [Route("/api/abp/dynamic-entity/model-definition")]
     public class ModelDefinitionController : DynamicEntityController, IModelDefinitionAppService
     {
         private readonly IModelDefinitionAppService _service;
@@ -39,7 +39,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         }
 
         [HttpGet]
-        [Route("getByName/{name}")]
+        [Route("by-name/{name}")]
         public Task<ModelDefinitionDto> GetByName(string name)
         {
             return _service.GetByName(name);

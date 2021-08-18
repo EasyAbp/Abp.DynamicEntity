@@ -5,7 +5,7 @@
     "Permission:Create": "创建",
     "Permission:Update": "编辑",
     "Permission:Delete": "删除",
-    "Menu:DynamicEntityManagement": "动态实体",
+    "Menu:DynamicEntityManagement": "动态实体管理",
     "Menu:FieldDefinition": "字段定义",
     "FieldDefinition": "字段定义",
     "FieldDefinitionName": "名称",

@@ -19,6 +19,11 @@ namespace EasyAbp.Abp.DynamicEntity.Permissions
             modelDefinitionPermission.AddChild(DynamicEntityPermissions.ModelDefinition.Create, L("Permission:Create"));
             modelDefinitionPermission.AddChild(DynamicEntityPermissions.ModelDefinition.Update, L("Permission:Update"));
             modelDefinitionPermission.AddChild(DynamicEntityPermissions.ModelDefinition.Delete, L("Permission:Delete"));
+            
+            var dynamicEntityPermission = myGroup.AddPermission(DynamicEntityPermissions.DynamicEntity.Default, L("Permission:DynamicEntity"));
+            dynamicEntityPermission.AddChild(DynamicEntityPermissions.DynamicEntity.Create, L("Permission:Create"));
+            dynamicEntityPermission.AddChild(DynamicEntityPermissions.DynamicEntity.Update, L("Permission:Update"));
+            dynamicEntityPermission.AddChild(DynamicEntityPermissions.DynamicEntity.Delete, L("Permission:Delete"));
         }
 
         private static LocalizableString L(string name)

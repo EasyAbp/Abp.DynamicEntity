@@ -5,7 +5,7 @@
     "Permission:Create": "Create",
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",
-    "Menu:DynamicEntityManagement": "Dynamic entity",
+    "Menu:DynamicEntityManagement": "Dynamic entity management",
     "Menu:FieldDefinition": "Field Definition",
     "FieldDefinition": "Field Definition",
     "FieldDefinitionName": "Name",

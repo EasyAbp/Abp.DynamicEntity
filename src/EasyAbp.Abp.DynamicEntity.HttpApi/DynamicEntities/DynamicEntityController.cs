@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
     [RemoteService(Name = "EasyAbpDynamicEntity")]
-    [Route("/api/dynamic/dynamicEntity")]
+    [Route("/api/abp/dynamic-entity/dynamic-entity")]
     public class DynamicEntityController : DynamicEntity.DynamicEntityController, IDynamicEntityAppService
     {
         private readonly IDynamicEntityAppService _service;
@@ -19,14 +19,14 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
         }
 
         [HttpPost]
-        public virtual Task<DynamicEntityDto> CreateAsync(CreateUpdateDynamicEntityDto input)
+        public virtual Task<DynamicEntityDto> CreateAsync(CreateDynamicEntityDto input)
         {
             return _service.CreateAsync(input);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public virtual Task<DynamicEntityDto> UpdateAsync(Guid id, CreateUpdateDynamicEntityDto input)
+        public virtual Task<DynamicEntityDto> UpdateAsync(Guid id, UpdateDynamicEntityDto input)
         {
             return _service.UpdateAsync(id, input);
         }

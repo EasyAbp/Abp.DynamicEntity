@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 {
     [RemoteService(Name = "EasyAbpDynamicEntity")]
-    [Route("/api/dynamic/fieldDefinition")]
+    [Route("/api/abp/dynamic-entity/field-definition")]
     public class FieldDefinitionController : DynamicEntityController, IFieldDefinitionAppService
     {
         private readonly IFieldDefinitionAppService _service;
@@ -19,7 +19,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         }
 
         [HttpGet]
-        [Route("byName")]
+        [Route("by-name/{name}")]
         public virtual Task<FieldDefinitionDto> GetByName(string name)
         {
             return _service.GetByName(name);

@@ -5,7 +5,7 @@
     "Permission:Create": "創建",
     "Permission:Update": "編輯",
     "Permission:Delete": "刪除",
-    "Menu:DynamicEntityManagement": "動態實體",
+    "Menu:DynamicEntityManagement": "動態實體管理",
     "Menu:FieldDefinition": "字段定義",
     "FieldDefinition": "字段定義",
     "FieldDefinitionName": "名稱",

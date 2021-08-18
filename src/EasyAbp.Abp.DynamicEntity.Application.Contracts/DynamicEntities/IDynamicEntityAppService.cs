@@ -8,8 +8,8 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
         DynamicEntityDto,
         Guid,
         GetListInput,
-        CreateUpdateDynamicEntityDto,
-        CreateUpdateDynamicEntityDto>
+        CreateDynamicEntityDto,
+        UpdateDynamicEntityDto>
     {
     }
 }

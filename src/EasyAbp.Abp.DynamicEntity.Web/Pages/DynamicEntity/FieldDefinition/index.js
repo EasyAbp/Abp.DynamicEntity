@@ -48,15 +48,15 @@
             { data: "displayName" },
             { data: "type", render: function ( data, type, row, meta ) {
                 switch (data) {
-                    case 1:
+                    case 0:
                         return l("FieldDataType.Text");
-                    case 2:
+                    case 1:
                         return l("FieldDataType.Number");
-                    case 4:
+                    case 2:
                         return l("FieldDataType.Float");
-                    case 8:
+                    case 3:
                         return l("FieldDataType.Boolean");
-                    case 16:
+                    case 4:
                         return l("FieldDataType.DateTime");
                 }
             }},
