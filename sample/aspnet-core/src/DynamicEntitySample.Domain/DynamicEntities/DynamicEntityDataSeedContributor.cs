@@ -5,6 +5,7 @@ using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Guids;
 
 namespace DynamicEntitySample.DynamicEntities
@@ -54,7 +55,7 @@ namespace DynamicEntitySample.DynamicEntities
                 await _modelDefinitionRepository.InsertAsync(mdComputer);
             }
 
-            var deComputer = await _dynamicEntityRepository.FindAsync(de => de.ModelDefinitionId == mdComputer.Id);
+            var deComputer = await _dynamicEntityRepository.FirstOrDefaultAsync(de => de.ModelDefinitionId == mdComputer.Id);
             if (deComputer == null)
             {
                 var cpus = new[] {"Intel I3", "Intel I5", "Intel I7", "Intel I9"};

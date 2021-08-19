@@ -23,7 +23,6 @@
         svcModelDefinition.getByName(modelName).done(function (model) {
             abp.ui.extensions.entityActions.get(model.type).addContributor(
                 function (actionList) {
-                    console.log(actionList)
                     return actionList.addManyTail(
                         [
                             {
@@ -88,12 +87,14 @@
                 scrollCollapse: true,
                 //order: [[0, "asc"]],
                 ajax: abp.libs.datatables.createAjax(svcDynamicEntity.getList, function (requestData) {
-                    console.log(requestData);
+                    let input;
                     if (filterCallback) {
-                        return filterCallback(requestData);
+                        input = filterCallback(requestData);
                     } else {
-                        return {};
+                        input = {};
                     }
+                    input.modelName = modelName
+                    return input;
                 }),
                 columnDefs: abp.ui.extensions.tableColumns.get(model.type).columns.toArray(),
             };
