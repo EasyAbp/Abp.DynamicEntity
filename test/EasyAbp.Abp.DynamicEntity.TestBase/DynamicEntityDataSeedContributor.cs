@@ -5,6 +5,7 @@ using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
+using Volo.Abp.Uow;
 
 namespace EasyAbp.Abp.DynamicEntity
 {
@@ -27,6 +28,7 @@ namespace EasyAbp.Abp.DynamicEntity
             _dynamicEntityRepository = dynamicEntityRepository;
         }
         
+        [UnitOfWork]
         public async Task SeedAsync(DataSeedContext context)
         {
             /* Instead of returning the Task.CompletedTask, you can insert your test data
