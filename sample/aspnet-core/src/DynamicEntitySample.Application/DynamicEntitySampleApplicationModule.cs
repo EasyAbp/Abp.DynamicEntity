@@ -19,7 +19,7 @@ namespace DynamicEntitySample
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(DynamicEntityApplicationModule)
+        typeof(AbpDynamicEntityApplicationModule)
     )]
     public class DynamicEntitySampleApplicationModule : AbpModule
     {

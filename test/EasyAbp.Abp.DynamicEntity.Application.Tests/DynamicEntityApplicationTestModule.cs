@@ -3,7 +3,7 @@
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(DynamicEntityApplicationModule),
+        typeof(AbpDynamicEntityApplicationModule),
         typeof(DynamicEntityDomainTestModule)
         )]
     public class DynamicEntityApplicationTestModule : AbpModule

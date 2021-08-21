@@ -9,12 +9,12 @@ using Volo.Abp.Modularity;
 namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(DynamicEntityDomainModule),
+        typeof(AbpDynamicEntityDomainModule),
         typeof(AbpEntityFrameworkCoreModule)
     )]
-    [DependsOn(typeof(DynamicQueryEntityFrameworkCoreModule))]
+    [DependsOn(typeof(AbpDynamicQueryEntityFrameworkCoreModule))]
 
-    public class DynamicEntityEntityFrameworkCoreModule : AbpModule
+    public class AbpDynamicEntityEntityFrameworkCoreModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

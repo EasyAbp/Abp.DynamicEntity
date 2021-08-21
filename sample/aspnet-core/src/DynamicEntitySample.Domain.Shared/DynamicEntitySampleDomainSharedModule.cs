@@ -25,7 +25,7 @@ namespace DynamicEntitySample
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule),
-        typeof(DynamicEntityDomainSharedModule)
+        typeof(AbpDynamicEntityDomainSharedModule)
     )]
     public class DynamicEntitySampleDomainSharedModule : AbpModule
     {

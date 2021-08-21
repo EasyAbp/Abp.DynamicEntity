@@ -2,10 +2,10 @@
 {
     public static class DynamicEntityDbProperties
     {
-        public static string DbTablePrefix { get; set; } = "DynamicEntity";
+        public static string DbTablePrefix { get; set; } = "EasyAbpAbpDynamicEntity";
 
         public static string DbSchema { get; set; } = null;
 
-        public const string ConnectionStringName = "DynamicEntity";
+        public const string ConnectionStringName = "EasyAbpAbpDynamicEntity";
     }
 }

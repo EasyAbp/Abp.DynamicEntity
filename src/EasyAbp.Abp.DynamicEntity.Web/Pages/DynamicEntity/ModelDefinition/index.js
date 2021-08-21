@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-    var l = abp.localization.getResource('DynamicEntity');
+    var l = abp.localization.getResource('EasyAbpAbpDynamicEntity');
 
     var service = easyAbp.abp.dynamicEntity.modelDefinitions.modelDefinition;
     var createModal = new abp.ModalManager(
@@ -34,14 +34,14 @@
                         [
                             {
                                 text: l('Edit'),
-                                visible: abp.auth.isGranted('DynamicEntity.ModelDefinition.Update'),
+                                visible: abp.auth.isGranted('EasyAbp.Abp.DynamicEntity.ModelDefinition.Update'),
                                 action: function (data) {
                                     editModal.open({id: data.record.id});
                                 }
                             },
                             {
                                 text: l('Delete'),
-                                visible: abp.auth.isGranted('DynamicEntity.ModelDefinition.Delete'),
+                                visible: abp.auth.isGranted('EasyAbp.Abp.DynamicEntity.ModelDefinition.Delete'),
                                 confirmMessage: function (data) {
                                     return l('ModelDefinitionDeletionConfirmationMessage', data.record.name);
                                 },

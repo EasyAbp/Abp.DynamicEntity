@@ -6,7 +6,7 @@ namespace EasyAbp.Abp.DynamicEntity.MongoDB
 {
     [DependsOn(
         typeof(DynamicEntityTestBaseModule),
-        typeof(DynamicEntityMongoDbModule)
+        typeof(AbpDynamicEntityMongoDbModule)
         )]
     public class DynamicEntityMongoDbTestModule : AbpModule
     {

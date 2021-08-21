@@ -4,13 +4,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>EasyAbp.Abp.DynamicEntity</RootNamespace>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="4.4.0" />
-    <ProjectReference Include="..\..\..\Abp.DynamicQuery\src\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore\EasyAbp.Abp.DynamicQuery.EntityFrameworkCore.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="EasyAbp.Abp.DynamicQuery.EntityFrameworkCore" Version="$(EasyAbpAbpDynamicQueryModuleVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain\EasyAbp.Abp.DynamicEntity.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EasyAbp\Abp\DynamicEntity" />
   </ItemGroup>
 
 </Project>

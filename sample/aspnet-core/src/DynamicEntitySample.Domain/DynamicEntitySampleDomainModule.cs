@@ -29,7 +29,7 @@ namespace DynamicEntitySample
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpEmailingModule),
-        typeof(DynamicEntityDomainModule)
+        typeof(AbpDynamicEntityDomainModule)
     )]
     public class DynamicEntitySampleDomainModule : AbpModule
     {

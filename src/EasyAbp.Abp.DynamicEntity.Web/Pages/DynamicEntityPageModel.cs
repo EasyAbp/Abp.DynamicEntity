@@ -10,7 +10,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages
         protected DynamicEntityPageModel()
         {
             LocalizationResourceType = typeof(DynamicEntityResource);
-            ObjectMapperContext = typeof(DynamicEntityWebModule);
+            ObjectMapperContext = typeof(AbpDynamicEntityWebModule);
         }
     }
 }

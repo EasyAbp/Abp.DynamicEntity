@@ -4,16 +4,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>EasyAbp.Abp.DynamicEntity</RootNamespace>
+    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Application.Contracts\EasyAbp.Abp.DynamicEntity.Application.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FieldDefinitions" />
   </ItemGroup>
 
 </Project>

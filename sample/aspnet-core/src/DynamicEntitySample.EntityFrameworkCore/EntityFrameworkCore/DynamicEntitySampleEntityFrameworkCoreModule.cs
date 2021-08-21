@@ -25,7 +25,7 @@ namespace DynamicEntitySample.EntityFrameworkCore
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(DynamicEntityEntityFrameworkCoreModule)
+        typeof(AbpDynamicEntityEntityFrameworkCoreModule)
     )]
     public class DynamicEntitySampleEntityFrameworkCoreModule : AbpModule
     {

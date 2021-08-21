@@ -12,7 +12,7 @@ namespace EasyAbp.Abp.DynamicEntity
         typeof(AbpAutofacModule),
         typeof(AbpTestBaseModule),
         typeof(AbpAuthorizationModule),
-        typeof(DynamicEntityDomainModule)
+        typeof(AbpDynamicEntityDomainModule)
         )]
     public class DynamicEntityTestBaseModule : AbpModule
     {

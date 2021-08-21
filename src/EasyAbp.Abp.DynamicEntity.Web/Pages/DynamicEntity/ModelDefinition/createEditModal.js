@@ -2,7 +2,7 @@
 
     abp.modals.CreateEditModal = function () {
         const initModal = function (publicApi, args) {
-            const l = abp.localization.getResource('DynamicEntity');
+            const l = abp.localization.getResource('EasyAbpAbpDynamicEntity');
 
             $("select").select2({
                 width: "100%",

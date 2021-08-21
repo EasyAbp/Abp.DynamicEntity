@@ -8,15 +8,15 @@ using Microsoft.Extensions.DependencyInjection;
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(DynamicEntityApplicationContractsModule),
+        typeof(AbpDynamicEntityApplicationContractsModule),
         typeof(AbpAspNetCoreMvcModule))]
-    public class DynamicEntityHttpApiModule : AbpModule
+    public class AbpDynamicEntityHttpApiModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             PreConfigure<IMvcBuilder>(mvcBuilder =>
             {
-                mvcBuilder.AddApplicationPartIfNotExists(typeof(DynamicEntityHttpApiModule).Assembly);
+                mvcBuilder.AddApplicationPartIfNotExists(typeof(AbpDynamicEntityHttpApiModule).Assembly);
             });
         }
 

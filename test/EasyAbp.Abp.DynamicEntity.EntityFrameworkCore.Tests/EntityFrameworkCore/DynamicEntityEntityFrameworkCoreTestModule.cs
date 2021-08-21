@@ -11,7 +11,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
 {
     [DependsOn(
         typeof(DynamicEntityTestBaseModule),
-        typeof(DynamicEntityEntityFrameworkCoreModule),
+        typeof(AbpDynamicEntityEntityFrameworkCoreModule),
         typeof(AbpEntityFrameworkCoreSqliteModule)
         )]
     public class DynamicEntityEntityFrameworkCoreTestModule : AbpModule

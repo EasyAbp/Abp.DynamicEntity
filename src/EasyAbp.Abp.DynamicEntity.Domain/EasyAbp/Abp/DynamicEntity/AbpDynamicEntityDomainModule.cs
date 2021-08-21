@@ -13,18 +13,18 @@ namespace EasyAbp.Abp.DynamicEntity
     [DependsOn(
         typeof(AbpAutoMapperModule),
         typeof(AbpDddDomainModule),
-        typeof(DynamicEntityDomainSharedModule)
+        typeof(AbpDynamicEntityDomainSharedModule)
     )]
-    [DependsOn(typeof(DynamicQueryDomainModule))]
-    public class DynamicEntityDomainModule : AbpModule
+    [DependsOn(typeof(AbpDynamicQueryDomainModule))]
+    public class AbpDynamicEntityDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<DynamicEntityDomainModule>();
+            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityDomainModule>();
             
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<DynamicEntityDomainModule>(validate: true);
+                options.AddMaps<AbpDynamicEntityDomainModule>(validate: true);
             });
             
             Configure<AbpDistributedEntityEventOptions>(options =>

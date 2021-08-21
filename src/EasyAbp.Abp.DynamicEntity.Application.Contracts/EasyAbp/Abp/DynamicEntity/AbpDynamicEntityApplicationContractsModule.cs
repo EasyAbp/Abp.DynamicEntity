@@ -6,12 +6,12 @@ using Volo.Abp.Authorization;
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(DynamicEntityDomainSharedModule),
+        typeof(AbpDynamicEntityDomainSharedModule),
         typeof(AbpDddApplicationContractsModule),
         typeof(AbpAuthorizationModule)
         )]
-    [DependsOn(typeof(DynamicQueryApplicationContractsModule))]
-    public class DynamicEntityApplicationContractsModule : AbpModule
+    [DependsOn(typeof(AbpDynamicQueryApplicationContractsModule))]
+    public class AbpDynamicEntityApplicationContractsModule : AbpModule
     {
     }
 }

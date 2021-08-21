@@ -8,7 +8,7 @@ namespace EasyAbp.Abp.DynamicEntity
         protected DynamicEntityAppService()
         {
             LocalizationResource = typeof(DynamicEntityResource);
-            ObjectMapperContext = typeof(DynamicEntityApplicationModule);
+            ObjectMapperContext = typeof(AbpDynamicEntityApplicationModule);
         }
     }
 }

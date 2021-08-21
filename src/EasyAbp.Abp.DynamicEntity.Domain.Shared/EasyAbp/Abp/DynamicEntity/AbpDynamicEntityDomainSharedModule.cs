@@ -12,14 +12,14 @@ namespace EasyAbp.Abp.DynamicEntity
     [DependsOn(
         typeof(AbpValidationModule)
     )]
-    [DependsOn(typeof(DynamicQueryDomainSharedModule))]
-    public class DynamicEntityDomainSharedModule : AbpModule
+    [DependsOn(typeof(AbpDynamicQueryDomainSharedModule))]
+    public class AbpDynamicEntityDomainSharedModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<DynamicEntityDomainSharedModule>();
+                options.FileSets.AddEmbedded<AbpDynamicEntityDomainSharedModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>
@@ -27,12 +27,12 @@ namespace EasyAbp.Abp.DynamicEntity
                 options.Resources
                     .Add<DynamicEntityResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/DynamicEntity");
+                    .AddVirtualJson("EasyAbp/Abp/DynamicEntity/Localization");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("DynamicEntity", typeof(DynamicEntityResource));
+                options.MapCodeNamespace("EasyAbp.Abp.DynamicEntity", typeof(DynamicEntityResource));
             });
         }
     }

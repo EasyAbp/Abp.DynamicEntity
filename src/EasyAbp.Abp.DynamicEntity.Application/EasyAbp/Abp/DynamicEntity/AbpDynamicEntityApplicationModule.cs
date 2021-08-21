@@ -7,20 +7,20 @@ using Volo.Abp.Application;
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(DynamicEntityDomainModule),
-        typeof(DynamicEntityApplicationContractsModule),
+        typeof(AbpDynamicEntityDomainModule),
+        typeof(AbpDynamicEntityApplicationContractsModule),
         typeof(AbpDddApplicationModule),
         typeof(AbpAutoMapperModule)
         )]
-    [DependsOn(typeof(DynamicQueryApplicationModule))]
-    public class DynamicEntityApplicationModule : AbpModule
+    [DependsOn(typeof(AbpDynamicQueryApplicationModule))]
+    public class AbpDynamicEntityApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<DynamicEntityApplicationModule>();
+            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityApplicationModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<DynamicEntityApplicationModule>(validate: true);
+                options.AddMaps<AbpDynamicEntityApplicationModule>(validate: true);
             });
         }
     }

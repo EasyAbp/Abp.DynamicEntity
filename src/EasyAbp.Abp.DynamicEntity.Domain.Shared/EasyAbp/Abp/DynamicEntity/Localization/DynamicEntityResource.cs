@@ -2,7 +2,7 @@
 
 namespace EasyAbp.Abp.DynamicEntity.Localization
 {
-    [LocalizationResourceName("DynamicEntity")]
+    [LocalizationResourceName("EasyAbpAbpDynamicEntity")]
     public class DynamicEntityResource
     {
         

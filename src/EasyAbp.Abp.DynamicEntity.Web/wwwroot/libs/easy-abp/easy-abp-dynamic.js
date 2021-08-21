@@ -13,7 +13,7 @@
         const modelName = dynamicOption.modelName;
         const $table = dynamicOption.$table
 
-        const l = abp.localization.getResource('DynamicEntity');
+        const l = abp.localization.getResource('EasyAbpAbpDynamicEntity');
 
         const svcDynamicEntity = easyAbp.abp.dynamicEntity.dynamicEntities.dynamicEntity;
         const svcModelDefinition = easyAbp.abp.dynamicEntity.modelDefinitions.modelDefinition;
@@ -27,7 +27,7 @@
                         [
                             {
                                 text: l('Edit'),
-                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntity.Update'),
+                                visible: abp.auth.isGranted('EasyAbp.Abp.DynamicEntity.DynamicEntity.Update'),
                                 action: function (data) {
                                     editModal.open({
                                         id: data.record.id,
@@ -36,7 +36,7 @@
                             },
                             {
                                 text: l('Delete'),
-                                visible: abp.auth.isGranted('DynamicEntity.DynamicEntity.Delete'),
+                                visible: abp.auth.isGranted('EasyAbp.Abp.DynamicEntity.DynamicEntity.Delete'),
                                 confirmMessage: function (data) {
                                     return l(
                                         'DynamicEntityDeletionConfirmationMessage',

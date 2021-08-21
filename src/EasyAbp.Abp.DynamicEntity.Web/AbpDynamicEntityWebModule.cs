@@ -16,22 +16,22 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 namespace EasyAbp.Abp.DynamicEntity.Web
 {
     [DependsOn(
-        typeof(DynamicEntityHttpApiModule),
+        typeof(AbpDynamicEntityHttpApiModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAutoMapperModule)
         )]
-    public class DynamicEntityWebModule : AbpModule
+    public class AbpDynamicEntityWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
             {
-                options.AddAssemblyResource(typeof(DynamicEntityResource), typeof(DynamicEntityWebModule).Assembly);
+                options.AddAssemblyResource(typeof(DynamicEntityResource), typeof(AbpDynamicEntityWebModule).Assembly);
             });
 
             PreConfigure<IMvcBuilder>(mvcBuilder =>
             {
-                mvcBuilder.AddApplicationPartIfNotExists(typeof(DynamicEntityWebModule).Assembly);
+                mvcBuilder.AddApplicationPartIfNotExists(typeof(AbpDynamicEntityWebModule).Assembly);
             });
         }
 
@@ -44,13 +44,13 @@ namespace EasyAbp.Abp.DynamicEntity.Web
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<DynamicEntityWebModule>();
+                options.FileSets.AddEmbedded<AbpDynamicEntityWebModule>();
             });
 
-            context.Services.AddAutoMapperObjectMapper<DynamicEntityWebModule>();
+            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityWebModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<DynamicEntityWebModule>(validate: true);
+                options.AddMaps<AbpDynamicEntityWebModule>(validate: true);
             });
 
             Configure<RazorPagesOptions>(options =>

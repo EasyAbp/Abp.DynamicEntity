@@ -2,7 +2,7 @@
 {
     public class DynamicEntityMenus
     {
-        private const string Prefix = "DynamicEntity";
+        private const string Prefix = "EasyAbp.Abp.DynamicEntity";
 
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";

@@ -55,7 +55,7 @@ namespace DynamicEntitySample.Web
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
-        typeof(DynamicEntityWebModule)
+        typeof(AbpDynamicEntityWebModule)
     )]
     public class DynamicEntitySampleWebModule : AbpModule
     {
@@ -146,11 +146,11 @@ namespace DynamicEntitySample.Web
                     options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntitySampleApplicationModule>(Path.Combine(rootPath, $"..{septChar}DynamicEntitySample.Application"));
                     options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntitySampleWebModule>(rootPath);
                     
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntityDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntityDomainModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntityApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Application.Contracts"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntityApplicationModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Application"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DynamicEntityWebModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Web"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AbpDynamicEntityDomainSharedModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AbpDynamicEntityDomainModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AbpDynamicEntityApplicationContractsModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AbpDynamicEntityApplicationModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AbpDynamicEntityWebModule>(Path.Combine(rootPath, $"..{septChar}..{septChar}..{septChar}..{septChar}src{septChar}EasyAbp.Abp.DynamicEntity.Web"));
                 });
             }
         }
