@@ -5,7 +5,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
     public static class DynamicEntityModelEntityTypeBuilderExtensions
     {
-        public static void ConfigureDynamicEntityModel<T>(this EntityTypeBuilder<T> b)
+        public static void ConfigureAbpDynamicEntityModel<T>(this EntityTypeBuilder<T> b)
             where T : class, IDynamicEntityModel
         {
             b.HasOne(e => e.ModelDefinition)

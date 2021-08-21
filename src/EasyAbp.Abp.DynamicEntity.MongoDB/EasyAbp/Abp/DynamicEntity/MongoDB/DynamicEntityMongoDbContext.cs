@@ -14,7 +14,7 @@ namespace EasyAbp.Abp.DynamicEntity.MongoDB
         {
             base.CreateModel(modelBuilder);
 
-            modelBuilder.ConfigureDynamicEntity();
+            modelBuilder.ConfigureAbpDynamicEntity();
         }
     }
 }

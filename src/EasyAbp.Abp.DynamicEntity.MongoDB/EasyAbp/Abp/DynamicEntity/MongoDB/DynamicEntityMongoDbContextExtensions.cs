@@ -6,7 +6,7 @@ namespace EasyAbp.Abp.DynamicEntity.MongoDB
 {
     public static class DynamicEntityMongoDbContextExtensions
     {
-        public static void ConfigureDynamicEntity(
+        public static void ConfigureAbpDynamicEntity(
             this IMongoModelBuilder builder,
             Action<AbpMongoModelBuilderConfigurationOptions> optionsAction = null)
         {

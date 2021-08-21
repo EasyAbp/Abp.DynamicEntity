@@ -11,7 +11,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
 {
     public static class DynamicEntityDbContextModelCreatingExtensions
     {
-        public static void ConfigureDynamicEntity(
+        public static void ConfigureAbpDynamicEntity(
             this ModelBuilder builder,
             Action<DynamicEntityModelBuilderConfigurationOptions> optionsAction = null)
         {
@@ -74,7 +74,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "DynamicEntities", options.Schema);
                 b.ConfigureByConvention();
-                b.ConfigureDynamicEntityModel();
+                b.ConfigureAbpDynamicEntityModel();
 
                 b.HasIndex(x => x.ExtraProperties);
             });

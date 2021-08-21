@@ -73,7 +73,7 @@ namespace DynamicEntitySample.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
-            builder.ConfigureDynamicEntity();
+            builder.ConfigureAbpDynamicEntity();
 
             /* Configure your own tables/entities inside here */
 

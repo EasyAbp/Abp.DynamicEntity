@@ -26,7 +26,7 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
 
-            builder.ConfigureDynamicEntity();
+            builder.ConfigureAbpDynamicEntity();
         }
     }
 }
