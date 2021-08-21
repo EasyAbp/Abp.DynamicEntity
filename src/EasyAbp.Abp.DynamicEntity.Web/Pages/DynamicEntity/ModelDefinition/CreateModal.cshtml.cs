@@ -14,7 +14,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
     public class CreateModalModel : DynamicEntityPageModel
     {
         [BindProperty]
-        public CreateEditModelDefinitionViewModel ViewModel { get; set; } = new CreateEditModelDefinitionViewModel();
+        public CreateModelDefinitionViewModel ViewModel { get; set; } = new CreateModelDefinitionViewModel();
 
         private readonly IModelDefinitionAppService _modelDefinitionService;
         private readonly IFieldDefinitionAppService _fieldDefinitionService;
@@ -38,7 +38,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
 
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            var dto = ObjectMapper.Map<CreateEditModelDefinitionViewModel, CreateUpdateModelDefinitionDto>(ViewModel);
+            var dto = ObjectMapper.Map<CreateModelDefinitionViewModel, CreateModelDefinitionDto>(ViewModel);
             await _modelDefinitionService.CreateAsync(dto);
             return NoContent();
         }

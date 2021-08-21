@@ -18,7 +18,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
         [BindProperty(SupportsGet = true)]
         public Guid Id { get; set; }
 
-        [BindProperty] public CreateEditModelDefinitionViewModel ViewModel { get; set; }
+        [BindProperty] public EditModelDefinitionViewModel ViewModel { get; set; }
 
         private readonly IModelDefinitionAppService _modelDefinitionService;
         private readonly IFieldDefinitionAppService _fieldDefinitionService;
@@ -32,7 +32,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
         public virtual async Task OnGetAsync()
         {
             var modelDefinitionDto = await _modelDefinitionService.GetAsync(Id);
-            ViewModel = ObjectMapper.Map<ModelDefinitionDto, CreateEditModelDefinitionViewModel>(modelDefinitionDto);
+            ViewModel = ObjectMapper.Map<ModelDefinitionDto, EditModelDefinitionViewModel>(modelDefinitionDto);
 
             var output = await _fieldDefinitionService.GetListAsync(new GetListInput
             {
@@ -50,7 +50,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
 
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            var dto = ObjectMapper.Map<CreateEditModelDefinitionViewModel, CreateUpdateModelDefinitionDto>(ViewModel);
+            var dto = ObjectMapper.Map<EditModelDefinitionViewModel, UpdateModelDefinitionDto>(ViewModel);
             await _modelDefinitionService.UpdateAsync(Id, dto);
             return NoContent();
         }

@@ -19,14 +19,14 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         }
 
         [HttpPost]
-        public virtual Task<ModelDefinitionDto> CreateAsync(CreateUpdateModelDefinitionDto input)
+        public virtual Task<ModelDefinitionDto> CreateAsync(CreateModelDefinitionDto input)
         {
             return _service.CreateAsync(input);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public virtual Task<ModelDefinitionDto> UpdateAsync(Guid id, CreateUpdateModelDefinitionDto input)
+        public virtual Task<ModelDefinitionDto> UpdateAsync(Guid id, UpdateModelDefinitionDto input)
         {
             return _service.UpdateAsync(id, input);
         }

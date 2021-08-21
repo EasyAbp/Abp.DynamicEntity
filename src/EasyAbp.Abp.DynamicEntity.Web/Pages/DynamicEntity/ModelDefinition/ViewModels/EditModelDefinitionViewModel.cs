@@ -6,20 +6,12 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition.ViewModels
 {
-    public class CreateEditModelDefinitionViewModel
+    public class EditModelDefinitionViewModel
     {
-        [Required]
-        [Display(Name = "ModelDefinitionName")]
-        public string Name { get; set; }
-
         [Required]
         [Display(Name = "ModelDefinitionDisplayName")]
         public string DisplayName { get; set; }
-
-        [Required]
-        [Display(Name = "ModelDefinitionType")]
-        public string Type { get; set; }
-
+        
         public List<SelectListItem> Fields { get; set; } = new List<SelectListItem>();
 
         [SelectItems(nameof(Fields))]

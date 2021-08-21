@@ -29,9 +29,8 @@ namespace EasyAbp.Abp.DynamicEntity
                 .ConstructUsing((src, ctx) => ctx.Mapper.Map<FieldDefinitionDto>(src.FieldDefinition))
                 ;
             
-            CreateMap<CreateUpdateModelDefinitionDto, ModelDefinition>(MemberList.None)
-                .Ignore(x => x.Fields)
-                ;
+            CreateMap<CreateModelDefinitionDto, ModelDefinition>(MemberList.None).Ignore(x => x.Fields);
+            CreateMap<UpdateModelDefinitionDto, ModelDefinition>(MemberList.None).Ignore(x => x.Fields);
             
             CreateMap<DynamicEntities.DynamicEntity, DynamicEntityDto>();
             CreateMap<CreateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source);

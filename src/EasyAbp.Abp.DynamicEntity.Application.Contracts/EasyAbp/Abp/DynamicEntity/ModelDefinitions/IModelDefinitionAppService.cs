@@ -10,8 +10,8 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             ModelDefinitionDto,
             Guid,
             GetListInput,
-            CreateUpdateModelDefinitionDto,
-            CreateUpdateModelDefinitionDto>
+            CreateModelDefinitionDto,
+            UpdateModelDefinitionDto>
     {
         Task<ModelDefinitionDto> GetByName(string name);
     }

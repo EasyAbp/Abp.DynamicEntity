@@ -86,7 +86,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             var fdPrice = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "price");
 
             // Act
-            var output = await _modelDefinitionAppService.CreateAsync(new CreateUpdateModelDefinitionDto
+            var output = await _modelDefinitionAppService.CreateAsync(new CreateModelDefinitionDto
             {
                 Name = "car",
                 DisplayName = "Car",
@@ -130,7 +130,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             // Arrange
             
             // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.CreateAsync(new CreateUpdateModelDefinitionDto
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.CreateAsync(new CreateModelDefinitionDto
             {
                 Name = "book",
                 DisplayName = "Book",
@@ -148,7 +148,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             var id = (await _modelDefinitionRepository.InsertAsync(new ModelDefinition(Guid.NewGuid(), "book2", "Book2", "DynamicEntity.Book2"))).Id;
             
             // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new CreateUpdateModelDefinitionDto
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new CreateModelDefinitionDto
             {
                 Name = "book",
                 DisplayName = "Book",

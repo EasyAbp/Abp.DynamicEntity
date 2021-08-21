@@ -19,12 +19,13 @@ namespace EasyAbp.Abp.DynamicEntity.Web
             CreateMap<FieldDefinitionDto, CreateEditFieldDefinitionViewModel>();
             CreateMap<CreateEditFieldDefinitionViewModel, CreateUpdateFieldDefinitionDto>();
             
-            CreateMap<ModelDefinitionDto, CreateEditModelDefinitionViewModel>()
+            CreateMap<ModelDefinitionDto, EditModelDefinitionViewModel>()
                 .Ignore(dest => dest.Fields)
                 .ForMember(dest => dest.FieldIds, opt =>
                     opt.MapFrom(src => src.Fields.Select(fd => fd.Id)))
                 ;
-            CreateMap<CreateEditModelDefinitionViewModel, CreateUpdateModelDefinitionDto>();
+            CreateMap<CreateModelDefinitionViewModel, CreateModelDefinitionDto>();
+            CreateMap<EditModelDefinitionViewModel, UpdateModelDefinitionDto>();
         }
     }
 }

@@ -9,7 +9,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
-    public class ModelDefinitionAppService : CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetListInput, CreateUpdateModelDefinitionDto, CreateUpdateModelDefinitionDto>, IModelDefinitionAppService
+    public class ModelDefinitionAppService : CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetListInput, CreateModelDefinitionDto, UpdateModelDefinitionDto>, IModelDefinitionAppService
     {
         protected override string GetPolicyName { get; set; } = DynamicEntityPermissions.ModelDefinition.Default;
         protected override string GetListPolicyName { get; set; } = DynamicEntityPermissions.ModelDefinition.Default;
@@ -38,7 +38,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             return await base.CreateFilteredQueryAsync(input);
         }
 
-        protected virtual async Task SetFields(ModelDefinition modelDefinition, CreateUpdateModelDefinitionDto createInput)
+        protected virtual async Task SetFields(ModelDefinition modelDefinition, UpdateModelDefinitionDto createInput)
         {
             var fields = (await _fieldDefinitionRepository.GetByIds(createInput.FieldIds))
                 .ToDictionary(fd => fd.Id);
@@ -51,17 +51,17 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             }
         }
 
-        protected override async Task<ModelDefinition> MapToEntityAsync(CreateUpdateModelDefinitionDto createInput)
+        protected override async Task<ModelDefinition> MapToEntityAsync(CreateModelDefinitionDto createInput)
         {
             var entity = await base.MapToEntityAsync(createInput);
             await SetFields(entity, createInput);
             return entity;
         }
 
-        protected override async Task MapToEntityAsync(CreateUpdateModelDefinitionDto updateInput, ModelDefinition entity)
+        protected override async Task MapToEntityAsync(UpdateModelDefinitionDto input, ModelDefinition entity)
         {
-            await base.MapToEntityAsync(updateInput, entity);
-            await SetFields(entity, updateInput);   
+            await base.MapToEntityAsync(input, entity);
+            await SetFields(entity, input);   
         }
         
         public async Task<ModelDefinitionDto> GetByName(string name)
@@ -70,19 +70,13 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             return await MapToGetOutputDtoAsync(entity);
         }
 
-        public override async Task<ModelDefinitionDto> CreateAsync(CreateUpdateModelDefinitionDto input)
+        public override async Task<ModelDefinitionDto> CreateAsync(CreateModelDefinitionDto input)
         {
             await CheckDuplicateName(input);
             return await base.CreateAsync(input);
         }
 
-        public override async Task<ModelDefinitionDto> UpdateAsync(Guid id, CreateUpdateModelDefinitionDto input)
-        {
-            await CheckDuplicateName(input, id);
-            return await base.UpdateAsync(id, input);
-        }
-
-        private async Task CheckDuplicateName(CreateUpdateModelDefinitionDto input, Guid? id = null)
+        private async Task CheckDuplicateName(CreateModelDefinitionDto input, Guid? id = null)
         {
             var existModelDefinition = await _modelDefinitionRepository.FindAsync(md => md.Name == input.Name);
             if (existModelDefinition != null && (id == null || id.Value != existModelDefinition.Id))
