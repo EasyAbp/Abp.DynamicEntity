@@ -8,25 +8,28 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
     public class DynamicEntity : FullAuditedAggregateRoot<Guid>, IMultiTenant, IDynamicEntityModel
     {
         public virtual Guid? TenantId { get; protected set; }
+        
         public virtual Guid? ModelDefinitionId { get; protected set; }
+        
         public virtual ModelDefinition ModelDefinition { get; protected set; }
-
+        
         protected DynamicEntity()
         {
         }
 
         public DynamicEntity(
-            Guid id, 
-            Guid? tenantId = null 
+            Guid id,
+            Guid? tenantId,
+            Guid? modelDefinitionId
         ) : base(id)
         {
             TenantId = tenantId;
+            ModelDefinitionId = modelDefinitionId;
         }
 
-        public DynamicEntity SetModelDefinition(Guid? modelDefinitionId)
+        public void SetModelDefinition(Guid? modelDefinitionId)
         {
             ModelDefinitionId = modelDefinitionId;
-            return this;
         }
     }
 }

@@ -40,19 +40,17 @@ namespace EasyAbp.Abp.DynamicEntity
             var fdPrice = new FieldDefinition(_guidGenerator.Create(), "price", "Price", FieldDataType.Number);
             await _fieldDefinitionRepository.InsertAsync(fdPrice);
 
-            var mdBook = new ModelDefinition(_guidGenerator.Create(), "book", "Book", "DynamicEntity.Book");
+            var mdBook = new ModelDefinition(_guidGenerator.Create(), "book", "Book", "DynamicEntity.Book", new PermissionSetValueObject());
             mdBook.AddField(fdPrice.Id, 2);
             mdBook.AddField(fdName.Id, 1);
             await _modelDefinitionRepository.InsertAsync(mdBook);
 
-            var deBook1 = new DynamicEntities.DynamicEntity(_guidGenerator.Create());
-            deBook1.SetModelDefinition(mdBook.Id);
+            var deBook1 = new DynamicEntities.DynamicEntity(_guidGenerator.Create(), context.TenantId, mdBook.Id);
             deBook1.SetProperty("name", "Book1");
             deBook1.SetProperty("price", 100.00f);
-            await _dynamicEntityRepository.InsertAsync(deBook1);           
-            
-            var deBook2 = new DynamicEntities.DynamicEntity(_guidGenerator.Create());
-            deBook2.SetModelDefinition(mdBook.Id);
+            await _dynamicEntityRepository.InsertAsync(deBook1);
+
+            var deBook2 = new DynamicEntities.DynamicEntity(_guidGenerator.Create(), context.TenantId, mdBook.Id);
             deBook2.SetProperty("name", "Book2");
             deBook2.SetProperty("price", 200.00f);
             await _dynamicEntityRepository.InsertAsync(deBook2);

@@ -23,7 +23,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             // Arrange
 
             // Act
-            var output = await _fieldDefinitionAppService.GetListAsync(new GetListInput
+            var output = await _fieldDefinitionAppService.GetListAsync(new GetFieldDefinitionListInput
             {
                 Filter = "name"
             });
@@ -40,7 +40,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             // Arrange
 
             // Act
-            var output = await _fieldDefinitionAppService.GetListAsync(new GetListInput
+            var output = await _fieldDefinitionAppService.GetListAsync(new GetFieldDefinitionListInput
             {
                 Filter = "number"
             });

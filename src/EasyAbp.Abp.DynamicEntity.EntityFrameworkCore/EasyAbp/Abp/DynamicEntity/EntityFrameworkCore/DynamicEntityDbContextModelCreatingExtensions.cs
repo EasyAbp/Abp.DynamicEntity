@@ -50,6 +50,8 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
                     .HasForeignKey(x => x.ModelDefinitionId)
                     ;
 
+                b.OwnsOne(x => x.PermissionSet);
+
                 b.HasIndex(x => x.Name);
             });
             

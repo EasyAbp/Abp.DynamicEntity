@@ -11,6 +11,8 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos
         public string DisplayName { get; set; }
         
         [Required]
-        public List<Guid> FieldIds { get; set; } = new List<Guid>();
+        public List<Guid> FieldIds { get; set; } = new();
+        
+        public PermissionSetDto PermissionSet { get; set; } = new();
     }
 }

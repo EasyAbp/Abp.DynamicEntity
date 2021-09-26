@@ -31,10 +31,12 @@ namespace EasyAbp.Abp.DynamicEntity
             
             CreateMap<CreateModelDefinitionDto, ModelDefinition>(MemberList.None).Ignore(x => x.Fields);
             CreateMap<UpdateModelDefinitionDto, ModelDefinition>(MemberList.None).Ignore(x => x.Fields);
+            CreateMap<PermissionSetDto, PermissionSetValueObject>();
+            CreateMap<PermissionSetValueObject, PermissionSetDto>();
             
             CreateMap<DynamicEntities.DynamicEntity, DynamicEntityDto>();
-            CreateMap<CreateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source);
-            CreateMap<UpdateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source);
+            CreateMap<CreateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source).MapExtraProperties();
+            CreateMap<UpdateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source).MapExtraProperties();
         }
     }
 }

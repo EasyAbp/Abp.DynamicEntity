@@ -50,7 +50,7 @@ namespace DynamicEntitySample.DynamicEntities
             var mdComputer = await _modelDefinitionRepository.FindAsync(md => md.Name == "computer");
             if (mdComputer == null)
             {
-                mdComputer = new ModelDefinition(_guidGenerator.Create(),  "computer", "Computer", "DynamicEntitySample.Computer");
+                mdComputer = new ModelDefinition(_guidGenerator.Create(),  "computer", "Computer", "DynamicEntitySample.Computer", new PermissionSetValueObject());
                 mdComputer.AddField(fdCpu.Id, 1);
                 mdComputer.AddField(fdRam.Id, 2);
                 mdComputer.AddField(fdPrice.Id, 3);
@@ -66,7 +66,7 @@ namespace DynamicEntitySample.DynamicEntities
                 var rnd = new Random();
                 for (int i = 0; i < 3000; i++)
                 {
-                    var entity = new DynamicEntity(_guidGenerator.Create()).SetModelDefinition(mdComputer.Id);
+                    var entity = new DynamicEntity(_guidGenerator.Create(), context.TenantId, mdComputer.Id);
                     entity.SetProperty("cpu", cpus[rnd.Next() % cpus.Length]);
                     entity.SetProperty("ram", rams[rnd.Next() % rams.Length]);
                     entity.SetProperty("price", prices[rnd.Next() % prices.Length]);

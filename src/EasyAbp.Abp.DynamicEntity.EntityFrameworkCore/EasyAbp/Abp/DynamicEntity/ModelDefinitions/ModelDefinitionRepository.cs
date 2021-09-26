@@ -22,6 +22,5 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 .Include(md => md.Fields)
                 .ThenInclude(mf => mf.FieldDefinition);
         }
-        
     }
 }

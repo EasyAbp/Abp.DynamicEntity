@@ -9,7 +9,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
-    public class ModelDefinitionAppService : CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetListInput, CreateModelDefinitionDto, UpdateModelDefinitionDto>, IModelDefinitionAppService
+    public class ModelDefinitionAppService : CrudAppService<ModelDefinition, ModelDefinitionDto, Guid, GetModelDefinitionListInput, CreateModelDefinitionDto, UpdateModelDefinitionDto>, IModelDefinitionAppService
     {
         protected override string GetPolicyName { get; set; } = DynamicEntityPermissions.ModelDefinition.Default;
         protected override string GetListPolicyName { get; set; } = DynamicEntityPermissions.ModelDefinition.Default;
@@ -26,7 +26,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             _fieldDefinitionRepository = fieldDefinitionRepository;
         }
 
-        protected override async Task<IQueryable<ModelDefinition>> CreateFilteredQueryAsync(GetListInput input)
+        protected override async Task<IQueryable<ModelDefinition>> CreateFilteredQueryAsync(GetModelDefinitionListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())
             {

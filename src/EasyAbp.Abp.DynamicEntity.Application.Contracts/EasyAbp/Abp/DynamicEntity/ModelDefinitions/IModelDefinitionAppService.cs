@@ -9,7 +9,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         ICrudAppService<
             ModelDefinitionDto,
             Guid,
-            GetListInput,
+            GetModelDefinitionListInput,
             CreateModelDefinitionDto,
             UpdateModelDefinitionDto>
     {

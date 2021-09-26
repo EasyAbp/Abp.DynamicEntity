@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 {
-    public class FieldDefinitionAppService : CrudAppService<FieldDefinition, FieldDefinitionDto, Guid, GetListInput, CreateUpdateFieldDefinitionDto, CreateUpdateFieldDefinitionDto>,
+    public class FieldDefinitionAppService : CrudAppService<FieldDefinition, FieldDefinitionDto, Guid, GetFieldDefinitionListInput, CreateUpdateFieldDefinitionDto, CreateUpdateFieldDefinitionDto>,
         IFieldDefinitionAppService
     {
         protected override string GetPolicyName { get; set; } = DynamicEntityPermissions.FieldDefinition.Default;
@@ -24,7 +24,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             _repository = repository;
         }
 
-        protected override async Task<IQueryable<FieldDefinition>> CreateFilteredQueryAsync(GetListInput input)
+        protected override async Task<IQueryable<FieldDefinition>> CreateFilteredQueryAsync(GetFieldDefinitionListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())
             {

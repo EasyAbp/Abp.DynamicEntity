@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos
 {
-    public class GetListInput : PagedAndSortedResultRequestDto, IDynamicQueryInput
+    public class GetDynamicEntityListInput : PagedAndSortedResultRequestDto, IDynamicQueryInput
     {
         public Guid? ModelDefinitionId { get; set; }
         

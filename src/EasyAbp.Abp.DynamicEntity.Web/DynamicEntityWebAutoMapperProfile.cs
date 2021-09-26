@@ -26,6 +26,8 @@ namespace EasyAbp.Abp.DynamicEntity.Web
                 ;
             CreateMap<CreateModelDefinitionViewModel, CreateModelDefinitionDto>();
             CreateMap<EditModelDefinitionViewModel, UpdateModelDefinitionDto>();
+            CreateMap<CreateEditPermissionSetViewModel, PermissionSetDto>();
+            CreateMap<PermissionSetDto, CreateEditPermissionSetViewModel>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos
 {
-    public class GetListInput : PagedAndSortedResultRequestDto
+    public class GetModelDefinitionListInput : PagedAndSortedResultRequestDto
     {
         public string Filter { get; set; } 
     }

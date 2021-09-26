@@ -10,7 +10,7 @@ using Shouldly;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Xunit;
-using GetListInput = EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos.GetListInput;
+using GetModelDefinitionListInput = EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos.GetModelDefinitionListInput;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
@@ -33,7 +33,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             // Arrange
 
             // Act
-            var output = await _modelDefinitionAppService.GetListAsync(new GetListInput
+            var output = await _modelDefinitionAppService.GetListAsync(new GetModelDefinitionListInput
             {
                 Filter = "book"
             });
@@ -50,7 +50,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             // Arrange
 
             // Act
-            var output = await _modelDefinitionAppService.GetListAsync(new GetListInput
+            var output = await _modelDefinitionAppService.GetListAsync(new GetModelDefinitionListInput
             {
                 Filter = "DynamicEntity"
             });
@@ -145,7 +145,8 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         public async Task ShouldCheckDuplicateName_Update()
         {
             // Arrange
-            var id = (await _modelDefinitionRepository.InsertAsync(new ModelDefinition(Guid.NewGuid(), "book2", "Book2", "DynamicEntity.Book2"))).Id;
+            var id = (await _modelDefinitionRepository.InsertAsync(new ModelDefinition(Guid.NewGuid(), "book2", "Book2",
+                "DynamicEntity.Book2", new PermissionSetValueObject()))).Id;
             
             // Act
             var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new CreateModelDefinitionDto

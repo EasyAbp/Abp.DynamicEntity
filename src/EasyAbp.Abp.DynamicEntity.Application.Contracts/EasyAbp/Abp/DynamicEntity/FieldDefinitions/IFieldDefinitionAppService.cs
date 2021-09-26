@@ -9,7 +9,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         ICrudAppService< 
             FieldDefinitionDto, 
             Guid, 
-            GetListInput,
+            GetFieldDefinitionListInput,
             CreateUpdateFieldDefinitionDto,
             CreateUpdateFieldDefinitionDto>
     {

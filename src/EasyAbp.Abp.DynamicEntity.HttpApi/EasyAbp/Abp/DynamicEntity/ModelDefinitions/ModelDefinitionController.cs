@@ -53,7 +53,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         }
 
         [HttpGet]
-        public virtual Task<PagedResultDto<ModelDefinitionDto>> GetListAsync(GetListInput input)
+        public virtual Task<PagedResultDto<ModelDefinitionDto>> GetListAsync(GetModelDefinitionListInput input)
         {
             return _service.GetListAsync(input);
         }

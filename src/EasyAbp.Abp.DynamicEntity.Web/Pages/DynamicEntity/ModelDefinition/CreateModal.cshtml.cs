@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
+using EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos;
 using EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Volo.Abp.Application.Dtos;
-using GetListInput = EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos.GetListInput;
 
 namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
 {
@@ -28,7 +28,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
         
         public virtual async Task OnGetAsync()
         {
-            var output = await _fieldDefinitionService.GetListAsync(new GetListInput
+            var output = await _fieldDefinitionService.GetListAsync(new GetFieldDefinitionListInput
             {
                 MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount, // TODO: should use a modal form to select fields
             });

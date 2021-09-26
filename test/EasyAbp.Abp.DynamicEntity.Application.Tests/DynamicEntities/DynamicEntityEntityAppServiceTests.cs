@@ -50,7 +50,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             // Arrange
 
             // Act
-            var output = await _dynamicEntityAppService.GetListAsync(new GetListInput
+            var output = await _dynamicEntityAppService.GetListAsync(new GetDynamicEntityListInput
                 {
                     FilterGroup = new DynamicQueryGroup
                     {
