@@ -1,4 +1,5 @@
 ﻿using EasyAbp.Abp.DynamicEntity;
+using EasyAbp.Abp.DynamicPermission;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
@@ -19,7 +20,8 @@ namespace DynamicEntitySample
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(AbpDynamicEntityApplicationModule)
+        typeof(AbpDynamicEntityApplicationModule),
+        typeof(AbpDynamicPermissionApplicationModule)
     )]
     public class DynamicEntitySampleApplicationModule : AbpModule
     {

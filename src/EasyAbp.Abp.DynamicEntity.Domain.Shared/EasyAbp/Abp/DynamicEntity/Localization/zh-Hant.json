@@ -42,6 +42,9 @@
     "CreateModelDefinition": "創建",
     "EditModelDefinition": "編輯",
     "ModelDefinitionDeletionConfirmationMessage": "確定刪除模型定義 '{0}'?",
-    "NoAvailableFields": "無可用字段"
+    "NoAvailableFields": "無可用字段",
+    "TryCreateDynamicPermissions": "自動創建動態權限",
+    "TryCreateDynamicPermissionsDesc": "若指定權限未定義，則自動創建動態權限",
+    "EasyAbp.Abp.DynamicEntity:DynamicPermissionModuleNotInstalledException": "動態權限模塊未安裝，無法創建動態權限"
   }
 }

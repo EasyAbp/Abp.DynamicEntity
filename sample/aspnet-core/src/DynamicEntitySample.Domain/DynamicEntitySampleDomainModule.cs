@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using DynamicEntitySample.MultiTenancy;
 using EasyAbp.Abp.DynamicEntity;
+using EasyAbp.Abp.DynamicPermission;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -29,7 +30,8 @@ namespace DynamicEntitySample
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpEmailingModule),
-        typeof(AbpDynamicEntityDomainModule)
+        typeof(AbpDynamicEntityDomainModule),
+        typeof(AbpDynamicPermissionDomainModule)
     )]
     public class DynamicEntitySampleDomainModule : AbpModule
     {

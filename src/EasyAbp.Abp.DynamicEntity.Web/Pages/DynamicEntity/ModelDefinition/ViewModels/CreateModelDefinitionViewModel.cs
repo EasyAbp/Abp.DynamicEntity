@@ -27,6 +27,12 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition.View
         [Display(Name = "FieldDefinition")]
         public List<Guid> FieldIds { get; set; } = new();
         
-        public CreateEditPermissionSetViewModel PermissionSet { get; set; } = new();
+        public CreatePermissionSetViewModel PermissionSet { get; set; } = new();
+        
+        [Display(
+            Name = "TryCreateDynamicPermissions",
+            Description = "TryCreateDynamicPermissionsDesc"
+        )]
+        public bool TryCreateDynamicPermissions { get; set; }
     }
 }

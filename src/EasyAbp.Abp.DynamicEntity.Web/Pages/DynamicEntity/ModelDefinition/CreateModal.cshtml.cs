@@ -34,6 +34,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.ModelDefinition
             });
 
             ViewModel.Fields = output.Items.Select(fd => new SelectListItem(fd.Name, fd.Id.ToString())).ToList();
+            ViewModel.TryCreateDynamicPermissions = true;
         }
 
         public virtual async Task<IActionResult> OnPostAsync()

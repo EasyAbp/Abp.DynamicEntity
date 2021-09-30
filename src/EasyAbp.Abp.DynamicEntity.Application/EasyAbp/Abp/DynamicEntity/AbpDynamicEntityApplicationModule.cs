@@ -1,4 +1,5 @@
-﻿using EasyAbp.Abp.DynamicQuery;
+﻿using EasyAbp.Abp.DynamicPermission;
+using EasyAbp.Abp.DynamicQuery;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
@@ -9,6 +10,7 @@ namespace EasyAbp.Abp.DynamicEntity
     [DependsOn(
         typeof(AbpDynamicEntityDomainModule),
         typeof(AbpDynamicEntityApplicationContractsModule),
+        typeof(AbpDynamicPermissionApplicationContractsModule),
         typeof(AbpDddApplicationModule),
         typeof(AbpAutoMapperModule)
         )]

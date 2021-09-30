@@ -20,6 +20,7 @@
     <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="EasyAbp.Abp.DynamicPermission.Application" Version="$(EasyAbpAbpDynamicPermissionModuleVersion)" />
   </ItemGroup>
 
 </Project>

@@ -42,6 +42,9 @@
     "CreateModelDefinition": "Create",
     "EditModelDefinition": "Edit",
     "ModelDefinitionDeletionConfirmationMessage": "Are you sure to delete the ModelDefinition '{0}'?",
-    "NoAvailableFields": "No available fields"
+    "NoAvailableFields": "No available fields",
+    "TryCreateDynamicPermissions": "Try create dynamic permissions",
+    "TryCreateDynamicPermissionsDesc": "Automatically create the permission you specified above.",
+    "EasyAbp.Abp.DynamicEntity:DynamicPermissionModuleNotInstalledException": "Failed to create the dynamic permissions since the DynamicPermission module was not installed."
   }
 }

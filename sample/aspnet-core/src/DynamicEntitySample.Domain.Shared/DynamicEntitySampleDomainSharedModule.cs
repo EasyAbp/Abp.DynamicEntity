@@ -1,5 +1,6 @@
 ﻿using DynamicEntitySample.Localization;
 using EasyAbp.Abp.DynamicEntity;
+using EasyAbp.Abp.DynamicPermission;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -25,7 +26,8 @@ namespace DynamicEntitySample
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule),
-        typeof(AbpDynamicEntityDomainSharedModule)
+        typeof(AbpDynamicEntityDomainSharedModule),
+        typeof(AbpDynamicPermissionDomainSharedModule)
     )]
     public class DynamicEntitySampleDomainSharedModule : AbpModule
     {

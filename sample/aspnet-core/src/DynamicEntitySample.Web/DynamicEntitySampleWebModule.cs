@@ -11,6 +11,7 @@ using DynamicEntitySample.MultiTenancy;
 using DynamicEntitySample.Web.Menus;
 using EasyAbp.Abp.DynamicEntity;
 using EasyAbp.Abp.DynamicEntity.Web;
+using EasyAbp.Abp.DynamicPermission.Web;
 using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
@@ -55,7 +56,8 @@ namespace DynamicEntitySample.Web
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
-        typeof(AbpDynamicEntityWebModule)
+        typeof(AbpDynamicEntityWebModule),
+        typeof(AbpDynamicPermissionWebModule)
     )]
     public class DynamicEntitySampleWebModule : AbpModule
     {

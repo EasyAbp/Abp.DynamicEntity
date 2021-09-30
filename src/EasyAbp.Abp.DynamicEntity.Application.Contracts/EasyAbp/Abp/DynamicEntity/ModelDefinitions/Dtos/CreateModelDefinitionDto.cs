@@ -12,5 +12,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos
         
         [Required]
         public string Type { get; set; }
+        
+        public bool TryCreateDynamicPermissions { get; set; }
     }
 }

@@ -50,6 +50,7 @@
     <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="$(AbpVersion)" />
+    <PackageReference Include="EasyAbp.Abp.DynamicPermission.Web" Version="$(EasyAbpAbpDynamicPermissionModuleVersion)" />
   </ItemGroup>
 
 </Project>

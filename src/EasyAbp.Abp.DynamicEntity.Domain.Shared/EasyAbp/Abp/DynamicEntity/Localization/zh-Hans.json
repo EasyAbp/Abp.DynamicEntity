@@ -42,6 +42,9 @@
     "CreateModelDefinition": "创建",
     "EditModelDefinition": "编辑",
     "ModelDefinitionDeletionConfirmationMessage": "确定删除模型定义 '{0}'?",
-    "NoAvailableFields": "无可用字段"
+    "NoAvailableFields": "无可用字段",
+    "TryCreateDynamicPermissions": "自动创建动态权限",
+    "TryCreateDynamicPermissionsDesc": "若指定权限未定义，则自动创建动态权限",
+    "EasyAbp.Abp.DynamicEntity:DynamicPermissionModuleNotInstalledException": "动态权限模块未安装，无法创建动态权限"
   }
 }

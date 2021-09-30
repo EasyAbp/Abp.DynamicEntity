@@ -1,4 +1,5 @@
 ﻿using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
+using EasyAbp.Abp.DynamicPermission.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -25,7 +26,8 @@ namespace DynamicEntitySample.EntityFrameworkCore
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(AbpDynamicEntityEntityFrameworkCoreModule)
+        typeof(AbpDynamicEntityEntityFrameworkCoreModule),
+        typeof(AbpDynamicPermissionEntityFrameworkCoreModule)
     )]
     public class DynamicEntitySampleEntityFrameworkCoreModule : AbpModule
     {

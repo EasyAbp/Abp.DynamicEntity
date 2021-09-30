@@ -1,6 +1,7 @@
 ﻿using Localization.Resources.AbpUi;
 using DynamicEntitySample.Localization;
 using EasyAbp.Abp.DynamicEntity;
+using EasyAbp.Abp.DynamicPermission;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -20,7 +21,8 @@ namespace DynamicEntitySample
         typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(AbpDynamicEntityHttpApiModule)
+        typeof(AbpDynamicEntityHttpApiModule),
+        typeof(AbpDynamicPermissionHttpApiModule)
     )]
     public class DynamicEntitySampleHttpApiModule : AbpModule
     {

@@ -4,8 +4,11 @@ using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos;
 using EasyAbp.Abp.DynamicEntity.Permissions;
+using EasyAbp.Abp.DynamicPermission.PermissionDefinitions;
+using EasyAbp.Abp.DynamicPermission.PermissionDefinitions.Dtos;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Authorization.Permissions;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
@@ -19,11 +22,16 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 
         private readonly IModelDefinitionRepository _modelDefinitionRepository;
         private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
+        private readonly IPermissionDefinitionManager _permissionDefinitionManager;
 
-        public ModelDefinitionAppService(IModelDefinitionRepository modelDefinitionRepository, IFieldDefinitionRepository fieldDefinitionRepository) : base(modelDefinitionRepository)
+        public ModelDefinitionAppService(
+            IModelDefinitionRepository modelDefinitionRepository,
+            IFieldDefinitionRepository fieldDefinitionRepository,
+            IPermissionDefinitionManager permissionDefinitionManager) : base(modelDefinitionRepository)
         {
             _modelDefinitionRepository = modelDefinitionRepository;
             _fieldDefinitionRepository = fieldDefinitionRepository;
+            _permissionDefinitionManager = permissionDefinitionManager;
         }
 
         protected override async Task<IQueryable<ModelDefinition>> CreateFilteredQueryAsync(GetModelDefinitionListInput input)
@@ -72,8 +80,57 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 
         public override async Task<ModelDefinitionDto> CreateAsync(CreateModelDefinitionDto input)
         {
+            await CheckCreatePolicyAsync();
+
             await CheckDuplicateName(input);
-            return await base.CreateAsync(input);
+
+            if (input.TryCreateDynamicPermissions)
+            {
+                const string permissionPrefix = DynamicEntityConsts.DynamicPermissionPrefix;
+                
+                input.PermissionSet.Get ??= $"{permissionPrefix}.{input.Name}";
+                input.PermissionSet.GetList ??= $"{permissionPrefix}.{input.Name}";
+                input.PermissionSet.Create ??= $"{permissionPrefix}.{input.Name}.Create";
+                input.PermissionSet.Update ??= $"{permissionPrefix}.{input.Name}.Update";
+                input.PermissionSet.Delete ??= $"{permissionPrefix}.{input.Name}.Delete";
+            }
+
+            var entity = await MapToEntityAsync(input);
+
+            TryToSetTenantId(entity);
+
+            await Repository.InsertAsync(entity, autoSave: true);
+
+            if (input.TryCreateDynamicPermissions)
+            {
+                await TryCreateDynamicPermissionsAsync(input.PermissionSet);
+            }
+
+            return await MapToGetOutputDtoAsync(entity);
+        }
+
+        private async Task TryCreateDynamicPermissionsAsync(PermissionSetDto permissionSet)
+        {
+            var definedPermissionNames = _permissionDefinitionManager.GetPermissions().Select(x => x.Name).ToList();
+
+            var appService = LazyServiceProvider.LazyGetService<IPermissionDefinitionAppService>();
+
+            if (appService == null)
+            {
+                throw new DynamicPermissionModuleNotInstalledException();
+            }
+
+            foreach (var permissionName in permissionSet.GetPermissionNames()
+                .Where(permissionName => !definedPermissionNames.Contains(permissionName)))
+            {
+                await appService.CreateAsync(new CreateUpdatePermissionDefinitionDto
+                {
+                    Name = permissionName,
+                    DisplayName = permissionName,
+                    Description = null,
+                    IsPublic = true
+                });
+            }
         }
 
         private async Task CheckDuplicateName(CreateModelDefinitionDto input, Guid? id = null)

@@ -1,4 +1,5 @@
 ﻿using EasyAbp.Abp.DynamicEntity;
+using EasyAbp.Abp.DynamicPermission;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
@@ -18,7 +19,8 @@ namespace DynamicEntitySample
         typeof(AbpTenantManagementHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpSettingManagementHttpApiClientModule),
-        typeof(AbpDynamicEntityHttpApiClientModule)
+        typeof(AbpDynamicEntityHttpApiClientModule),
+        typeof(AbpDynamicPermissionHttpApiClientModule)
     )]
     public class DynamicEntitySampleHttpApiClientModule : AbpModule
     {

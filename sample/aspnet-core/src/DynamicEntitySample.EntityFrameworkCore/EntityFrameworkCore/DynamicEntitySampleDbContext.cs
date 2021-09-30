@@ -1,4 +1,5 @@
 ﻿using EasyAbp.Abp.DynamicEntity.EntityFrameworkCore;
+using EasyAbp.Abp.DynamicPermission.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -73,6 +74,8 @@ namespace DynamicEntitySample.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
+            
+            builder.ConfigureAbpDynamicPermission();
             builder.ConfigureAbpDynamicEntity();
 
             /* Configure your own tables/entities inside here */
