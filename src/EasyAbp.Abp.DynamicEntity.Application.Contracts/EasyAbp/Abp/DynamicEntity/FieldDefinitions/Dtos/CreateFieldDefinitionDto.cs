@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos
 {
     [Serializable]
-    public class CreateUpdateFieldDefinitionDto
+    public class CreateFieldDefinitionDto
     {
         [Required]
         public string Name { get; set; }

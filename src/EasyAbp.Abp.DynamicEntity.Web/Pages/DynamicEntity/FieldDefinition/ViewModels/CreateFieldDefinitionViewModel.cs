@@ -3,7 +3,7 @@ using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 
 namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.FieldDefinition.ViewModels
 {
-    public class CreateEditFieldDefinitionViewModel
+    public class CreateFieldDefinitionViewModel
     {
         [Display(Name = "FieldDefinitionName")]
         public string Name { get; set; }

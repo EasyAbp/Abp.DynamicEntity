@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
@@ -46,14 +47,14 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             return await base.CreateFilteredQueryAsync(input);
         }
 
-        protected virtual async Task SetFields(ModelDefinition modelDefinition, UpdateModelDefinitionDto createInput)
+        protected virtual async Task SetFields(ModelDefinition modelDefinition, List<Guid> fieldIds)
         {
-            var fields = (await _fieldDefinitionRepository.GetByIds(createInput.FieldIds))
+            var fields = (await _fieldDefinitionRepository.GetByIds(fieldIds))
                 .ToDictionary(fd => fd.Id);
 
             modelDefinition.Fields.Clear();
             int order = 1;
-            foreach (var fieldId in createInput.FieldIds)
+            foreach (var fieldId in fieldIds)
             {
                 modelDefinition.AddField(fields[fieldId].Id, order++);
             }
@@ -62,14 +63,14 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         protected override async Task<ModelDefinition> MapToEntityAsync(CreateModelDefinitionDto createInput)
         {
             var entity = await base.MapToEntityAsync(createInput);
-            await SetFields(entity, createInput);
+            await SetFields(entity, createInput.FieldIds);
             return entity;
         }
 
         protected override async Task MapToEntityAsync(UpdateModelDefinitionDto input, ModelDefinition entity)
         {
             await base.MapToEntityAsync(input, entity);
-            await SetFields(entity, input);   
+            await SetFields(entity, input.FieldIds);   
         }
         
         public async Task<ModelDefinitionDto> GetByName(string name)

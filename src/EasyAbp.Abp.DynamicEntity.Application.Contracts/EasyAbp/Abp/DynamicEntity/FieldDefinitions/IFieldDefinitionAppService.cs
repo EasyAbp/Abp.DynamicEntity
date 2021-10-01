@@ -10,8 +10,8 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             FieldDefinitionDto, 
             Guid, 
             GetFieldDefinitionListInput,
-            CreateUpdateFieldDefinitionDto,
-            CreateUpdateFieldDefinitionDto>
+            CreateFieldDefinitionDto,
+            UpdateFieldDefinitionDto>
     {
         Task<FieldDefinitionDto> GetByName(string name);
     }

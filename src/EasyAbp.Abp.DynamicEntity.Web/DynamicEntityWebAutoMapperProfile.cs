@@ -16,8 +16,9 @@ namespace EasyAbp.Abp.DynamicEntity.Web
             /* You can configure your AutoMapper mapping configuration here.
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
-            CreateMap<FieldDefinitionDto, CreateEditFieldDefinitionViewModel>();
-            CreateMap<CreateEditFieldDefinitionViewModel, CreateUpdateFieldDefinitionDto>();
+            CreateMap<FieldDefinitionDto, EditFieldDefinitionViewModel>();
+            CreateMap<CreateFieldDefinitionViewModel, CreateFieldDefinitionDto>();
+            CreateMap<EditFieldDefinitionViewModel, UpdateFieldDefinitionDto>();
             
             CreateMap<ModelDefinitionDto, EditModelDefinitionViewModel>()
                 .Ignore(dest => dest.Fields)

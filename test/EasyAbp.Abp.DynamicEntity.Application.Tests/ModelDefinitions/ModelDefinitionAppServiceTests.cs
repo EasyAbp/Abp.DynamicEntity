@@ -149,11 +149,9 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 "DynamicEntity.Book2", new PermissionSetValueObject()))).Id;
             
             // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new CreateModelDefinitionDto
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new UpdateModelDefinitionDto
             {
-                Name = "book",
-                DisplayName = "Book",
-                Type = "DynamicEntity.Book"
+                DisplayName = "Book"
             }));
             
             // Assert

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 {
-    public class FieldDefinitionAppService : CrudAppService<FieldDefinition, FieldDefinitionDto, Guid, GetFieldDefinitionListInput, CreateUpdateFieldDefinitionDto, CreateUpdateFieldDefinitionDto>,
+    public class FieldDefinitionAppService : CrudAppService<FieldDefinition, FieldDefinitionDto, Guid, GetFieldDefinitionListInput, CreateFieldDefinitionDto, UpdateFieldDefinitionDto>,
         IFieldDefinitionAppService
     {
         protected override string GetPolicyName { get; set; } = DynamicEntityPermissions.FieldDefinition.Default;
@@ -38,22 +38,16 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         public async Task<FieldDefinitionDto> GetByName(string name)
         {
             var entity = await _repository.GetAsync(fd => fd.Name == name);
-            return MapToGetOutputDto(entity);
+            return await MapToGetOutputDtoAsync(entity);
         }
 
-        public override async Task<FieldDefinitionDto> CreateAsync(CreateUpdateFieldDefinitionDto input)
+        public override async Task<FieldDefinitionDto> CreateAsync(CreateFieldDefinitionDto input)
         {
             await CheckDuplicateName(input);
             return await base.CreateAsync(input);
         }
 
-        public override async Task<FieldDefinitionDto> UpdateAsync(Guid id, CreateUpdateFieldDefinitionDto input)
-        {
-            await CheckDuplicateName(input, id);
-            return await base.UpdateAsync(id, input);
-        }
-
-        private async Task CheckDuplicateName(CreateUpdateFieldDefinitionDto input, Guid? id = null)
+        private async Task CheckDuplicateName(CreateFieldDefinitionDto input, Guid? id = null)
         {
             var existFieldDefinition = await _repository.GetByNameAsync(input.Name);
             if (existFieldDefinition != null && (id == null || id.Value != existFieldDefinition.Id))

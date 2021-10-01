@@ -26,14 +26,14 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         }
 
         [HttpPost]
-        public virtual Task<FieldDefinitionDto> CreateAsync(CreateUpdateFieldDefinitionDto input)
+        public virtual Task<FieldDefinitionDto> CreateAsync(CreateFieldDefinitionDto input)
         {
             return _service.CreateAsync(input);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public virtual Task<FieldDefinitionDto> UpdateAsync(Guid id, CreateUpdateFieldDefinitionDto input)
+        public virtual Task<FieldDefinitionDto> UpdateAsync(Guid id, UpdateFieldDefinitionDto input)
         {
             return _service.UpdateAsync(id, input);
         }

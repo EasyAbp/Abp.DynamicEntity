@@ -14,7 +14,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.FieldDefinition
         public Guid Id { get; set; }
 
         [BindProperty]
-        public CreateEditFieldDefinitionViewModel ViewModel { get; set; }
+        public EditFieldDefinitionViewModel ViewModel { get; set; }
 
         private readonly IFieldDefinitionAppService _service;
 
@@ -26,12 +26,12 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Pages.DynamicEntity.FieldDefinition
         public virtual async Task OnGetAsync()
         {
             var dto = await _service.GetAsync(Id);
-            ViewModel = ObjectMapper.Map<FieldDefinitionDto, CreateEditFieldDefinitionViewModel>(dto);
+            ViewModel = ObjectMapper.Map<FieldDefinitionDto, EditFieldDefinitionViewModel>(dto);
         }
 
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            var dto = ObjectMapper.Map<CreateEditFieldDefinitionViewModel, CreateUpdateFieldDefinitionDto>(ViewModel);
+            var dto = ObjectMapper.Map<EditFieldDefinitionViewModel, UpdateFieldDefinitionDto>(ViewModel);
             await _service.UpdateAsync(Id, dto);
             return NoContent();
         }

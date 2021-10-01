@@ -16,5 +16,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         public string Type { get; set; }
 
         public List<ModelFieldEto> Fields { get; set; } = new();
+        
+        public IPermissionSet PermissionSet { get; set; }
     }
 }

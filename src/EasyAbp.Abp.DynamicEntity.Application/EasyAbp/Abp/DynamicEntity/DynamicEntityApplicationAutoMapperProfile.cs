@@ -17,7 +17,8 @@ namespace EasyAbp.Abp.DynamicEntity
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
             CreateMap<FieldDefinition, FieldDefinitionDto>();
-            CreateMap<CreateUpdateFieldDefinitionDto, FieldDefinition>(MemberList.Source);
+            CreateMap<CreateFieldDefinitionDto, FieldDefinition>(MemberList.Source);
+            CreateMap<UpdateFieldDefinitionDto, FieldDefinition>(MemberList.Source);
             
             CreateMap<ModelDefinition, ModelDefinitionDto>()
                 .ForMember(dest => dest.Fields, opt =>

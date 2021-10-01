@@ -57,7 +57,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             // Arrange
             
             // Act
-            var output = await _fieldDefinitionAppService.CreateAsync(new CreateUpdateFieldDefinitionDto
+            var output = await _fieldDefinitionAppService.CreateAsync(new CreateFieldDefinitionDto
             {
                 Name = "publish_date",
                 DisplayName = "PublishDate",
@@ -92,7 +92,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             // Arrange
             
             // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.CreateAsync(new CreateUpdateFieldDefinitionDto
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.CreateAsync(new CreateFieldDefinitionDto
             {
                 Name = "price",
                 DisplayName = "Price",
@@ -110,11 +110,9 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             var id = (await _fieldDefinitionRepository.GetByNameAsync("name")).Id;
             
             // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.UpdateAsync(id, new CreateUpdateFieldDefinitionDto
+            var ex = await Assert.ThrowsAsync<BusinessException>(() => _fieldDefinitionAppService.UpdateAsync(id, new UpdateFieldDefinitionDto
             {
-                Name = "price",
-                DisplayName = "Price",
-                Type = FieldDataType.Float
+                DisplayName = "Price"
             }));
             
             // Assert
