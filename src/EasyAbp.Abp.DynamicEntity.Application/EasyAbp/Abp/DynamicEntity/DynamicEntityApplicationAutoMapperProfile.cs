@@ -36,8 +36,6 @@ namespace EasyAbp.Abp.DynamicEntity
             CreateMap<PermissionSetValueObject, PermissionSetDto>();
             
             CreateMap<DynamicEntities.DynamicEntity, DynamicEntityDto>();
-            CreateMap<CreateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source).MapExtraProperties();
-            CreateMap<UpdateDynamicEntityDto, DynamicEntities.DynamicEntity>(MemberList.Source).MapExtraProperties();
         }
     }
 }

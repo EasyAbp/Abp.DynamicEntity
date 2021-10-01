@@ -7,6 +7,7 @@ using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Data;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
@@ -85,9 +86,15 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 
         public override async Task<DynamicEntityDto> CreateAsync(CreateDynamicEntityDto input)
         {
-            var entity = await MapToEntityAsync(input);
+            var entity = new DynamicEntity(GuidGenerator.Create(), CurrentTenant.Id, input.ModelDefinitionId);
 
             var modelDefinition = await GetModelDefinitionAsync(entity.ModelDefinitionId);
+
+            foreach (var extraProperty in input.ExtraProperties.Where(x =>
+                modelDefinition.Fields.Select(y => y.FieldDefinition.Name.ToCamelCase()).Contains(x.Key.ToCamelCase())))
+            {
+                entity.SetProperty(extraProperty.Key, extraProperty.Value);
+            }
 
             await AuthorizationService.CheckAsync(new DynamicEntityOperationInfoModel(modelDefinition, entity),
                 new DynamicEntityOperationAuthorizationRequirement(DynamicEntityOperationAuthorizationRequirement
@@ -101,10 +108,14 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
         public override async Task<DynamicEntityDto> UpdateAsync(Guid id, UpdateDynamicEntityDto input)
         {
             var entity = await GetEntityByIdAsync(id);
-            
-            await MapToEntityAsync(input, entity);
-            
+
             var modelDefinition = await GetModelDefinitionAsync(entity.ModelDefinitionId);
+            
+            foreach (var extraProperty in input.ExtraProperties.Where(x =>
+                modelDefinition.Fields.Select(y => y.FieldDefinition.Name.ToCamelCase()).Contains(x.Key.ToCamelCase())))
+            {
+                entity.SetProperty(extraProperty.Key, extraProperty.Value);
+            }
 
             await AuthorizationService.CheckAsync(new DynamicEntityOperationInfoModel(modelDefinition, entity),
                 new DynamicEntityOperationAuthorizationRequirement(DynamicEntityOperationAuthorizationRequirement
