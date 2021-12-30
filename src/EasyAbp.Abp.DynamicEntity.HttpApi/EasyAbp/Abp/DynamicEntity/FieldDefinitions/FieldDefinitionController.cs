@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 {
-    [RemoteService(Name = "EasyAbpDynamicEntity")]
+    [RemoteService(Name = AbpDynamicEntityRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/abp/dynamic-entity/field-definition")]
     public class FieldDefinitionController : DynamicEntityController, IFieldDefinitionAppService
     {

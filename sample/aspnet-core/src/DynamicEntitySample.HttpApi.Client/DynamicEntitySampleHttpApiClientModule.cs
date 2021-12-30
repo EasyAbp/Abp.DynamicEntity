@@ -8,6 +8,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.VirtualFileSystem;
 
 namespace DynamicEntitySample
 {
@@ -32,6 +33,11 @@ namespace DynamicEntitySample
                 typeof(DynamicEntitySampleApplicationContractsModule).Assembly,
                 RemoteServiceName
             );
+            
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<DynamicEntitySampleHttpApiClientModule>();
+            });
         }
     }
 }

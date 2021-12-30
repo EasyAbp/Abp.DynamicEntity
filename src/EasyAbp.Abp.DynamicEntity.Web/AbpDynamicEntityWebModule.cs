@@ -16,7 +16,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 namespace EasyAbp.Abp.DynamicEntity.Web
 {
     [DependsOn(
-        typeof(AbpDynamicEntityHttpApiModule),
+        typeof(AbpDynamicEntityApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAutoMapperModule)
         )]

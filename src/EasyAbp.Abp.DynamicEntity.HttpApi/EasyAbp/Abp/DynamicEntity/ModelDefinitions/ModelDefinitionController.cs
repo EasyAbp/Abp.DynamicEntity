@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
-    [RemoteService(Name = "EasyAbpDynamicEntity")]
+    [RemoteService(Name = AbpDynamicEntityRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/abp/dynamic-entity/model-definition")]
     public class ModelDefinitionController : DynamicEntityController, IModelDefinitionAppService
     {

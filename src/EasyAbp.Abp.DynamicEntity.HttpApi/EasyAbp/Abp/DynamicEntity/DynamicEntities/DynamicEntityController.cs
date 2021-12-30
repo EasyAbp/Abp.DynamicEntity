@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
 {
-    [RemoteService(Name = "EasyAbpDynamicEntity")]
+    [RemoteService(Name = AbpDynamicEntityRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/abp/dynamic-entity/dynamic-entity")]
     public class DynamicEntityController : DynamicEntity.DynamicEntityController, IDynamicEntityAppService
     {

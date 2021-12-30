@@ -30,7 +30,7 @@
             <abp-column size-md="_6">
                 <abp-card-title>@L["FieldDefinition"]</abp-card-title>
             </abp-column>
-            <abp-column size-md="_6" class="text-right">
+            <abp-column size-md="_6" class="text-end">
 			    @if (await Authorization.IsGrantedAsync(DynamicEntityPermissions.FieldDefinition.Create))
                 {
                 <abp-button id="NewFieldDefinitionButton"

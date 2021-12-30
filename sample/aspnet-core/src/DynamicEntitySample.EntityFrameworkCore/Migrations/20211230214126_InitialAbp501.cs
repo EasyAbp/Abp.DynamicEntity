@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace DynamicEntitySample.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialAbp501 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -136,8 +138,7 @@ namespace DynamicEntitySample.Migrations
                         name: "FK_AbpOrganizationUnits_AbpOrganizationUnits_ParentId",
                         column: x => x.ParentId,
                         principalTable: "AbpOrganizationUnits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -253,6 +254,7 @@ namespace DynamicEntitySample.Migrations
                     IsExternal = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     LockoutEnabled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
@@ -273,14 +275,13 @@ namespace DynamicEntitySample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DynamicEntityFieldDefinitions",
+                name: "EasyAbpAbpDynamicEntityFieldDefinitions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     DisplayName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Type = table.Column<int>(type: "int", maxLength: 256, nullable: false),
                     ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -293,18 +294,28 @@ namespace DynamicEntitySample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DynamicEntityFieldDefinitions", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpAbpDynamicEntityFieldDefinitions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DynamicEntityModelDefinitions",
+                name: "EasyAbpAbpDynamicEntityModelDefinitions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     DisplayName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Type = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    PermissionSet_Get = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_GetList = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_Create = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_Update = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_Delete = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_Manage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PermissionSet_AnonymousGet = table.Column<bool>(type: "bit", nullable: true),
+                    PermissionSet_AnonymousGetList = table.Column<bool>(type: "bit", nullable: true),
+                    PermissionSet_AnonymousCreate = table.Column<bool>(type: "bit", nullable: true),
+                    PermissionSet_AnonymousUpdate = table.Column<bool>(type: "bit", nullable: true),
+                    PermissionSet_AnonymousDelete = table.Column<bool>(type: "bit", nullable: true),
                     ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -317,7 +328,27 @@ namespace DynamicEntitySample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DynamicEntityModelDefinitions", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpAbpDynamicEntityModelDefinitions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EasyAbpAbpDynamicPermissionPermissionDefinitions",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EasyAbpAbpDynamicPermissionPermissionDefinitions", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -738,7 +769,7 @@ namespace DynamicEntitySample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DynamicEntityDynamicEntities",
+                name: "EasyAbpAbpDynamicEntityDynamicEntities",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -756,17 +787,17 @@ namespace DynamicEntitySample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DynamicEntityDynamicEntities", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpAbpDynamicEntityDynamicEntities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DynamicEntityDynamicEntities_DynamicEntityModelDefinitions_ModelDefinitionId",
+                        name: "FK_EasyAbpAbpDynamicEntityDynamicEntities_EasyAbpAbpDynamicEntityModelDefinitions_ModelDefinitionId",
                         column: x => x.ModelDefinitionId,
-                        principalTable: "DynamicEntityModelDefinitions",
+                        principalTable: "EasyAbpAbpDynamicEntityModelDefinitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DynamicEntityModelFields",
+                name: "EasyAbpAbpDynamicEntityModelFields",
                 columns: table => new
                 {
                     ModelDefinitionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -777,17 +808,17 @@ namespace DynamicEntitySample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DynamicEntityModelFields", x => new { x.FieldDefinitionId, x.ModelDefinitionId });
+                    table.PrimaryKey("PK_EasyAbpAbpDynamicEntityModelFields", x => new { x.FieldDefinitionId, x.ModelDefinitionId });
                     table.ForeignKey(
-                        name: "FK_DynamicEntityModelFields_DynamicEntityFieldDefinitions_FieldDefinitionId",
+                        name: "FK_EasyAbpAbpDynamicEntityModelFields_EasyAbpAbpDynamicEntityFieldDefinitions_FieldDefinitionId",
                         column: x => x.FieldDefinitionId,
-                        principalTable: "DynamicEntityFieldDefinitions",
+                        principalTable: "EasyAbpAbpDynamicEntityFieldDefinitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DynamicEntityModelFields_DynamicEntityModelDefinitions_ModelDefinitionId",
+                        name: "FK_EasyAbpAbpDynamicEntityModelFields_EasyAbpAbpDynamicEntityModelDefinitions_ModelDefinitionId",
                         column: x => x.ModelDefinitionId,
-                        principalTable: "DynamicEntityModelDefinitions",
+                        principalTable: "EasyAbpAbpDynamicEntityModelDefinitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1175,7 +1206,9 @@ namespace DynamicEntitySample.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpFeatureValues_Name_ProviderName_ProviderKey",
                 table: "AbpFeatureValues",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                unique: true,
+                filter: "[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpLinkUsers_SourceUserId_SourceTenantId_TargetUserId_TargetTenantId",
@@ -1200,9 +1233,11 @@ namespace DynamicEntitySample.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpPermissionGrants_Name_ProviderName_ProviderKey",
+                name: "IX_AbpPermissionGrants_TenantId_Name_ProviderName_ProviderKey",
                 table: "AbpPermissionGrants",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "TenantId", "Name", "ProviderName", "ProviderKey" },
+                unique: true,
+                filter: "[TenantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpRoleClaims_RoleId",
@@ -1237,7 +1272,9 @@ namespace DynamicEntitySample.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSettings_Name_ProviderName_ProviderKey",
                 table: "AbpSettings",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                unique: true,
+                filter: "[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpTenants_Name",
@@ -1285,28 +1322,28 @@ namespace DynamicEntitySample.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityDynamicEntities_ExtraProperties",
-                table: "DynamicEntityDynamicEntities",
+                name: "IX_EasyAbpAbpDynamicEntityDynamicEntities_ExtraProperties",
+                table: "EasyAbpAbpDynamicEntityDynamicEntities",
                 column: "ExtraProperties");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityDynamicEntities_ModelDefinitionId",
-                table: "DynamicEntityDynamicEntities",
+                name: "IX_EasyAbpAbpDynamicEntityDynamicEntities_ModelDefinitionId",
+                table: "EasyAbpAbpDynamicEntityDynamicEntities",
                 column: "ModelDefinitionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityFieldDefinitions_Name",
-                table: "DynamicEntityFieldDefinitions",
+                name: "IX_EasyAbpAbpDynamicEntityFieldDefinitions_Name",
+                table: "EasyAbpAbpDynamicEntityFieldDefinitions",
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityModelDefinitions_Name",
-                table: "DynamicEntityModelDefinitions",
+                name: "IX_EasyAbpAbpDynamicEntityModelDefinitions_Name",
+                table: "EasyAbpAbpDynamicEntityModelDefinitions",
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DynamicEntityModelFields_ModelDefinitionId",
-                table: "DynamicEntityModelFields",
+                name: "IX_EasyAbpAbpDynamicEntityModelFields_ModelDefinitionId",
+                table: "EasyAbpAbpDynamicEntityModelFields",
                 column: "ModelDefinitionId");
 
             migrationBuilder.CreateIndex(
@@ -1400,10 +1437,13 @@ namespace DynamicEntitySample.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DynamicEntityDynamicEntities");
+                name: "EasyAbpAbpDynamicEntityDynamicEntities");
 
             migrationBuilder.DropTable(
-                name: "DynamicEntityModelFields");
+                name: "EasyAbpAbpDynamicEntityModelFields");
+
+            migrationBuilder.DropTable(
+                name: "EasyAbpAbpDynamicPermissionPermissionDefinitions");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResourceClaims");
@@ -1478,10 +1518,10 @@ namespace DynamicEntitySample.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
-                name: "DynamicEntityFieldDefinitions");
+                name: "EasyAbpAbpDynamicEntityFieldDefinitions");
 
             migrationBuilder.DropTable(
-                name: "DynamicEntityModelDefinitions");
+                name: "EasyAbpAbpDynamicEntityModelDefinitions");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResources");

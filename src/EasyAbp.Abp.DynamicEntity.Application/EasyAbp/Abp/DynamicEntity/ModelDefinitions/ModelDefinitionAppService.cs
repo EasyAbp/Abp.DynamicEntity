@@ -39,7 +39,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         {
             if (!input.Filter.IsNullOrEmpty())
             {
-                return _modelDefinitionRepository.WhereIf(!input.Filter.IsNullOrEmpty(),
+                return (await _modelDefinitionRepository.GetQueryableAsync()).WhereIf(!input.Filter.IsNullOrEmpty(),
                     fd => fd.Name.Contains(input.Filter) ||
                           fd.Type.Contains(input.Filter));
             }

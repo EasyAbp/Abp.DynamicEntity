@@ -28,7 +28,7 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         {
             if (!input.Filter.IsNullOrEmpty())
             {
-                return _repository.WhereIf(!input.Filter.IsNullOrEmpty(),
+                return (await _repository.GetQueryableAsync()).WhereIf(!input.Filter.IsNullOrEmpty(),
                     fd => fd.Name.Contains(input.Filter));
             }
 

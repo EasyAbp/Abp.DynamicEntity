@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
+using Volo.Abp.VirtualFileSystem;
 
 namespace EasyAbp.Abp.DynamicEntity
 {
@@ -9,7 +10,7 @@ namespace EasyAbp.Abp.DynamicEntity
         typeof(AbpHttpClientModule))]
     public class AbpDynamicEntityHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "EasyAbpAbpDynamicEntity";
+        public const string RemoteServiceName = AbpDynamicEntityRemoteServiceConsts.RemoteServiceName;
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -17,6 +18,11 @@ namespace EasyAbp.Abp.DynamicEntity
                 typeof(AbpDynamicEntityApplicationContractsModule).Assembly,
                 RemoteServiceName
             );
+            
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<AbpDynamicEntityApplicationContractsModule>();
+            });
         }
     }
 }
