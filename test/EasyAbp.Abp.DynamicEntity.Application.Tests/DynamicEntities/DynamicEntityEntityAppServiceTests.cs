@@ -52,6 +52,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             // Act
             var output = await _dynamicEntityAppService.GetListAsync(new GetDynamicEntityListInput
                 {
+                    ModelDefinitionId = DynamicEntityTestConsts.ModelDefinitionBookId,
                     FilterGroup = new DynamicQueryGroup
                     {
                         Type = GroupType.And,

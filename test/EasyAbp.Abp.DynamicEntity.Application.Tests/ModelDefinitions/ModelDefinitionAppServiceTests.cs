@@ -61,7 +61,6 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             output.Items[0].DisplayName.ShouldBe("Book");
         }
 
-
         [Fact]
         public async Task ShouldGetFields()
         {
@@ -123,7 +122,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             output.Type.ShouldBe("DynamicEntity.Book");
             output.Fields.Count.ShouldBe(2);
         }
-                
+        
         [Fact]
         public async Task ShouldCheckDuplicateName_Create()
         {
@@ -135,23 +134,6 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
                 Name = "book",
                 DisplayName = "Book",
                 Type = "DynamicEntity.Book"
-            }));
-            
-            // Assert
-            ex.Code.ShouldBe(DynamicEntityErrorCodes.ModelDefinitionAlreadyExists);
-        }        
-        
-        [Fact]
-        public async Task ShouldCheckDuplicateName_Update()
-        {
-            // Arrange
-            var id = (await _modelDefinitionRepository.InsertAsync(new ModelDefinition(Guid.NewGuid(), "book2", "Book2",
-                "DynamicEntity.Book2", new PermissionSetValueObject()))).Id;
-            
-            // Act
-            var ex = await Assert.ThrowsAsync<BusinessException>(() => _modelDefinitionAppService.UpdateAsync(id, new UpdateModelDefinitionDto
-            {
-                DisplayName = "Book"
             }));
             
             // Assert
