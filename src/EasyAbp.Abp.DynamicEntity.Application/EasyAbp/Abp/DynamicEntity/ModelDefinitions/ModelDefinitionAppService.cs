@@ -56,7 +56,7 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             int order = 1;
             foreach (var fieldId in fieldIds)
             {
-                modelDefinition.AddField(fields[fieldId].Id, order++);
+                modelDefinition.AddField(fields[fieldId], order++);
             }
         }
 

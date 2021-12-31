@@ -2220,7 +2220,7 @@ namespace DynamicEntitySample.Migrations
 
             modelBuilder.Entity("EasyAbp.Abp.DynamicEntity.ModelDefinitions.ModelDefinition", b =>
                 {
-                    b.OwnsOne("EasyAbp.Abp.DynamicEntity.ModelDefinitions.PermissionSetValueObject", "PermissionSet", b1 =>
+                    b.OwnsOne("EasyAbp.Abp.DynamicEntity.ModelDefinitions.ModelDefinition.PermissionSet#EasyAbp.Abp.DynamicEntity.ModelDefinitions.PermissionSetValueObject", "PermissionSet", b1 =>
                         {
                             b1.Property<Guid>("ModelDefinitionId")
                                 .HasColumnType("uniqueidentifier");
@@ -2260,7 +2260,7 @@ namespace DynamicEntitySample.Migrations
 
                             b1.HasKey("ModelDefinitionId");
 
-                            b1.ToTable("EasyAbpAbpDynamicEntityModelDefinitions");
+                            b1.ToTable("EasyAbpAbpDynamicEntityModelDefinitions", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ModelDefinitionId");

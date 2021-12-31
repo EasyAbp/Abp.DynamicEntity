@@ -37,8 +37,8 @@ namespace EasyAbp.Abp.DynamicEntity
             await _fieldDefinitionRepository.InsertAsync(fdPrice);
 
             var mdBook = new ModelDefinition(DynamicEntityTestConsts.ModelDefinitionBookId, "book", "Book", "DynamicEntity.Book", new PermissionSetValueObject());
-            mdBook.AddField(fdPrice.Id, 2);
-            mdBook.AddField(fdName.Id, 1);
+            mdBook.AddField(fdPrice, 2);
+            mdBook.AddField(fdName, 1);
             await _modelDefinitionRepository.InsertAsync(mdBook);
 
             var deBook1 = new DynamicEntities.DynamicEntity(DynamicEntityTestConsts.DynamicEntityBook1Id, context.TenantId, mdBook.Id);

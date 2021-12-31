@@ -51,9 +51,9 @@ namespace DynamicEntitySample.DynamicEntities
             if (mdComputer == null)
             {
                 mdComputer = new ModelDefinition(_guidGenerator.Create(),  "computer", "Computer", "DynamicEntitySample.Computer", new PermissionSetValueObject());
-                mdComputer.AddField(fdCpu.Id, 1);
-                mdComputer.AddField(fdRam.Id, 2);
-                mdComputer.AddField(fdPrice.Id, 3);
+                mdComputer.AddField(fdCpu, 1);
+                mdComputer.AddField(fdRam, 2);
+                mdComputer.AddField(fdPrice, 3);
                 await _modelDefinitionRepository.InsertAsync(mdComputer);
             }
 

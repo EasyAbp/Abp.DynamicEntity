@@ -7,8 +7,6 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
     public class ModelField : CreationAuditedEntity
     {
         public virtual Guid ModelDefinitionId { get; protected set; }
-        public virtual ModelDefinition ModelDefinition { get; protected set; }
-
         public virtual Guid FieldDefinitionId { get; protected set; }
         public virtual FieldDefinition FieldDefinition { get; protected set; }
 
@@ -18,10 +16,11 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         {
         }
 
-        public ModelField(Guid modelDefinitionId, Guid fieldDefinitionId, int order)
+        public ModelField(Guid modelDefinitionId, FieldDefinition fieldDefinition, int order)
         {
             ModelDefinitionId = modelDefinitionId;
-            FieldDefinitionId = fieldDefinitionId;
+            FieldDefinitionId = fieldDefinition.Id;
+            FieldDefinition = fieldDefinition;
             Order = order;
         }
 

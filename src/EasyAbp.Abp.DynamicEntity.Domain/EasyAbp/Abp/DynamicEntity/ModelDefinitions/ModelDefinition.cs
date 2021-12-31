@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
@@ -46,9 +47,9 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             Name = Name.ToLower();
         }
 
-        public void AddField(Guid fieldDefinitionId, int order = int.MaxValue)
+        public void AddField(FieldDefinition fieldDefinition, int order = int.MaxValue)
         {
-            Fields.Add(new ModelField(Id, fieldDefinitionId, order));
+            Fields.Add(new ModelField(Id, fieldDefinition, order));
         }
 
         public void RemoveField(Guid fieldDefinitionId)

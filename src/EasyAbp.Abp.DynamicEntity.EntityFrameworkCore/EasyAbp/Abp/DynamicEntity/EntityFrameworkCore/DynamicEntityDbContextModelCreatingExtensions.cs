@@ -65,11 +65,6 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
                 b.HasOne(x => x.FieldDefinition)
                     .WithMany()
                     .HasForeignKey(x => x.FieldDefinitionId);
-
-                b.HasOne(x => x.ModelDefinition)
-                    .WithMany(x => x.Fields)
-                    .HasForeignKey(x => x.ModelDefinitionId)
-                    ;
             });
             
             builder.Entity<DynamicEntities.DynamicEntity>(b =>
