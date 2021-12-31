@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Validation;
 
 namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 {
@@ -30,12 +32,16 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             Name = Check.NotNullOrWhiteSpace(name, nameof(Name), FieldDefinitionConsts.MaxNameLength);
             DisplayName = Check.NotNullOrWhiteSpace(displayName, nameof(displayName), FieldDefinitionConsts.MaxDisplayNameLength);
             Type = type;
-            NormalizeName();
+            
+            CheckName();
         }
 
-        private void NormalizeName()
+        private void CheckName()
         {
-            Name = Name.ToLower();
+            if (!Regex.IsMatch(Name, @"^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$"))
+            {
+                throw new AbpValidationException("Invalid field name.");
+            }
         }
     }
 }

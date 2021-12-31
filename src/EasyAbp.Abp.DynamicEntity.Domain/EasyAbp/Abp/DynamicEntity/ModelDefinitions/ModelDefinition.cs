@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Validation;
 
 namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 {
@@ -39,12 +41,15 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             Type = Check.NotNullOrWhiteSpace(type, nameof(Type), ModelDefinitionConsts.MaxTypeLength);;
             PermissionSet = permissionSet ?? new PermissionSetValueObject();
 
-            NormalizeName();
+            CheckName();
         }
 
-        private void NormalizeName()
+        private void CheckName()
         {
-            Name = Name.ToLower();
+            if (!Regex.IsMatch(Name, @"^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$"))
+            {
+                throw new AbpValidationException("Invalid entity name.");
+            }
         }
 
         public void AddField(FieldDefinition fieldDefinition, int order = int.MaxValue)
