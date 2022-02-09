@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
 
-        <AbpVersion>5.0.1</AbpVersion>
+        <AbpVersion>5.1.3</AbpVersion>
         <EasyAbpAbpDynamicQueryModuleVersion>0.3.0</EasyAbpAbpDynamicQueryModuleVersion>
         <EasyAbpAbpDynamicPermissionModuleVersion>0.2.0</EasyAbpAbpDynamicPermissionModuleVersion>
 

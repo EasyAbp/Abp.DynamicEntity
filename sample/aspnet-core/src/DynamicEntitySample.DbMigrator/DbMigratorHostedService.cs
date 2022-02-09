@@ -22,21 +22,21 @@ namespace DynamicEntitySample.DbMigrator
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            using (var application = AbpApplicationFactory.Create<DynamicEntitySampleDbMigratorModule>(options =>
+            using (var application = await AbpApplicationFactory.CreateAsync<DynamicEntitySampleDbMigratorModule>(options =>
             {
                 options.Services.ReplaceConfiguration(_configuration);
                 options.UseAutofac();
                 options.Services.AddLogging(c => c.AddSerilog());
             }))
             {
-                application.Initialize();
+                await application.InitializeAsync();
 
                 await application
                     .ServiceProvider
                     .GetRequiredService<DynamicEntitySampleDbMigrationService>()
                     .MigrateAsync();
 
-                application.Shutdown();
+                await application.ShutdownAsync();
 
                 _hostApplicationLifetime.StopApplication();
             }

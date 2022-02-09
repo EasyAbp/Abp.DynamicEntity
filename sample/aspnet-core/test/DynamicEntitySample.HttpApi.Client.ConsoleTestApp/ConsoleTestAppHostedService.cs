@@ -18,17 +18,17 @@ namespace DynamicEntitySample.HttpApi.Client.ConsoleTestApp
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            using (var application = AbpApplicationFactory.Create<DynamicEntitySampleConsoleApiClientModule>(options =>
+            using (var application = await AbpApplicationFactory.CreateAsync<DynamicEntitySampleConsoleApiClientModule>(options =>
             {
                 options.Services.ReplaceConfiguration(_configuration);
             }))
             {
-                application.Initialize();
+                await application.InitializeAsync();
 
                 var demo = application.ServiceProvider.GetRequiredService<ClientDemoService>();
                 await demo.RunAsync();
 
-                application.Shutdown();
+                await application.ShutdownAsync();
             }
         }
 
