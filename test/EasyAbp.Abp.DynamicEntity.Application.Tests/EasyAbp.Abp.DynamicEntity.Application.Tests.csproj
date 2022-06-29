@@ -8,7 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyAbp.Abp.DynamicEntity.Application\EasyAbp.Abp.DynamicEntity.Application.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.DynamicEntity.Domain.Tests\EasyAbp.Abp.DynamicEntity.Domain.Tests.csproj" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
   </ItemGroup>
 
 </Project>
