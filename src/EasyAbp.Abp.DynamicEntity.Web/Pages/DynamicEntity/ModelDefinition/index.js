@@ -6,7 +6,7 @@
     var createModal = new abp.ModalManager(
         {
             viewUrl: abp.appPath + 'DynamicEntity/ModelDefinition/CreateModal',
-            scriptUrl: "/Pages/DynamicEntity/ModelDefinition/createEditModal.js",
+            scriptUrl: "/Pages/DynamicEntity/ModelDefinition/createEditModal.js?v=1",
             modalClass: "CreateEditModal",
         }
     );
