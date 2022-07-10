@@ -11,8 +11,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Bundling
         {
             context.Files.AddRange(new[]
             {
-                "/easy-abp/easy-abp-dynamic.js",
-                "/libs/jquery-ui/js/jquery-ui.min.js"
+                "/easy-abp/easy-abp-dynamic.js"
             });
         }
     }
