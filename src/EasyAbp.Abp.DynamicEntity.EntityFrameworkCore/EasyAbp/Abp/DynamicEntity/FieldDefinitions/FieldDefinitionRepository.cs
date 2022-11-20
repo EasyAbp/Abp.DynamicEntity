@@ -17,12 +17,12 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
 
         public async Task<FieldDefinition> GetByNameAsync(string name)
         {
-            return await DbSet.FirstOrDefaultAsync(fd => fd.Name == name);
+            return await (await GetDbSetAsync()).FirstOrDefaultAsync(fd => fd.Name == name);
         }
 
         public async Task<List<FieldDefinition>> GetByIds(List<Guid> ids)
         {
-            return await DbSet.Where(fd => ids.Contains(fd.Id))
+            return await (await GetDbSetAsync()).Where(fd => ids.Contains(fd.Id))
                     .ToListAsync()
                 ;
         }

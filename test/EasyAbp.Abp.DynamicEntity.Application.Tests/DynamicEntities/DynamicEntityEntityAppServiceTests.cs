@@ -27,8 +27,7 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
             await WithUnitOfWorkAsync(async () =>
             {
                 // Arrange
-                var deBook = _dynamicEntityRepository
-                        .WithDetails()
+                var deBook = (await _dynamicEntityRepository.WithDetailsAsync())
                         .First(de => de.ModelDefinition.Name == "book")
                     ;
 
