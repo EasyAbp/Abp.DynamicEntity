@@ -37,4 +37,9 @@
     <Content Remove="wwwroot\**\*.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="package.json" />
+    <None Include="package.json" />
+  </ItemGroup>
+
 </Project>
