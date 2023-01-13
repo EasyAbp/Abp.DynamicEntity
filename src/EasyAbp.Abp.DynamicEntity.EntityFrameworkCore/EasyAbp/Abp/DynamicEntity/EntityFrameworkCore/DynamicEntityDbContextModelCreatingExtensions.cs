@@ -28,11 +28,11 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "FieldDefinitions", options.Schema);
                 b.ConfigureByConvention();
-                
+
                 b.Property(x => x.Name).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxNameLength);
                 b.Property(x => x.DisplayName).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxDisplayNameLength);
                 b.Property(x => x.Type).IsRequired().HasMaxLength(FieldDefinitionConsts.MaxTypeLength);
-                
+
                 b.HasIndex(x => x.Name);
             });
 
@@ -54,19 +54,19 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
 
                 b.HasIndex(x => x.Name);
             });
-            
+
             builder.Entity<ModelField>(b =>
             {
                 b.ToTable(options.TablePrefix + "ModelFields", options.Schema);
                 b.ConfigureByConvention();
 
-                b.HasKey(x => new {x.FieldDefinitionId, x.ModelDefinitionId});
+                b.HasKey(x => new { x.FieldDefinitionId, x.ModelDefinitionId });
 
                 b.HasOne(x => x.FieldDefinition)
                     .WithMany()
                     .HasForeignKey(x => x.FieldDefinitionId);
             });
-            
+
             builder.Entity<DynamicEntities.DynamicEntity>(b =>
             {
                 b.ToTable(options.TablePrefix + "DynamicEntities", options.Schema);
@@ -86,14 +86,14 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
             {
                 jsonFunction = "JSON_VALUE";
             }
+
             builder.HasDbFunction(typeof(DbFunctions).GetMethod(nameof(DbFunctions.JsonValue))!)
-                .HasTranslation(e => SqlFunctionExpression.Create(
-                    jsonFunction, new SqlExpression[]
+                .HasTranslation(args => new SqlFunctionExpression(
+                    jsonFunction, new[]
                     {
                         new SqlFragmentExpression("ExtraProperties"),
-                        e.ToArray()[0]
-                    }, typeof(string), null));
-            
+                        args.ToArray()[0]
+                    }, true, new[] { false, false }, typeof(string), null));
         }
     }
 }

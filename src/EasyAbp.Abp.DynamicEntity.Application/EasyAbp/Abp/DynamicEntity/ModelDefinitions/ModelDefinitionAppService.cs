@@ -112,7 +112,8 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 
         private async Task TryCreateDynamicPermissionsAsync(PermissionSetDto permissionSet)
         {
-            var definedPermissionNames = _permissionDefinitionManager.GetPermissions().Select(x => x.Name).ToList();
+            var definedPermissionNames =
+                (await _permissionDefinitionManager.GetPermissionsAsync()).Select(x => x.Name).ToList();
 
             var appService = LazyServiceProvider.LazyGetService<IPermissionDefinitionAppService>();
 
