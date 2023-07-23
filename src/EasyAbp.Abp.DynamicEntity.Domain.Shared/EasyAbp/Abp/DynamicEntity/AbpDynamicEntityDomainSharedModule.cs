@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Modularity;
+﻿using Volo.Abp.Domain;
+using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.Abp.DynamicEntity.Localization;
 using EasyAbp.Abp.DynamicQuery;
@@ -10,9 +11,10 @@ using Volo.Abp.VirtualFileSystem;
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(AbpValidationModule)
+        typeof(AbpValidationModule),
+        typeof(AbpDddDomainSharedModule),
+        typeof(AbpDynamicQueryDomainSharedModule)
     )]
-    [DependsOn(typeof(AbpDynamicQueryDomainSharedModule))]
     public class AbpDynamicEntityDomainSharedModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
