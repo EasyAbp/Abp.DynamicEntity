@@ -3,7 +3,7 @@
 
         <AbpVersion>7.3.0</AbpVersion>
         <EasyAbpAbpDynamicQueryModuleVersion>0.8.0</EasyAbpAbpDynamicQueryModuleVersion>
-        <EasyAbpAbpDynamicPermissionModuleVersion>1.3.0</EasyAbpAbpDynamicPermissionModuleVersion>
+        <EasyAbpAbpDynamicPermissionModuleVersion>1.4.0</EasyAbpAbpDynamicPermissionModuleVersion>
 
     </PropertyGroup>
 </Project>

@@ -22,25 +22,28 @@ namespace EasyAbp.Abp.DynamicEntity.Web.Menus
 
             if (await context.IsGrantedAsync(DynamicEntityPermissions.FieldDefinition.Default) ||
                 await context.IsGrantedAsync(DynamicEntityPermissions.ModelDefinition.Default)
-            )
+               )
             {
-                var menu = new ApplicationMenuItem(DynamicEntityMenus.DynamicEntityManagement, l["Menu:DynamicEntityManagement"]);
-                
+                var menu = new ApplicationMenuItem(DynamicEntityMenus.DynamicEntityManagement,
+                    l["Menu:DynamicEntityManagement"], icon: "fa fa-database");
+
                 if (await context.IsGrantedAsync(DynamicEntityPermissions.FieldDefinition.Default))
                 {
                     menu.AddItem(
-                        new ApplicationMenuItem(DynamicEntityMenus.FieldDefinition, l["Menu:FieldDefinition"], "/DynamicEntity/FieldDefinition")
+                        new ApplicationMenuItem(DynamicEntityMenus.FieldDefinition, l["Menu:FieldDefinition"],
+                            "/DynamicEntity/FieldDefinition")
                     );
                 }
 
                 if (await context.IsGrantedAsync(DynamicEntityPermissions.ModelDefinition.Default))
                 {
                     menu.AddItem(
-                        new ApplicationMenuItem(DynamicEntityMenus.ModelDefinition, l["Menu:ModelDefinition"], "/DynamicEntity/ModelDefinition")
+                        new ApplicationMenuItem(DynamicEntityMenus.ModelDefinition, l["Menu:ModelDefinition"],
+                            "/DynamicEntity/ModelDefinition")
                     );
                 }
 
-                context.Menu.AddItem(menu);
+                context.Menu.GetAdministration().AddItem(menu);
             }
         }
     }
