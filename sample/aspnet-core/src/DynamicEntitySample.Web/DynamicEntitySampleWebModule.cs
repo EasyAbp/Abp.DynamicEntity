@@ -194,7 +194,7 @@ namespace DynamicEntitySample.Web
 
         private void ConfigureAutoApiControllers()
         {
-            Configure<AbpAspNetCoreMvcOptions>(options =>
+            PreConfigure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options.ConventionalControllers.Create(typeof(DynamicEntitySampleApplicationModule).Assembly);
             });
