@@ -1,9 +1,9 @@
 <Project>
     <PropertyGroup>
 
-        <AbpVersion>8.2.0</AbpVersion>
-        <EasyAbpAbpDynamicQueryModuleVersion>0.12.0</EasyAbpAbpDynamicQueryModuleVersion>
-        <EasyAbpAbpDynamicPermissionModuleVersion>1.8.0</EasyAbpAbpDynamicPermissionModuleVersion>
+        <AbpVersion>8.3.2</AbpVersion>
+        <EasyAbpAbpDynamicQueryModuleVersion>0.13.0</EasyAbpAbpDynamicQueryModuleVersion>
+        <EasyAbpAbpDynamicPermissionModuleVersion>1.9.0</EasyAbpAbpDynamicPermissionModuleVersion>
 
     </PropertyGroup>
 </Project>
