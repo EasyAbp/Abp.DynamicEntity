@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <ProjectReference Include="..\DynamicEntitySample.Application.Tests\DynamicEntitySample.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\DynamicEntitySample.Web\DynamicEntitySample.Web.csproj" />
