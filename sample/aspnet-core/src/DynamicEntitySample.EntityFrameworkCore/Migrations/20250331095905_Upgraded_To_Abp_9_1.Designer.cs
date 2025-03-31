@@ -4,6 +4,7 @@ using DynamicEntitySample.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DynamicEntitySample.Migrations
 {
     [DbContext(typeof(DynamicEntitySampleDbContext))]
-    partial class DynamicEntitySampleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250331095905_Upgraded_To_Abp_9_1")]
+    partial class Upgraded_To_Abp_9_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
