@@ -12,8 +12,7 @@
 @inject IHtmlLocalizer<DynamicEntitySampleResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["Computer"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:Computer"].Value);
+    PageLayout.Content.Title = L["Menu:Computer"].Value;
     PageLayout.Content.MenuItemName = DynamicEntitySampleMenus.Computer;
 }
 
@@ -26,21 +25,16 @@
 {
     <abp-style src="/Pages/Computers/Computer/index.css"/>
 }
+@section content_toolbar
+{
+    <abp-button id="NewComputerButton"
+                text="@L["CreateComputer"].Value"
+                icon="plus"
+                size="Small"
+                button-type="Primary" />
+}
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["Computer"]</abp-card-title>
-            </abp-column>
-            <abp-column size-md="_6" class="text-end">
-                <abp-button id="NewComputerButton"
-                            text="@L["CreateComputer"].Value"
-                            icon="plus"
-                            button-type="Primary" />
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="ComputerTable" class="nowrap" />
     </abp-card-body>

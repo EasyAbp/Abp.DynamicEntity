@@ -10,8 +10,8 @@
 @inject IHtmlLocalizer<DynamicEntityResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["ModelDefinition"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:ModelDefinition"].Value);
+    PageLayout.Content.Title = L["Menu:ModelDefinition"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:DynamicEntityManagement"].Value);
     PageLayout.Content.MenuItemName = DynamicEntityMenus.ModelDefinition;
 }
 
@@ -24,24 +24,19 @@
 {
     <abp-style src="/Pages/DynamicEntity/ModelDefinition/index.css"/>
 }
+@section content_toolbar
+{
+    @if (await Authorization.IsGrantedAsync(DynamicEntityPermissions.ModelDefinition.Create))
+    {
+        <abp-button id="NewModelDefinitionButton"
+                    text="@L["CreateModelDefinition"].Value"
+                    icon="plus"
+                    size="Small"
+                    button-type="Primary" />
+    }
+}
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["ModelDefinition"]</abp-card-title>
-            </abp-column>
-            <abp-column size-md="_6" class="text-end">
-			    @if (await Authorization.IsGrantedAsync(DynamicEntityPermissions.ModelDefinition.Create))
-                {
-                <abp-button id="NewModelDefinitionButton"
-                            text="@L["CreateModelDefinition"].Value"
-                            icon="plus"
-                            button-type="Primary" />
-                }
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="ModelDefinitionTable" class="nowrap">
             <thead>
