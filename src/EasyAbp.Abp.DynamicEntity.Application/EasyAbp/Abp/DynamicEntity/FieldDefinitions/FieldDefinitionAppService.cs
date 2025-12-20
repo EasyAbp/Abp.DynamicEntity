@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions.Dtos;
+using EasyAbp.Abp.DynamicEntity.Localization;
 using EasyAbp.Abp.DynamicEntity.Permissions;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
@@ -22,6 +23,9 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         public FieldDefinitionAppService(IFieldDefinitionRepository repository) : base(repository)
         {
             _repository = repository;
+
+            LocalizationResource = typeof(DynamicEntityResource);
+            ObjectMapperContext = typeof(AbpDynamicEntityApplicationModule);
         }
 
         protected override async Task<IQueryable<FieldDefinition>> CreateFilteredQueryAsync(GetFieldDefinitionListInput input)

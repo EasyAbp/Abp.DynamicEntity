@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.Authorization;
 using EasyAbp.Abp.DynamicEntity.DynamicEntities.Dtos;
+using EasyAbp.Abp.DynamicEntity.Localization;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
@@ -23,6 +24,9 @@ namespace EasyAbp.Abp.DynamicEntity.DynamicEntities
         {
             _modelDefinitionRepository = modelDefinitionRepository;
             _repository = repository;
+
+            LocalizationResource = typeof(DynamicEntityResource);
+            ObjectMapperContext = typeof(AbpDynamicEntityApplicationModule);
         }
 
         public override async Task<DynamicEntityDto> GetAsync(Guid id)

@@ -33,9 +33,9 @@ namespace EasyAbp.Abp.DynamicEntity
                 options.AutoEventSelectors.Add<FieldDefinition>();
                 options.AutoEventSelectors.Add<DynamicEntities.DynamicEntity>();
                 
-                options.EtoMappings.Add<ModelDefinition, ModelDefinitionEto>();
-                options.EtoMappings.Add<FieldDefinition, FieldDefinitionEto>();
-                options.EtoMappings.Add<DynamicEntities.DynamicEntity, DynamicEntityEto>();
+                options.EtoMappings.Add<ModelDefinition, ModelDefinitionEto>(typeof(AbpDynamicEntityDomainModule));
+                options.EtoMappings.Add<FieldDefinition, FieldDefinitionEto>(typeof(AbpDynamicEntityDomainModule));
+                options.EtoMappings.Add<DynamicEntities.DynamicEntity, DynamicEntityEto>(typeof(AbpDynamicEntityDomainModule));
             });
         }
     }

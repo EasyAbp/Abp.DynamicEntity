@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
+using EasyAbp.Abp.DynamicEntity.Localization;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions.Dtos;
 using EasyAbp.Abp.DynamicEntity.Permissions;
 using EasyAbp.Abp.DynamicPermission.PermissionDefinitions;
@@ -33,6 +34,9 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             _modelDefinitionRepository = modelDefinitionRepository;
             _fieldDefinitionRepository = fieldDefinitionRepository;
             _permissionDefinitionManager = permissionDefinitionManager;
+
+            LocalizationResource = typeof(DynamicEntityResource);
+            ObjectMapperContext = typeof(AbpDynamicEntityApplicationModule);
         }
 
         protected override async Task<IQueryable<ModelDefinition>> CreateFilteredQueryAsync(GetModelDefinitionListInput input)
