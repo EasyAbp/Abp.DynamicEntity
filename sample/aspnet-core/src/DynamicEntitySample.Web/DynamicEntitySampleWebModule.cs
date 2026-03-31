@@ -12,7 +12,7 @@ using DynamicEntitySample.Web.Menus;
 using EasyAbp.Abp.DynamicEntity;
 using EasyAbp.Abp.DynamicEntity.Web;
 using EasyAbp.Abp.DynamicPermission.Web;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
