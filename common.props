@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <Version>0.22.0</Version>
+    <Version>0.23.0</Version>
     <NoWarn>$(NoWarn);CS1591;CS0436</NoWarn>
     <AbpProjectType>module</AbpProjectType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -23,6 +23,7 @@
     </PackageReference>
   </ItemGroup>
 </Project>
+
 
 
 

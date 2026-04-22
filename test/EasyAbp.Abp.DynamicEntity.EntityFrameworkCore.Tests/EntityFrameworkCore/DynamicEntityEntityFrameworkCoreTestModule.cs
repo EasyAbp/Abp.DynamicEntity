@@ -19,7 +19,12 @@ namespace EasyAbp.Abp.DynamicEntity.EntityFrameworkCore
     {
         public static readonly ILoggerFactory ConsoleLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
-        
+
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            PreConfigure<AbpSqliteOptions>(options => { options.BusyTimeout = null; });
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.AddAlwaysDisableUnitOfWorkTransaction();
