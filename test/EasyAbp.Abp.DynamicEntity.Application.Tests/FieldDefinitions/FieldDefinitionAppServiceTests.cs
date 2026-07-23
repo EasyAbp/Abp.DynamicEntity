@@ -74,6 +74,29 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
         }
 
         [Fact]
+        public async Task ShouldUpdateFieldDefinition()
+        {
+            // Arrange
+            var entity = await _fieldDefinitionRepository.FindAsync(fd => fd.Name == "name");
+
+            // Act
+            var output = await _fieldDefinitionAppService.UpdateAsync(entity.Id, new UpdateFieldDefinitionDto
+            {
+                DisplayName = "New Name"
+            });
+
+            // Assert (UpdateFieldDefinitionDto -> FieldDefinition via the DDD Update override,
+            // then FieldDefinition -> FieldDefinitionDto via Mapperly)
+            output.DisplayName.ShouldBe("New Name");
+            output.Name.ShouldBe("name");
+            output.Type.ShouldBe(FieldDataType.Text);
+
+            var reloaded = await _fieldDefinitionRepository.FindAsync(entity.Id);
+            reloaded.DisplayName.ShouldBe("New Name");
+            reloaded.Name.ShouldBe("name");
+        }
+
+        [Fact]
         public async Task ShouldGetByName()
         {
             // Arrange

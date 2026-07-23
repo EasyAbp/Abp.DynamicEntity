@@ -4,7 +4,7 @@ using EasyAbp.Abp.DynamicEntity.Localization;
 using EasyAbp.Abp.DynamicEntity.Web.Menus;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
@@ -18,7 +18,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web
     [DependsOn(
         typeof(AbpDynamicEntityApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpMapperlyModule)
         )]
     public class AbpDynamicEntityWebModule : AbpModule
     {
@@ -47,11 +47,7 @@ namespace EasyAbp.Abp.DynamicEntity.Web
                 options.FileSets.AddEmbedded<AbpDynamicEntityWebModule>();
             });
 
-            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityWebModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AbpDynamicEntityWebModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<AbpDynamicEntityWebModule>();
 
             Configure<RazorPagesOptions>(options =>
             {

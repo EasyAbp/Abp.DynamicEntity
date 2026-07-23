@@ -109,6 +109,33 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
         }
         
         [Fact]
+        public async Task ShouldUpdateModelDefinition()
+        {
+            // Arrange
+            var mdBook = await _modelDefinitionRepository.FindAsync(md => md.Name == "book");
+            var fieldIds = mdBook.Fields.Select(f => f.FieldDefinitionId).ToList();
+
+            // Act (UpdateModelDefinitionDto -> ModelDefinition via the DDD Update override,
+            // including PermissionSetDto -> PermissionSetValueObject mapping)
+            var output = await _modelDefinitionAppService.UpdateAsync(mdBook.Id, new UpdateModelDefinitionDto
+            {
+                DisplayName = "Book Updated",
+                FieldIds = fieldIds,
+                PermissionSet = new PermissionSetDto
+                {
+                    Get = "Some.Get.Permission"
+                }
+            });
+
+            // Assert
+            output.DisplayName.ShouldBe("Book Updated");
+            output.Name.ShouldBe("book"); // Name is not part of the update DTO and must stay unchanged
+            output.Type.ShouldBe("DynamicEntity.Book");
+            output.PermissionSet.Get.ShouldBe("Some.Get.Permission");
+            output.Fields.Count.ShouldBe(2);
+        }
+
+        [Fact]
         public async Task ShouldGetByName()
         {
             // Arrange

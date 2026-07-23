@@ -66,15 +66,21 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
 
         protected override async Task<ModelDefinition> MapToEntityAsync(CreateModelDefinitionDto createInput)
         {
-            var entity = await base.MapToEntityAsync(createInput);
+            var entity = new ModelDefinition(
+                GuidGenerator.Create(),
+                createInput.Name,
+                createInput.DisplayName,
+                createInput.Type,
+                ObjectMapper.Map<PermissionSetDto, PermissionSetValueObject>(createInput.PermissionSet));
             await SetFields(entity, createInput.FieldIds);
             return entity;
         }
 
         protected override async Task MapToEntityAsync(UpdateModelDefinitionDto input, ModelDefinition entity)
         {
-            await base.MapToEntityAsync(input, entity);
-            await SetFields(entity, input.FieldIds);   
+            entity.Update(input.DisplayName,
+                ObjectMapper.Map<PermissionSetDto, PermissionSetValueObject>(input.PermissionSet));
+            await SetFields(entity, input.FieldIds);
         }
         
         public async Task<ModelDefinitionDto> GetByName(string name)

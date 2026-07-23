@@ -28,6 +28,21 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             ObjectMapperContext = typeof(AbpDynamicEntityApplicationModule);
         }
 
+        protected override Task<FieldDefinition> MapToEntityAsync(CreateFieldDefinitionDto createInput)
+        {
+            return Task.FromResult(new FieldDefinition(
+                GuidGenerator.Create(),
+                createInput.Name,
+                createInput.DisplayName,
+                createInput.Type));
+        }
+
+        protected override Task MapToEntityAsync(UpdateFieldDefinitionDto updateInput, FieldDefinition entity)
+        {
+            entity.Update(updateInput.DisplayName);
+            return Task.CompletedTask;
+        }
+
         protected override async Task<IQueryable<FieldDefinition>> CreateFilteredQueryAsync(GetFieldDefinitionListInput input)
         {
             if (!input.Filter.IsNullOrEmpty())

@@ -52,6 +52,12 @@ namespace EasyAbp.Abp.DynamicEntity.ModelDefinitions
             }
         }
 
+        public void Update([NotNull] string displayName, PermissionSetValueObject permissionSet)
+        {
+            DisplayName = displayName;
+            PermissionSet = permissionSet ?? new PermissionSetValueObject();
+        }
+
         public void AddField(FieldDefinition fieldDefinition, int order = int.MaxValue)
         {
             Fields.Add(new ModelField(Id, fieldDefinition, order));
