@@ -27,7 +27,6 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
-using Volo.Abp.AutoMapper;
 using Volo.Abp.Data;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
@@ -87,7 +86,6 @@ namespace DynamicEntitySample.Web
             ConfigureUrls(configuration);
             ConfigureBundles();
             ConfigureAuthentication(context, configuration);
-            ConfigureAutoMapper();
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
@@ -126,14 +124,6 @@ namespace DynamicEntitySample.Web
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                     options.Audience = "DynamicEntitySample";
                 });
-        }
-
-        private void ConfigureAutoMapper()
-        {
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<DynamicEntitySampleWebModule>();
-            });
         }
 
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)

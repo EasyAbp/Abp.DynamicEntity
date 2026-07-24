@@ -1,7 +1,7 @@
 ﻿using EasyAbp.Abp.DynamicPermission;
 using EasyAbp.Abp.DynamicQuery;
 using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 
@@ -12,18 +12,14 @@ namespace EasyAbp.Abp.DynamicEntity
         typeof(AbpDynamicEntityApplicationContractsModule),
         typeof(AbpDynamicPermissionApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpMapperlyModule)
         )]
     [DependsOn(typeof(AbpDynamicQueryApplicationModule))]
     public class AbpDynamicEntityApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityApplicationModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AbpDynamicEntityApplicationModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<AbpDynamicEntityApplicationModule>();
         }
     }
 }

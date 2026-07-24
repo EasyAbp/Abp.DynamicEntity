@@ -3,7 +3,7 @@ using EasyAbp.Abp.DynamicEntity.FieldDefinitions;
 using EasyAbp.Abp.DynamicEntity.ModelDefinitions;
 using EasyAbp.Abp.DynamicQuery;
 using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Entities.Events.Distributed;
 using Volo.Abp.Modularity;
@@ -11,7 +11,7 @@ using Volo.Abp.Modularity;
 namespace EasyAbp.Abp.DynamicEntity
 {
     [DependsOn(
-        typeof(AbpAutoMapperModule),
+        typeof(AbpMapperlyModule),
         typeof(AbpDddDomainModule),
         typeof(AbpDynamicEntityDomainSharedModule)
     )]
@@ -20,13 +20,8 @@ namespace EasyAbp.Abp.DynamicEntity
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<AbpDynamicEntityDomainModule>();
-            
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AbpDynamicEntityDomainModule>(validate: true);
-            });
-            
+            context.Services.AddMapperlyObjectMapper<AbpDynamicEntityDomainModule>();
+
             Configure<AbpDistributedEntityEventOptions>(options =>
             {
                 options.AutoEventSelectors.Add<ModelDefinition>();

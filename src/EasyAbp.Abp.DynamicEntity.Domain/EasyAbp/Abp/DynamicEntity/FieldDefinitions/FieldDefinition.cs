@@ -36,6 +36,11 @@ namespace EasyAbp.Abp.DynamicEntity.FieldDefinitions
             CheckName();
         }
 
+        public void Update([NotNull] string displayName)
+        {
+            DisplayName = displayName;
+        }
+
         private void CheckName()
         {
             if (!Regex.IsMatch(Name, @"^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$"))
