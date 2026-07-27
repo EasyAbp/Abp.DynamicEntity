@@ -17,7 +17,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <ProjectReference Include="..\DynamicEntitySample.Application.Tests\DynamicEntitySample.Application.Tests.csproj" />
-    <ProjectReference Include="..\..\src\DynamicEntitySample.Web\DynamicEntitySample.Web.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="4.4.0" />
   </ItemGroup>
 
